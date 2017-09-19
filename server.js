@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const MONGODB_URI = 'mongodb://localhost:27017/aplyTrac';
 const APPLICATION_COLLECTION = 'applications';
+const USER_COLLECTION = 'users';
 const ObjectID = mongodb.ObjectID;
 let db;
 
@@ -100,4 +101,8 @@ app.put("/api/applications/:id", (req, res) => {
       updateData._id = req.params.id;
       res.status(200).json(updateData);
    });
+});
+
+app.get('/', (req, res) => {
+   res.sendFile('/public/index.html');
 });
