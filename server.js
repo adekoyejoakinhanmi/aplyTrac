@@ -1,13 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const mongoClient = require('mongodb').MongoClient;
 const methodOverride = require('method-override');
 
 const app = express();
-const Schema = mongoose.Schema;
 const port = process.env.PORT || 5000;
 const MONGODB_URI = 'mongodb://localhost:27017/aplyTrac';
-const JOBS_COLLECTION = 'applications';
+const APPLICATION_COLLECTION = 'applications';
 let db;
 
 // CONFIG
@@ -23,24 +22,17 @@ app.use(express.static(__dirname + '/public'));
 
 
 // DATABASE
-mongoose.connect(MONGODB_URI, {
-   useMongoClient : true
-});
+mongoClient.connect(MONGODB_URI, (err, database) => {
+   if (err) throw err;
 
-// Data Schema
-const Application = new Schema({
-   companyName : String,
-   jobVacancy : String, 
-   jobType : String,
-   applicationMedium : String,
-   applicationStatus : String,
-   applicationDate : {
-      type : Date,
-      default : Date.now
-   }
+   db = database;
+   console.log("Database Connection is ready");
+      
+   // START
+   app.listen(port, () => {
+      console.log(`Things are happening on ${port}`);
+   });
 });
-
-const ApplicationModel = mongoose.model('Application', Application);
 
 // API ROUTES
 
@@ -52,15 +44,27 @@ function handleError(res, reason, message, code) {
    });
 }
 
+/* 
+   Application Schema
+    {
+       "_id" : <ObjectId>,
+       "companyName" : <String>,
+       "jobVacancy" : <String>,
+       "jobType" : <String>,
+       "applicationMedium" : <String>,
+       "applicationStatus" : <String>,
+       "applicationDate" : <Date>
+    }
+*/
 /* "/api/applications"
  *    GET: Finds all job applications
  *    POST : Creates a new job application
 */
 app.get('/api/applications', (req, res) => {
-   ApplicationModel.find((err, applications) => {
+   db.collection(APPLICATION_COLLECTION).find({}).toArray((err, docs) => {
       if (err) handleError(res, err.message, "Failed to get applications");
-      res.status(200).json(applications);
-   })
+      res.status(200).json(docs);
+   });
 });
 
 app.post('/api/applications', (req, res) => {
@@ -68,19 +72,12 @@ app.post('/api/applications', (req, res) => {
    // We need to perform Validation here as well
    // but for now we will assume correct data is 
    // comming in
-   if (!req.body.companyName) {
-      handleError(res, "Invalide user input", "Must provide company name", 400);
-   }
-   let newApplication = new ApplicationModel(body);
-   newApplication.save((err) => {
-      if (err) {
-         handleError(res, err.message, "Failed to create new application.");
-      }
-   });
-});
-
-// START
-
-app.listen(port, () => {
-   console.log(`Things are happening on ${port}`);
+   
+   db.collection(APPLICATION_COLLECTION).insertOne(newContact, (err, doc) => {
+      f (err) {
+         handleError(res, err.message, "Failed to create new applicaion.");
+       } else {
+         res.status(201).json(doc.ops[0]);
+       }
+   })
 });
