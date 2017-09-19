@@ -1,13 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
-const methodOverride = require('method-override');
+const methodOverride = require('method-override')
 
 const app = express();
 const port = process.env.PORT || 5000;
 const MONGODB_URI = 'mongodb://localhost:27017/aplyTrac';
 const APPLICATION_COLLECTION = 'applications';
-const USER_COLLECTION = 'users';
 const ObjectID = mongodb.ObjectID;
 let db;
 
@@ -16,7 +15,6 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
-
 
 /* Connect to DB */
 mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
@@ -44,7 +42,7 @@ function handleError(res, reason, message, code) {
 /* 
    Application Schema = 
    {
-       "_id" : <ObjectId>,
+       "_id" : <ObjectId>
        "companyName" : <String>,
        "jobVacancy" : <String>,
        "jobType" : <String>,
@@ -104,5 +102,5 @@ app.put("/api/applications/:id", (req, res) => {
 });
 
 app.get('/', (req, res) => {
-   res.sendFile('/public/index.html');
+  res.sendFile('/public/index.html');
 });

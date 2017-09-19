@@ -5,9 +5,34 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>AplyTrac</title>
+
+   <link href="/assets/css/bootstrap.css" rel="stylesheet">
+   <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-   <p>This guy works fine and I resently just changed this </p>
+   <div id="app">
+      
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="navbar-header">
+            
+               <a class="navbar-brand" href="#">
+               <i class="glyphicon glyphicon-briefcase"></i> 
+               AplyTrac
+               </a>
+            </div>
 
+               </ul>
+            </div><!--/.nav-collapse -->
+         </div><!--/.container-fluid -->
+      </nav>
+      <div class="container">
+         <router-view></router-view>
+     </div>
+
+   </div>
+
+
+   <script src="./dist/build.js"></script>
 </body>
 </html>
