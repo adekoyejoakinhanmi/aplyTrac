@@ -1,42 +1,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoClient = require('mongodb').MongoClient;
+const mongodb = require('mongodb');
 const methodOverride = require('method-override');
 
 const app = express();
 const port = process.env.PORT || 5000;
 const MONGODB_URI = 'mongodb://localhost:27017/aplyTrac';
 const APPLICATION_COLLECTION = 'applications';
+const ObjectID = mongodb.ObjectID;
 let db;
 
-// CONFIG
-app.use(bodyParser.urlencoded({
-   extended : true
-}));
+/* Configuration */
+app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
-app.use(bodyParser.json({
-   type : 'application/vnd.api+json'
-}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 
-// DATABASE
-mongoClient.connect(MONGODB_URI, (err, database) => {
+/* Connect to DB */
+mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
    if (err) throw err;
 
    db = database;
    console.log("Database Connection is ready");
       
-   // START
    app.listen(port, () => {
       console.log(`Things are happening on ${port}`);
    });
 });
 
-// API ROUTES
 
-// Generic Error handler for all end points
+/* Routes */
+
+// Error Handler
 function handleError(res, reason, message, code) {
    console.log(`ERROR: ${reason}`);
    res.status(code || 500).json({
@@ -45,8 +41,8 @@ function handleError(res, reason, message, code) {
 }
 
 /* 
-   Application Schema
-    {
+   Application Schema = 
+   {
        "_id" : <ObjectId>,
        "companyName" : <String>,
        "jobVacancy" : <String>,
@@ -56,6 +52,7 @@ function handleError(res, reason, message, code) {
        "applicationDate" : <Date>
     }
 */
+
 /* "/api/applications"
  *    GET: Finds all job applications
  *    POST : Creates a new job application
@@ -69,15 +66,38 @@ app.get('/api/applications', (req, res) => {
 
 app.post('/api/applications', (req, res) => {
    var body = req.body;
-   // We need to perform Validation here as well
-   // but for now we will assume correct data is 
-   // comming in
    
-   db.collection(APPLICATION_COLLECTION).insertOne(newContact, (err, doc) => {
-      f (err) {
+   db.collection(APPLICATION_COLLECTION).insertOne(body, (err, doc) => {
+      if (err) {
          handleError(res, err.message, "Failed to create new applicaion.");
        } else {
          res.status(201).json(doc.ops[0]);
        }
    })
+});
+
+/* "/api/applications/:id"
+ *    DELETE: deletes a job applications by id
+ *    PUT : updates a job application by id
+*/
+app.delete("/api/applications/:id", (req, res) => {
+   db.collection(APPLICATION_COLLECTION).deleteOne({
+      _id : new ObjectID(req.params.id)
+   }, (err, result) => {
+      if (err) handleError(res, err.message, "Failed to delete application");
+      res.status(200).json(req.params.id);
+   });
+});
+
+app.put("/api/applications/:id", (req, res) => {
+   let updateData = req.body;
+   delete updateData._id;
+
+   db.collection(APPLICATION_COLLECTION).updateOne({
+      _id : new ObjectID(req.params.id)
+   }, {$set : updateData}, (err, result) => {
+      if (err) handleError(res, err.message, "Failed to update contact");
+      updateData._id = req.params.id;
+      res.status(200).json(updateData);
+   });
 });
