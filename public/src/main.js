@@ -4,10 +4,12 @@ import router from './router';
 
 Vue.use(VueRouter);
 
-const App = new Vue({
+var App = new Vue({
    router,
    el : '#app',
-   created() {
+   mounted() {
       this.$router.push('/dashboard');
    }
 });
+
+window.$vm = App;
