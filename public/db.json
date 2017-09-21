@@ -1,0 +1,49 @@
+{
+  "applications": [
+    {
+      "companyName": "Employeed",
+      "jobType": "On Site",
+      "jobVacancy": "JavaScript Developer",
+      "applicationMedium": "Email",
+      "applicationStatus": "Get Back to you",
+      "applicationDate": "2017-09-17",
+      "id": "12321214557sd4587g"
+    },
+    {
+      "companyName": "Adenosine People",
+      "jobType": "Remote / Telecommute",
+      "jobVacancy": "Web Developer",
+      "applicationMedium": "Email",
+      "applicationStatus": "Rejected/Filled",
+      "applicationDate": "2017-09-21",
+      "id": "6j7umwhloj7umwhlpj7"
+    },
+    {
+      "companyName": "Animalia",
+      "jobType": "Remote / Telecommute",
+      "jobVacancy": "Web Developer",
+      "applicationMedium": "Email",
+      "applicationStatus": "Get Back to you",
+      "applicationDate": "2017-09-21",
+      "id": "0j7uogeybj7uogeycj7"
+    },
+    {
+      "id": "0j7uoox4aj7uoox4bj7",
+      "companyName": "Atlanta",
+      "jobVacancy": "Web Developer",
+      "jobType": "Remote / Telecommute",
+      "applicationMedium": "Email",
+      "applicationStatus": "Yet to reply",
+      "applicationDate": "2017-09-21"
+    },
+    {
+      "id": "3j7up4yl4j7up4yl5j7",
+      "companyName": "Mend",
+      "jobVacancy": "Web Developer",
+      "jobType": "Remote / Telecommute",
+      "applicationMedium": "Email",
+      "applicationStatus": "Yet to reply",
+      "applicationDate": "2017-09-21"
+    }
+  ]
+}
