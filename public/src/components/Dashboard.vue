@@ -1,6 +1,6 @@
 <template>
   <div>
-   <div :class="['row', 'mb-1', formState ? 'hidden' : '']">
+   <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
        <form>
             <div class="col-md-4 mb-1">
                 <label for="Company Name">Company Name</label>
@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-4 mb-1">
                <label for="Job Vacancy">Job Vacancy</label>
-               <select class="form-control" v-model="newApp.jobVacancy" type="text" name="Job Vacancy">
+               <select class="form-control" v-model="newApp.jobVacancy" name="Job Vacancy">
                   <option value="Web Developer">Web Developer</option>
                   <option value="Fron End Developer">Front End Developer</option>
                   <option value="JavaScript Developer">JavaScript Developer</option>
@@ -18,8 +18,8 @@
             </div>
             <div class="col-md-4 mb-1">
                   <label for="Job Type">Job Type</label>
-                  <select class="form-control" v-model="newApp.jobType" type="text" name="Job Type">
-                     <option value="Remote">Remote / Telecommute</option>
+                  <select class="form-control" v-model="newApp.jobType"  name="Job Type">
+                     <option value="Remote / Telecommute">Remote / Telecommute</option>
                      <option value="On Site">On Site</option>
                   </select>
             </div>
@@ -36,19 +36,19 @@
             <div class="col-md-4 mb-1">
                   <label for="Application Status">Application Status</label>
                   <select class="form-control" v-model="newApp.applicationStatus" name="Application Status">
-                     <option value="yetToReply">Yet to reply</option>
-                     <option value="pending">Pending</option>
-                     <option value="getBack">Get Back to you</option>
-                     <option value="rejected">Rejected/Filled</option>
+                     <option value="Yet to reply">Yet to reply</option>
+                     <option value="Pending">Pending</option>
+                     <option value="Get Back to you">Get Back to you</option>
+                     <option value="Rejected/Filled">Rejected/Filled</option>
                   </select>
             </div>
             <div class="col-md-4 mb-1">
                   <label for="Date Applied">Application Date</label>
-                  <input class="form-control" v-model="applicationDate" name="Date Applied" type="date">
+                  <input class="form-control" v-model="newApp.applicationDate" name="Date Applied" type="date">
             </div>
             <div class="pull-right">
                <button id="cancelNewApplication" class="btn btn-default" type="reset">Cancel</button>
-               <button class="btn btn-success" type="submit">Add</button>
+               <button class="btn btn-success" type="button" @click="addNew" :disabled="formValid">Add</button>
             </div>
       </form>
     </div>
@@ -58,7 +58,7 @@
       <h2>All Jobs for {{user}}</h2>
      </div>
      <div class="col-md-3 col-sm-6 col-xs-6 clearfix">
-      <button @click="toggleFormState" id="addNewApplication" class="pull-right btn btn-success">
+      <button @click="toggleFormVisiblity" id="addNewApplication" class="pull-right btn btn-success">
          Add New <i class="glyphicon glyphicon-plus"></i>
       </button>
      </div>
@@ -82,7 +82,6 @@
 <script>
 import axios from 'axios';
 import application from '../reusable/application.vue';
-import newApplication from '../reusable/newApplication.vue';
 
 export default {
    data(){
@@ -96,7 +95,7 @@ export default {
             applicationStatus : 'Yet to reply',
             applicationDate : ''
          },
-         formState : true,
+         formVisible : false,
          applications : [{
               "id" : "4576546d6ere165e4d7",
               "companyName" : "Dply",
@@ -132,20 +131,33 @@ export default {
          console.log(err);
        });
      },
-     addNew(data) {
+     addNew() {
+       let data = {
+         companyName : this.newApp.companyName,
+         jobVacancy : this.newApp.jobVacancy,
+         jobType : this.newApp.jobType,
+         applicationMedium : this.newApp.applicationMedium,
+         applicationStatus : this.newApp.applicationStatus,
+         applicationDate : this.newApp.applicationDate
+       }
        this.applications.push(data)
+       this.newApp.companyName = '';
      },
-     toggleFormState(){
-       this.formState = !this.formState;
+     toggleFormVisiblity(){
+       this.formVisible = !this.formVisible;
        return true; 
+     }
+   },
+   computed : {
+     formValid() {
+       return !this.newApp.companyName && !this.newApp.applicationDate;
      }
    },
    mounted() {
      //this.getApplications();
    },
    components : {
-     'application' : application,
-     'new_application' : newApplication
+     'application' : application
    }
 }
 </script>
