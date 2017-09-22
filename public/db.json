@@ -26,6 +26,24 @@
       "applicationMedium": "Email",
       "applicationStatus": "Get Back to you",
       "applicationDate": "2017-09-23"
+    },
+    {
+      "id": "0j7vwms3mj7vwms3nj7",
+      "companyName": "Editorial.JS",
+      "jobVacancy": "Web Developer",
+      "jobType": "Remote / Telecommute",
+      "applicationMedium": "Email",
+      "applicationStatus": "Yet to reply",
+      "applicationDate": "2017-09-22"
+    },
+    {
+      "id": "1j7vx09l7j7vx09l8j7",
+      "companyName": "Basuka",
+      "jobVacancy": "Web Developer",
+      "jobType": "Remote / Telecommute",
+      "applicationMedium": "Email",
+      "applicationStatus": "Yet to reply",
+      "applicationDate": "2017-09-22"
     }
   ]
 }

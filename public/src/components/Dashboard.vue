@@ -86,6 +86,7 @@ import axios from 'axios';
 import application from '../reusable/application.vue';
 import base from '../helpers/urls.config';
 import uniqid from 'uniqid';
+import _ from 'lodash';
 
 export default {
    data(){
@@ -107,6 +108,7 @@ export default {
      getApplications() {
        axios.get(`${base.url}/applications`).then((response) => {
          this.applications = response.data;
+         this.applications.reverse();
        }).catch(err => {
          console.log(err);
        });
