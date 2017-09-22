@@ -1,5 +1,5 @@
 <template>
-   <div class="col-md-4">
+   <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="panel panel-default">
          <div class="panel-heading">
             <strong>
@@ -27,7 +27,7 @@
          <div class="panel-footer clearfix">
             <div class="pull-right">
                <span @click="editApplication"><i class="glyphicon glyphicon-pencil"></i></span>
-               <span @click="deleteApplication"><i class="glyphicon glyphicon-trash"></i></span>
+               <span @click="deleteApp"><i class="glyphicon glyphicon-trash"></i></span>
             </div>
          </div>
       </div>
@@ -59,10 +59,15 @@ export default {
           applicationDate : this.application.applicationDate
         };
         axios.put(`${base.url}/applications/${this.application.id}`, data);
+        // This is to ensure that the parent gets full
+        // update data;
+        data.id = this.application.id;
+        this.$emit('updated', data)
         this.editApplication();
       },
-      deleteApplication() {
+      deleteApp() {
         axios.delete(`${base.url}/applications/${this.application.id}`);
+        this.$emit('deleteApp');
       }
     },
    props : ['application'],

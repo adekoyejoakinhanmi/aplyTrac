@@ -72,6 +72,8 @@
       <application :key="application.id"
                    :application="application"
                    v-for="(application, index) in applications"
+                   v-on:deleteApp="deleteOne(index)"
+                   :edited="updateApp" @updated="data => updateApp(index, data)"
       ></application>
       
 
@@ -108,6 +110,13 @@ export default {
        }).catch(err => {
          console.log(err);
        });
+     },
+     deleteOne(index) {
+       this.applications.splice(index, 1);
+     },
+     updateApp(idx, other) {
+       this.applications.splice(idx, 1, other);
+       return true;
      },
      addNew() {
        let id = `${Math.floor(Math.random() * 10)}${uniqid()}${uniqid()}${uniqid()}`;
