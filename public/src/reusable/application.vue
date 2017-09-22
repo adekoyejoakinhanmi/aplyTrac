@@ -11,19 +11,71 @@
          <div class="panel-body">
             <p><em>{{application.jobVacancy}} | {{application.jobType}}</em></p>
             <p>via {{application.applicationMedium}} on {{application.applicationDate}}</p>
-            <p></p>
+            <div :class="[editing ? '' : 'hidden']">
+               <label for="Application Status">Status</label>
+               <select class="mb-1 form-control" name="Application Status" v-model="applicationStatus">
+                  <option value="Yet to reply">Yet to reply</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Get Back to you">Get Back to you</option>
+                  <option value="Rejected/Filled">Rejected/Filled</option>
+               </select>
+               
+               <button class="btn btn-default" type="button" @click="updateApplication">Go!</button>
+            </div>
+
+         </div>
+         <div class="panel-footer clearfix">
+            <div class="pull-right">
+               <span @click="editApplication"><i class="glyphicon glyphicon-pencil"></i></span>
+               <span @click="deleteApplication"><i class="glyphicon glyphicon-trash"></i></span>
+            </div>
          </div>
       </div>
    </div>
 </template>
 
 <script>
+import base from '../helpers/urls.config';
+import axios from 'axios';
+
 export default {
+   data(){
+      return {
+         editing : false,
+         applicationStatus : this.application.applicationStatus
+      }
+   },
+   methods : {
+      editApplication () {
+         this.editing = !this.editing;
+      },
+      updateApplication() {
+        axios.put(`${base.url}/applications/${this.application.id}`, {
+          companyName : this.application.companyName,
+          jobType : this.application.jobType,
+          jobVacancy : this.application.jobVacancy,
+          applicationMedium : this.application.applicationMedium,
+          applicationStatus : this.applicationStatus,
+          applicationDate : this.application.applicationDate
+        });
+        this.editApplication();
+      },
+      deleteApplication() {
+        axios.delete(`${base.url}/applications/${this.application.id}`);
+      }
+    },
    props : ['application'],
    computed : {
       bgColor() {
-         //console.log(this.application.applicationStatus);
-         return 'bg-primary'
+        let status = this.application.applicationStatus;
+         if (status === 'Yet to reply') {
+           return 'bg-warning';
+         } else if (status === 'Rejected/Filled') {
+           return 'bg-danger';
+         } else if (status === 'Get Back to you') {
+           return 'bg-primary';
+         }
+         return 'bg-success'
       }
    }
 }
@@ -41,4 +93,5 @@ export default {
       margin-top: 4px;
       cursor: pointer;
    }
+   
 </style>

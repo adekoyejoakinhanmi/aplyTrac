@@ -1,6 +1,6 @@
 <template>
   <div>
-   <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
+    <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
        <form>
             <div class="col-md-4 mb-1">
                 <label for="Company Name">Company Name</label>
@@ -54,15 +54,15 @@
     </div>
 
      <header class="row mb-1">
-     <div class="col-md-9 col-sm-6 col-xs-6">
-      <h2>All Jobs for {{user}}</h2>
-     </div>
-     <div class="col-md-3 col-sm-6 col-xs-6 clearfix">
-      <button @click="toggleFormVisiblity" id="addNewApplication" class="pull-right btn btn-success">
+      <div class="col-md-9 col-sm-6 col-xs-6">
+        <h2>All Jobs for {{user}}</h2>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6 clearfix">
+        <button @click="toggleFormVisiblity" id="addNewApplication" class="pull-right btn btn-success">
          Add New <i class="glyphicon glyphicon-plus"></i>
-      </button>
-     </div>
-   </header>
+        </button>
+      </div>
+      </header>
    
     
 
@@ -82,6 +82,8 @@
 <script>
 import axios from 'axios';
 import application from '../reusable/application.vue';
+import base from '../helpers/urls.config';
+import uniqid from 'uniqid';
 
 export default {
    data(){
@@ -96,43 +98,22 @@ export default {
             applicationDate : ''
          },
          formVisible : false,
-         applications : [{
-              "id" : "4576546d6ere165e4d7",
-              "companyName" : "Dply",
-              "jobType" : "Remote",
-              "jobVacancy" : "Front End Developer",
-              "applicationMedium" : "Email",
-              "applicationStatus" : "YTR", 
-              "applicationDate" : "2017-09-14"
-            },{
-              "id" : "4576546a4we4q75er2",
-              "companyName" : "Gridium",
-              "jobType" : "Remote",
-              "jobVacancy" : "Front End Developer",
-              "applicationMedium" : "Remotee",
-              "applicationStatus" : "Closed", 
-              "applicationDate" : "2017-09-15"
-            },{
-              "id" : "12321214557sd4587g",
-              "companyName" : "Employeed",
-              "jobType" : "On Site",
-              "jobVacancy" : "JavaScript Developer",
-              "applicationMedium" : "Email",
-              "applicationStatus" : "YTR", 
-              "applicationDate" : "2017-09-17"
-            }]
+         applications : []
       }
    },
    methods : {
      getApplications() {
-       axios.get('/api/applications').then(response => {
-         this.applications = response.data.results;
+       axios.get(`${base.url}/applications`).then((response) => {
+         this.applications = response.data;
        }).catch(err => {
          console.log(err);
        });
      },
      addNew() {
+       let id = `${Math.floor(Math.random() * 10)}${uniqid()}${uniqid()}${uniqid()}`;
+
        let data = {
+         id : id.substring(0,19),
          companyName : this.newApp.companyName,
          jobVacancy : this.newApp.jobVacancy,
          jobType : this.newApp.jobType,
@@ -140,7 +121,12 @@ export default {
          applicationStatus : this.newApp.applicationStatus,
          applicationDate : this.newApp.applicationDate
        }
-       this.applications.push(data)
+       axios.post(`${base.url}/applications`, data).then(success => {
+         console.log(success);
+       }).catch(err => {
+         console.log(err);
+       });
+       this.getApplications();
        this.newApp.companyName = '';
      },
      toggleFormVisiblity(){
@@ -154,7 +140,7 @@ export default {
      }
    },
    mounted() {
-     //this.getApplications();
+     this.getApplications();
    },
    components : {
      'application' : application
