@@ -50,14 +50,15 @@ export default {
          this.editing = !this.editing;
       },
       updateApplication() {
-        axios.put(`${base.url}/applications/${this.application.id}`, {
+        let data =  {
           companyName : this.application.companyName,
           jobType : this.application.jobType,
           jobVacancy : this.application.jobVacancy,
           applicationMedium : this.application.applicationMedium,
           applicationStatus : this.applicationStatus,
           applicationDate : this.application.applicationDate
-        });
+        };
+        axios.put(`${base.url}/applications/${this.application.id}`, data);
         this.editApplication();
       },
       deleteApplication() {
@@ -93,5 +94,13 @@ export default {
       margin-top: 4px;
       cursor: pointer;
    }
-   
+   .bg-danger{
+     background-color: #ce2c2c
+   }
+   .bg-success{
+     background-color: #4e9a2e
+   }
+   .bg-warning{
+     background-color: #efe04e
+   }
 </style>

@@ -14,7 +14,7 @@
       "jobType": "Remote / Telecommute",
       "jobVacancy": "Web Developer",
       "applicationMedium": "Email",
-      "applicationStatus": "Rejected/Filled",
+      "applicationStatus": "Pending",
       "applicationDate": "2017-09-21",
       "id": "6j7umwhloj7umwhlpj7"
     },
@@ -44,6 +44,15 @@
       "applicationMedium": "Email",
       "applicationStatus": "Yet to reply",
       "applicationDate": "2017-09-21"
+    },
+    {
+      "id": "8j7vnxm77j7vnxm78j7",
+      "companyName": "Elentra",
+      "jobVacancy": "Full Stack Developer",
+      "jobType": "Remote / Telecommute",
+      "applicationMedium": "Workable",
+      "applicationStatus": "Get Back to you",
+      "applicationDate": "2017-09-22"
     }
   ]
 }

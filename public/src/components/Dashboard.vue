@@ -71,7 +71,7 @@
       
       <application :key="application.id"
                    :application="application"
-                   v-for="application in applications"
+                   v-for="(application, index) in applications"
       ></application>
       
 
@@ -122,11 +122,10 @@ export default {
          applicationDate : this.newApp.applicationDate
        }
        axios.post(`${base.url}/applications`, data).then(success => {
-         console.log(success);
+         this.applications.unshift(data);
        }).catch(err => {
          console.log(err);
        });
-       this.getApplications();
        this.newApp.companyName = '';
      },
      toggleFormVisiblity(){
