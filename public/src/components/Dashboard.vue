@@ -2,11 +2,11 @@
   <div>
     <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
        <form>
-            <div class="col-md-4 mb-1">
+            <div class="col-md-3 mb-1">
                 <label for="Company Name">Company Name</label>
                 <input class="form-control" v-model="newApp.companyName" type="text" name="Company Name" placeholder="Company Name">
             </div>
-            <div class="col-md-4 mb-1">
+            <div class="col-md-3 mb-1">
                <label for="Job Vacancy">Job Vacancy</label>
                <select class="form-control" v-model="newApp.jobVacancy" name="Job Vacancy">
                   <option value="Web Developer">Web Developer</option>
@@ -16,14 +16,14 @@
                   <option value="Other">Other</option>
                </select>
             </div>
-            <div class="col-md-4 mb-1">
+            <div class="col-md-3 mb-1">
                   <label for="Job Type">Job Type</label>
                   <select class="form-control" v-model="newApp.jobType"  name="Job Type">
                      <option value="Remote / Telecommute">Remote / Telecommute</option>
                      <option value="On Site">On Site</option>
                   </select>
             </div>
-            <div class="col-md-4 mb-1">
+            <div class="col-md-3 mb-1">
                   <label for="Application Medium">Application Medium</label>
                   <select class="form-control" v-model="newApp.applicationMedium" name="Application Medium">
                      <option value="Email">Email</option>
@@ -33,7 +33,7 @@
                      <option value="Other">Other</option>
                   </select>
             </div>
-            <div class="col-md-4 mb-1">
+            <div class="col-md-3 mb-1">
                   <label for="Application Status">Application Status</label>
                   <select class="form-control" v-model="newApp.applicationStatus" name="Application Status">
                      <option value="Yet to reply">Yet to reply</option>
@@ -42,7 +42,7 @@
                      <option value="Rejected/Filled">Rejected/Filled</option>
                   </select>
             </div>
-            <div class="col-md-4 mb-1">
+            <div class="col-md-3 mb-1">
                   <label for="Date Applied">Application Date</label>
                   <input class="form-control" v-model="newApp.applicationDate" name="Date Applied" type="date">
             </div>
@@ -54,10 +54,10 @@
     </div>
 
      <header class="row mb-1">
-      <div class="col-md-9 col-sm-6 col-xs-6">
+      <div class="col-md-10 col-sm-7 col-xs-7">
         <h2>All Jobs for {{user}}</h2>
       </div>
-      <div class="col-md-3 col-sm-6 col-xs-6 clearfix">
+      <div class="col-md-2 col-sm-5 col-xs-5 clearfix">
         <button @click="toggleFormVisiblity" id="addNewApplication" class="pull-right btn btn-success">
          Add New <i class="glyphicon glyphicon-plus"></i>
         </button>

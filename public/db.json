@@ -1,3 +1,31 @@
 {
-  "applications": []
+  "applications": [
+    {
+      "id": "8j7vt6xm9j7vt6xmaj7",
+      "companyName": "Full Time",
+      "jobVacancy": "Other",
+      "jobType": "On Site",
+      "applicationMedium": "Lever.co",
+      "applicationStatus": "Pending",
+      "applicationDate": "2017-09-22"
+    },
+    {
+      "id": "5j7vt7f7cj7vt7f7dj7",
+      "companyName": "More Inter",
+      "jobVacancy": "Fron End Developer",
+      "jobType": "Remote / Telecommute",
+      "applicationMedium": "Remotee",
+      "applicationStatus": "Yet to reply",
+      "applicationDate": "2017-09-22"
+    },
+    {
+      "id": "2j7vt7waoj7vt7wapj7",
+      "companyName": "This date",
+      "jobVacancy": "Full Stack Developer",
+      "jobType": "On Site",
+      "applicationMedium": "Email",
+      "applicationStatus": "Get Back to you",
+      "applicationDate": "2017-09-23"
+    }
+  ]
 }
