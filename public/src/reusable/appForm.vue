@@ -1,11 +1,11 @@
 <template>
       <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
        <form>
-            <div class="col-md-3 mb-1 col-md-6">
+            <div class="col-md-2 mb-1 col-md-6">
                 <label for="Company Name">Company Name</label>
                 <input class="form-control" v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">
             </div>
-            <div class="col-md-3 mb-1 col-md-6">
+            <div class="col-md-2 mb-1 col-md-6">
                <label for="Job Vacancy">Job Vacancy</label>
                <select class="form-control" v-model="newApp.vacancy" name="Job Vacancy">
                   <option value="Web Developer">Web Developer</option>
@@ -15,14 +15,14 @@
                   <option value="Other">Other</option>
                </select>
             </div>
-            <div class="col-md-3 mb-1 col-md-6">
+            <div class="col-md-2 mb-1 col-md-6">
                   <label for="Job Type">Job Type</label>
                   <select class="form-control" v-model="newApp.type"  name="Job Type">
                      <option value="Remote / Telecommute">Remote / Telecommute</option>
                      <option value="On Site">On Site</option>
                   </select>
             </div>
-            <div class="col-md-3 mb-1 col-md-6">
+            <div class="col-md-2 mb-1 col-md-6">
                   <label for="Application Medium">Application Medium</label>
                   <select class="form-control" v-model="newApp.medium" name="Application Medium">
                      <option value="Email">Email</option>
@@ -32,7 +32,7 @@
                      <option value="Other">Other</option>
                   </select>
             </div>
-            <div class="col-md-3 mb-1 col-md-6">
+            <div class="col-md-2 mb-1 col-md-6">
                   <label for="Application Status">Application Status</label>
                   <select class="form-control" v-model="newApp.status" name="Application Status">
                      <option value="Yet to reply">Yet to reply</option>
@@ -41,7 +41,7 @@
                      <option value="Rejected/Filled">Rejected/Filled</option>
                   </select>
             </div>
-            <div class="col-md-3 mb-1 col-md-6">
+            <div class="col-md-2 mb-1 col-md-6">
                   <label for="Date Applied">Application Date</label>
                   <input class="form-control" v-model="newApp.date" name="Date Applied" type="date">
             </div>

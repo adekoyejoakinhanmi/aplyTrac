@@ -1,5 +1,11 @@
 <template>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <app-form :form-visible="formVisible"
+              v-on:newApp="addNewApp"
+              v-on:formClosed="toggleFormVisibility"
+    ></app-form>
+
+    
     <header class="row mb-1">
       <div class="col-md-10 col-sm-7 col-xs-7">
         <h2>All Jobs for {{user}}</h2>
@@ -11,12 +17,13 @@
         </div>
     </header>
    
-    <app-form :form-visible="formVisible"
-              v-on:newApp="addNewApp"
-              v-on:formClosed="toggleFormVisibility"
-    ></app-form>
+    
 
     <div class="row">
+      <div class="well" v-show="emptyList">
+        You have added any applications yet
+      </div>
+
       <application :key="application.id"
                    :application="application"
                    v-for="(application, index) in applications"
@@ -66,6 +73,11 @@ export default {
      toggleFormVisibility(){
        this.formVisible = !this.formVisible;
        return true; 
+     }
+   },
+   computed : {
+     emptyList() {
+       return this.applications.length === 0;
      }
    },
    mounted() {

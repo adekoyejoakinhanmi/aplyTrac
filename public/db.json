@@ -1,13 +1,34 @@
 {
   "applications": [
     {
-      "id": "4j804n1d0j804n1d1j8",
-      "company": "The New Zone",
+      "id": "7j80fmspaj80fmspbj8",
+      "company": "Medel",
       "vacancy": "Web Developer",
       "type": "Remote / Telecommute",
       "medium": "Email",
       "status": "Yet to reply",
       "date": "2017-09-25"
+    },
+    {
+      "company": "Yimmu Enterprices",
+      "type": "Remote / Telecommute",
+      "vacancy": "Web Developer",
+      "medium": "Email",
+      "status": "Get Back to you",
+      "date": "2017-09-25",
+      "id": "2j80fn49tj80fn49uj8"
+    },
+    {
+      "id": "1j80fnfafj80fnfagj8",
+      "company": "Yiinkas People",
+      "vacancy": "Web Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Lever.co",
+      "status": "Yet to reply",
+      "date": "2017-09-25"
     }
-  ]
+  ],
+  "settings": {
+    "deleteOnClosed": true
+  }
 }
