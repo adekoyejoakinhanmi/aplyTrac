@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
     <header class="row mb-1">
       <div class="col-md-10 col-sm-7 col-xs-7">
         <h2>All Jobs for {{user}}</h2>
