@@ -1,8 +1,6 @@
 <template>
   <div>
-    
-
-     <header class="row mb-1">
+    <header class="row mb-1">
       <div class="col-md-10 col-sm-7 col-xs-7">
         <h2>All Jobs for {{user}}</h2>
       </div>
@@ -10,8 +8,8 @@
         <button @click="toggleFormVisibility" id="addNewApplication" class="pull-right btn btn-success">
          Add New <i class="glyphicon glyphicon-plus"></i>
         </button>
-      </div>
-      </header>
+        </div>
+    </header>
    
     <app-form :form-visible="formVisible"
               v-on:newApp="addNewApp"
@@ -19,17 +17,14 @@
     ></app-form>
 
     <div class="row">
-      
-      
       <application :key="application.id"
                    :application="application"
                    v-for="(application, index) in applications"
                    v-on:deleteApp="deleteOne(index)"
                    :edited="updateApp" @updated="data => updateApp(index, data)"
       ></application>
-      
-
     </div>
+    
   </div>
 </template>
 

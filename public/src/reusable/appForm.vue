@@ -3,11 +3,11 @@
        <form>
             <div class="col-md-3 mb-1 col-md-6">
                 <label for="Company Name">Company Name</label>
-                <input class="form-control" v-model="newApp.companyName" type="text" name="Company Name" placeholder="Company Name">
+                <input class="form-control" v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">
             </div>
             <div class="col-md-3 mb-1 col-md-6">
                <label for="Job Vacancy">Job Vacancy</label>
-               <select class="form-control" v-model="newApp.jobVacancy" name="Job Vacancy">
+               <select class="form-control" v-model="newApp.vacancy" name="Job Vacancy">
                   <option value="Web Developer">Web Developer</option>
                   <option value="Fron End Developer">Front End Developer</option>
                   <option value="JavaScript Developer">JavaScript Developer</option>
@@ -17,14 +17,14 @@
             </div>
             <div class="col-md-3 mb-1 col-md-6">
                   <label for="Job Type">Job Type</label>
-                  <select class="form-control" v-model="newApp.jobType"  name="Job Type">
+                  <select class="form-control" v-model="newApp.type"  name="Job Type">
                      <option value="Remote / Telecommute">Remote / Telecommute</option>
                      <option value="On Site">On Site</option>
                   </select>
             </div>
             <div class="col-md-3 mb-1 col-md-6">
                   <label for="Application Medium">Application Medium</label>
-                  <select class="form-control" v-model="newApp.applicationMedium" name="Application Medium">
+                  <select class="form-control" v-model="newApp.medium" name="Application Medium">
                      <option value="Email">Email</option>
                      <option value="Remotee">Remotee</option>
                      <option value="Workable">Workable</option>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-3 mb-1 col-md-6">
                   <label for="Application Status">Application Status</label>
-                  <select class="form-control" v-model="newApp.applicationStatus" name="Application Status">
+                  <select class="form-control" v-model="newApp.status" name="Application Status">
                      <option value="Yet to reply">Yet to reply</option>
                      <option value="Pending">Pending</option>
                      <option value="Get Back to you">Get Back to you</option>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-3 mb-1 col-md-6">
                   <label for="Date Applied">Application Date</label>
-                  <input class="form-control" v-model="newApp.applicationDate" name="Date Applied" type="date">
+                  <input class="form-control" v-model="newApp.date" name="Date Applied" type="date">
             </div>
             <div class="pull-right">
                <button id="cancelNewApplication" class="btn btn-default" type="reset" @click="closeForm">Cancel</button>
@@ -63,12 +63,12 @@ export default {
       data() {
             return {
                   newApp : {
-                        companyName : '',
-                        jobVacancy : 'Web Developer',
-                        jobType : 'Remote / Telecommute',
-                        applicationMedium : 'Email',
-                        applicationStatus : 'Yet to reply',
-                        applicationDate : ''
+                        company : '',
+                        vacancy : 'Web Developer',
+                        type : 'Remote / Telecommute',
+                        medium : 'Email',
+                        status : 'Yet to reply',
+                        date : ''
                   }
             }
       },
@@ -78,12 +78,12 @@ export default {
 
                   let data = {
                         id : _id.substring(0,19),
-                        companyName : this.newApp.companyName,
-                        jobVacancy : this.newApp.jobVacancy,
-                        jobType : this.newApp.jobType,
-                        applicationMedium : this.newApp.applicationMedium,
-                        applicationStatus : this.newApp.applicationStatus,
-                        applicationDate : this.newApp.applicationDate
+                        company : this.newApp.company,
+                        vacancy : this.newApp.vacancy,
+                        type : this.newApp.type,
+                        medium : this.newApp.medium,
+                        status : this.newApp.status,
+                        date : this.newApp.date
                   }
                   axios.post(`${base.url}/applications`, data).then(success => {
                         this.$emit('newApp', data);
@@ -97,7 +97,7 @@ export default {
       },
       computed : {
             formValid() {
-                  return !this.newApp.companyName && !this.newApp.applicationDate;
+                  return !this.newApp.company && !this.newApp.date;
             }
       }
 }

@@ -3,17 +3,17 @@
       <div class="panel panel-default">
          <div class="panel-heading">
             <strong>
-               {{application.companyName}}
-               <span :title="application.applicationStatus" :class="['status_badge', 'pull-right', bgColor]">&nbsp;</span>
+               {{application.company}}
+               <span :title="application.status" :class="['status_badge', 'pull-right', bgColor]">&nbsp;</span>
             </strong>
          </div>
 
          <div class="panel-body">
-            <p><em>{{application.jobVacancy}} | {{application.jobType}}</em></p>
-            <p>via {{application.applicationMedium}} on {{application.applicationDate}}</p>
+            <p><em>{{application.vacancy}} | {{application.type}}</em></p>
+            <p>via {{application.medium}} on {{application.date}}</p>
             <div :class="[editing ? '' : 'hidden']">
                <label for="Application Status">Status</label>
-               <select class="mb-1 form-control" name="Application Status" v-model="applicationStatus">
+               <select class="mb-1 form-control" name="Application Status" v-model="status">
                   <option value="Yet to reply">Yet to reply</option>
                   <option value="Pending">Pending</option>
                   <option value="Get Back to you">Get Back to you</option>
@@ -42,7 +42,7 @@ export default {
    data(){
       return {
          editing : false,
-         applicationStatus : this.application.applicationStatus
+         status : this.application.status
       }
    },
    methods : {
@@ -51,12 +51,12 @@ export default {
       },
       updateApplication() {
         let data =  {
-          companyName : this.application.companyName,
-          jobType : this.application.jobType,
-          jobVacancy : this.application.jobVacancy,
-          applicationMedium : this.application.applicationMedium,
-          applicationStatus : this.applicationStatus,
-          applicationDate : this.application.applicationDate
+          company : this.application.company,
+          type : this.application.type,
+          vacancy : this.application.vacancy,
+          medium : this.application.medium,
+          status : this.status,
+          date : this.application.date
         };
         axios.put(`${base.url}/applications/${this.application.id}`, data);
         // This is to ensure that the parent gets full
@@ -73,7 +73,7 @@ export default {
    props : ['application'],
    computed : {
       bgColor() {
-        let status = this.application.applicationStatus;
+        let status = this.application.status;
          if (status === 'Yet to reply') {
            return 'bg-warning';
          } else if (status === 'Rejected/Filled') {
