@@ -1,41 +1,29 @@
 <template>
 <div id="app">
       
-      <nav class="navbar navbar-default">
-         <div class="container-fluid">
-            <div class="navbar-header">
-            
-               <a class="navbar-brand" href="#">
-               <i class="glyphicon glyphicon-briefcase"></i> 
-               AplyTrac
-               </a>
-            </div>
-            </div>
-         </nav>
-         
+      <top-nav></top-nav>
 
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-              <li><router-link to="/dashboard">Dashboard</router-link></li>
-              <li><router-link to="/archive">Archive</router-link></li>
-              <li><router-link to="/settings">Settings</router-link></li>
-
-            </ul>
-          </div>
-
-
-          <router-view></router-view>
+           <side-bar></side-bar>
+           <router-view></router-view>
         </div>
      </div>
 
    </div>
+
 </template>
 
 <script>
+import sideBar from './elements/sideBar.vue';
+import topNav from './elements/topNav.vue';
+
 export default {
-   name : 'app'
+   name : 'app',
+   components : {
+      'sideBar' : sideBar,
+      'topNav' : topNav
+   }
 }
 </script>
 
