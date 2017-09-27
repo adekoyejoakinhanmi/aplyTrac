@@ -2,6 +2,7 @@ import VueRouter from 'vue-router';
 
 import Dashboard from './components/Dashboard.vue';
 import Settings from './components/Settings.vue';
+import Archive from './components/Archive.vue';
 
 const routes = [
    {
@@ -13,6 +14,11 @@ const routes = [
       name : 'settings',
       path : '/settings',
       component : Settings
+   },
+   {
+      name : 'archive',
+      path : '/archive',
+      component : Archive
    }
 ];
 

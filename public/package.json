@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bcrypt-nodejs": "^0.0.3",
     "connect-flash": "0.1.1",
     "json-server": "^0.10.3",
     "vue": "^2.3.4",
+    "vue-material": "^0.7.5",
     "vue-router": "^2.5.3"
   },
   "devDependencies": {
