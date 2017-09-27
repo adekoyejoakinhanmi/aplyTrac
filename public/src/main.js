@@ -1,15 +1,15 @@
 import Vue from 'vue';
+import App from './App.vue';
 import VueRouter from 'vue-router';
 import router from './router';
 
 Vue.use(VueRouter);
 
-var App = new Vue({
+new Vue({
    router,
    el : '#app',
    mounted() {
       this.$router.push('/dashboard');
-   }
+   },
+   render : h => h(App)
 });
-
-window.$vm = App;
