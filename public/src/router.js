@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router';
 
-import Dashboard from './components/Dashboard.vue';
-import Settings from './components/Settings.vue';
-import Archive from './components/Archive.vue';
+import Dashboard from './pages/Dashboard.vue';
+import Settings from './pages/Settings.vue';
+import Archive from './pages/Archive.vue';
 
 const routes = [
    {

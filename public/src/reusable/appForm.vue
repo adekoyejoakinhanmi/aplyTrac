@@ -1,20 +1,23 @@
 <template>
       <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
        <form>
-            <div class="col-md-2 mb-1 col-md-6">
-                <label for="Company Name">Company Name</label>
-                <input class="form-control" v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">
-            </div>
-            <div class="col-md-2 mb-1 col-md-6">
-               <label for="Job Vacancy">Job Vacancy</label>
-               <select class="form-control" v-model="newApp.vacancy" name="Job Vacancy">
-                  <option value="Web Developer">Web Developer</option>
-                  <option value="Fron End Developer">Front End Developer</option>
-                  <option value="JavaScript Developer">JavaScript Developer</option>
-                  <option value="Full Stack Developer">Full Stack Developer</option>
-                  <option value="Other">Other</option>
-               </select>
-            </div>
+             <div class="field-group">
+                  <div>
+                  <label for="Company Name">Company Name</label>
+                  <input class="form-control" v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">
+                  </div>
+            
+                  <md-input-container>
+                   <label for="Job Vacancy">Job Vacancy</label>
+                  <md-select v-model="newApp.vacancy" id="jobVacancy" name="Job Vacancy">
+                        <md-option value="Web Developer">Web Developer</md-option>
+                        <md-option value="Fron End Developer">Front End Developer</md-option>
+                        <md-option value="JavaScript Developer">JavaScript Developer</md-option>
+                        <md-option value="Full Stack Developer">Full Stack Developer</md-option>
+                        <md-option value="Other">Other</md-option>
+                  </md-select>
+                  </md-input-container>
+           
             <div class="col-md-2 mb-1 col-md-6">
                   <label for="Job Type">Job Type</label>
                   <select class="form-control" v-model="newApp.type"  name="Job Type">
@@ -49,6 +52,7 @@
                <button id="cancelNewApplication" class="btn btn-default" type="reset" @click="closeForm">Cancel</button>
                <button class="btn btn-success" type="button" @click="addNew" :disabled="formValid">Add</button>
             </div>
+             </div>
       </form>
     </div>
 </template>
