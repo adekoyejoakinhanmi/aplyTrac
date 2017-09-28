@@ -1,57 +1,62 @@
 <template>
-      <div :class="['row', 'mb-1', formVisible ? '' : 'hidden']">
+      <div :class="[formVisible ? '' : 'hidden']">
        <form>
              <div class="field-group">
-                  <div>
-                  <label for="Company Name">Company Name</label>
-                  <input class="form-control" v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">
-                  </div>
+                  <md-input-container>
+                        <label for="Company Name">Company Name</label>
+                        <md-input v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">
+                        </md-input>
+                  </md-input-container>
             
                   <md-input-container>
-                   <label for="Job Vacancy">Job Vacancy</label>
-                  <md-select v-model="newApp.vacancy" id="jobVacancy" name="Job Vacancy">
-                        <md-option value="Web Developer">Web Developer</md-option>
-                        <md-option value="Fron End Developer">Front End Developer</md-option>
-                        <md-option value="JavaScript Developer">JavaScript Developer</md-option>
-                        <md-option value="Full Stack Developer">Full Stack Developer</md-option>
-                        <md-option value="Other">Other</md-option>
-                  </md-select>
+                        <label for="Job Vacancy">Job Vacancy</label>
+                        <md-select v-model="newApp.vacancy" id="jobVacancy" name="Job Vacancy">
+                              <md-option value="Web Developer">Web Developer</md-option>
+                              <md-option value="Fron End Developer">Front End Developer</md-option>
+                              <md-option value="JavaScript Developer">JavaScript Developer</md-option>
+                              <md-option value="Full Stack Developer">Full Stack Developer</md-option>
+                              <md-option> value="Other">Other</md-option>
+                         </md-select>
                   </md-input-container>
            
-            <div class="col-md-2 mb-1 col-md-6">
-                  <label for="Job Type">Job Type</label>
-                  <select class="form-control" v-model="newApp.type"  name="Job Type">
-                     <option value="Remote / Telecommute">Remote / Telecommute</option>
-                     <option value="On Site">On Site</option>
-                  </select>
-            </div>
-            <div class="col-md-2 mb-1 col-md-6">
-                  <label for="Application Medium">Application Medium</label>
-                  <select class="form-control" v-model="newApp.medium" name="Application Medium">
-                     <option value="Email">Email</option>
-                     <option value="Remotee">Remotee</option>
-                     <option value="Workable">Workable</option>
-                     <option value="Lever.co">Lever.co</option>
-                     <option value="Other">Other</option>
-                  </select>
-            </div>
-            <div class="col-md-2 mb-1 col-md-6">
-                  <label for="Application Status">Application Status</label>
-                  <select class="form-control" v-model="newApp.status" name="Application Status">
-                     <option value="Yet to reply">Yet to reply</option>
-                     <option value="Pending">Pending</option>
-                     <option value="Get Back to you">Get Back to you</option>
-                     <option value="Rejected/Filled">Rejected/Filled</option>
-                  </select>
-            </div>
-            <div class="col-md-2 mb-1 col-md-6">
-                  <label for="Date Applied">Application Date</label>
-                  <input class="form-control" v-model="newApp.date" name="Date Applied" type="date">
-            </div>
-            <div class="pull-right">
-               <button id="cancelNewApplication" class="btn btn-default" type="reset" @click="closeForm">Cancel</button>
-               <button class="btn btn-success" type="button" @click="addNew" :disabled="formValid">Add</button>
-            </div>
+                  <md-input-container>
+                        <label for="Job Type">Job Type</label>
+                        <md-select v-model="newApp.type"  name="Job Type">
+                              <md-option value="Remote / Telecommute">Remote / Telecommute</md-option>
+                              <md-option value="On Site">On Site</md-option>
+                        </md-select>
+                  </md-input-container>
+                  
+                  <md-input-container>
+                        <label for="Application Medium">Application Medium</label>
+                        <md-select v-model="newApp.medium" name="Application Medium">
+                              <md-option value="Email">Email</md-option>
+                              <md-option value="Remotee">Remotee</md-option>
+                              <md-option value="Workable">Workable</md-option>
+                              <md-option value="Lever.co">Lever.co</md-option>
+                              <md-option value="Other">Other</md-option>
+                        </md-select>
+                  </md-input-container>
+
+                  <md-input-container>
+                        <label for="Application Status">Application Status</label>
+                        <md-select v-model="newApp.status" name="Application Status">
+                              <md-option value="Yet to reply">Yet to reply</md-option>
+                              <md-option value="Pending">Pending</md-option>
+                              <md-option value="Get Back to you">Get Back to you</md-option>
+                              <md-option value="Rejected/Filled">Rejected/Filled</md-option>
+                        </md-select>
+                  </md-input-container>
+
+                  <md-input-container>
+                        <label for="Date Applied">Application Date</label>
+                        <md-input v-model="newApp.date" name="Date Applied" type="date"></md-input>
+                  </md-input-container>
+
+                  <div>
+                        <md-button id="cancelNewApplication" class="md-dense" type="reset" @click="closeForm">Cancel</md-button>
+                        <md-button class="md-primary" type="button" @click="addNew" :disabled="formValid">Add</md-button>
+                  </div>
              </div>
       </form>
     </div>

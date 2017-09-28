@@ -1,16 +1,16 @@
 <template>
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <md-layout md-flex-offset="20">
     <app-form :form-visible="formVisible"
               v-on:newApp="addNewApp"
               v-on:formClosed="toggleFormVisibility"
     ></app-form>
 
     
-    <header class="row mb-1">
-      <div class="col-md-10 col-sm-7 col-xs-7">
+    <header>
+      <div>
         <h2>All Jobs for {{user}}</h2>
       </div>
-      <div class="col-md-2 col-sm-5 col-xs-5 clearfix">
+      <div>
         <button @click="toggleFormVisibility" id="addNewApplication" class="pull-right btn btn-success">
          Add New <i class="glyphicon glyphicon-plus"></i>
         </button>
@@ -19,7 +19,7 @@
    
     
 
-    <div class="row">
+    <div>
       <div class="well" v-show="emptyList">
         You have added any applications yet
       </div>
@@ -32,7 +32,7 @@
       ></application>
     </div>
     
-  </div>
+  </md-layout>
 </template>
 
 <script>

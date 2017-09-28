@@ -1,9 +1,9 @@
 <template>
- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
+ <md-layout md-flex-offset="50"> 
     <header> 
        <h2>Archive</h2> 
     </header>
-</div>
+</md-layout>
 </template>
 
 <script>
