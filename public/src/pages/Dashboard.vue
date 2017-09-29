@@ -1,9 +1,7 @@
 <template>
 <div>
     <header>
-      <div>
-        <h2>All Jobs for {{user}}</h2>
-      </div>
+     <tool-bar page-title="Dashboard" extended></tool-bar>
       <div>
         <button @click="toggleFormVisibility">
          Add New
@@ -34,6 +32,7 @@ import _ from 'lodash';
 
 import application from '../reusable/application.vue';
 import appForm from '../reusable/appForm.vue';
+import toolBar from '../elements/toolBar.vue';
 
 export default {
    data(){
@@ -77,7 +76,8 @@ export default {
    },
    components : {
      'application' : application,
-     'appForm' : appForm
+     'appForm' : appForm,
+     'toolBar' : toolBar
    }
 }
 </script>

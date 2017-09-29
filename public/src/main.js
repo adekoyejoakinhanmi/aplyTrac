@@ -7,7 +7,7 @@ import router from './router';
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
 
-new Vue({
+var vm = new Vue({
    router,
    el : '#app',
    mounted() {
