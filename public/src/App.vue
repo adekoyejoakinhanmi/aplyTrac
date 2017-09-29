@@ -27,6 +27,15 @@ export default {
 .mt-1{
   margin-top: 0.5em
 }
+.pa{
+  padding: 1.5em;
+}
+.tc{
+  text-align: center
+}
+.mt-2{
+  margin-top: 1em
+}
 .hidden{
   display: none
 }

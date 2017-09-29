@@ -1,5 +1,5 @@
 <template>
-<md-layout :class="[formVisible ? '' : 'hidden', 'mt-1']" md-flex="60">
+<md-layout :class="[formVisible ? '' : 'hidden', 'mt-2']" md-flex="60">
       <md-whiteframe>
             <form>
                   <div class="field-set">
