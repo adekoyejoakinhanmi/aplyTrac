@@ -1,19 +1,19 @@
 <template>
-   <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="panel panel-default">
-         <div class="panel-heading">
+   <div>
+      <div>
+         <div>
             <strong>
                {{application.company}}
                <span :title="application.status" :class="['status_badge', 'pull-right', bgColor]">&nbsp;</span>
             </strong>
          </div>
 
-         <div class="panel-body">
+         <div>
             <p><em>{{application.vacancy}} | {{application.type}}</em></p>
             <p>via {{application.medium}} on {{application.date}}</p>
             <div :class="[editing ? '' : 'hidden']">
                <label for="Application Status">Status</label>
-               <select class="mb-1 form-control" name="Application Status" v-model="status">
+               <select name="Application Status" v-model="status">
                   <option value="Yet to reply">Yet to reply</option>
                   <option value="Pending">Pending</option>
                   <option value="Get Back to you">Get Back to you</option>

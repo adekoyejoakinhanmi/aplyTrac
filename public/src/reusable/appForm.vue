@@ -1,7 +1,7 @@
 <template>
       <div :class="[formVisible ? '' : 'hidden']">
        <form>
-             <div class="field-group">
+             <div>
                   <md-input-container>
                         <label for="Company Name">Company Name</label>
                         <md-input v-model="newApp.company" type="text" name="Company Name" placeholder="Company Name">

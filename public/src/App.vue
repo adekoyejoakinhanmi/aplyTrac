@@ -2,12 +2,8 @@
 <div id="app">
       
       <top-nav></top-nav>
-
-      <div class="container-fluid">
-        <div class="row">
-           <router-view></router-view>
-        </div>
-     </div>
+      <router-view></router-view>
+      
 
    </div>
 

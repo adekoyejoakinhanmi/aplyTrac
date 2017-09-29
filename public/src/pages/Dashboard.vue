@@ -1,26 +1,23 @@
 <template>
-  <md-layout md-flex-offset="20">
+  <div>
     <app-form :form-visible="formVisible"
               v-on:newApp="addNewApp"
               v-on:formClosed="toggleFormVisibility"
     ></app-form>
 
-    
     <header>
       <div>
         <h2>All Jobs for {{user}}</h2>
       </div>
       <div>
-        <button @click="toggleFormVisibility" id="addNewApplication" class="pull-right btn btn-success">
-         Add New <i class="glyphicon glyphicon-plus"></i>
+        <button @click="toggleFormVisibility">
+         Add New
         </button>
         </div>
     </header>
-   
-    
 
     <div>
-      <div class="well" v-show="emptyList">
+      <div v-show="emptyList">
         You have added any applications yet
       </div>
 
@@ -31,8 +28,7 @@
                    :edited="updateApp" @updated="data => updateApp(index, data)"
       ></application>
     </div>
-    
-  </md-layout>
+  </div>
 </template>
 
 <script>
