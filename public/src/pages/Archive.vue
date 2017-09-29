@@ -1,14 +1,14 @@
 <template>
- <md-layout md-flex-offset="50"> 
-    <header> 
-       <h2>Archive</h2> 
-    </header>
-</md-layout>
+ <tool-bar page-title="Archive"></tool-bar>
 </template>
 
 <script>
-export default {
+import toolBar from '../elements/toolBar.vue';
 
+export default {
+    components : {
+        'toolBar' : toolBar
+    }
 }
 </script>
 

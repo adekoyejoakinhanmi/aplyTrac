@@ -1,8 +1,6 @@
 <template>
 <div>
-   <header>
-      <h2>Your Settings</h2>
-   </header>
+  <tool-bar page-title="Settings"></tool-bar>
    <main>
       <div>
          <h3>Archive on Closed</h3>
@@ -21,6 +19,8 @@
 <script>
 import axios from 'axios';
 import base from '../helpers/urls.config';
+import toolBar from '../elements/toolBar.vue';
+
 export default {
    data() {
       return {
@@ -37,6 +37,9 @@ export default {
             console.log('Hurray');
          });
       }
+   },
+   components : {
+      'toolBar' : toolBar
    }
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
 <div>
   <md-sidenav class="md-left md-fixed" ref="mainSideBar">
-    <md-toolbar>
+    <div class="logo-box">
       <h2 class="md-title">AplyTrac</h2>
-    </md-toolbar>
+    </div>
 
     <md-list>
       <md-list-item>
@@ -40,6 +40,17 @@ export default {
   .md-sidenav .md-sidenav-content{
     top: 0;
     transform: translate3d(0, 0, 0) !important;
+    pointer-events: auto;
   }
+}
+.logo-box{
+  min-height: 128px;
+  border-bottom: 1px solid rgba(#000, 0.12);
+  background: white;
+  text-align: center;
+  color: black;
+}
+.logo-box h2{
+  margin-top: 20px;
 }
 </style>

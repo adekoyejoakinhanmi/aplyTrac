@@ -1,12 +1,13 @@
 <template>
   <md-whiteframe md-elevation="1">
+    <md-toolbar :class="[extended ? '' : 'hidden']"></md-toolbar>
     <md-toolbar>
       <md-button class="md-icon-button nav-trigger" @click="toggleSideNav">
          <md-icon>menu</md-icon>
       </md-button>
       <div class="md-title">{{pageTitle}}</div>
     </md-toolbar>
-    <md-toolbar :class="[extended ? '' : 'hidden']"></md-toolbar>
+    
   </md-whiteframe>
 </template>
 
@@ -33,9 +34,13 @@ export default {
 </script>
 
 <style>
+
 @media screen and (min-width: 1281px){
   .nav-trigger{
     display: none;
+  }
+  .md-toolbar .md-title{
+    margin-left: 14px
   }
 }
 </style>
