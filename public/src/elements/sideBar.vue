@@ -7,17 +7,32 @@
 
     <md-list>
       <md-list-item>
-        <router-link to="/dashboard">Dashboard</router-link>
+        <router-link to="/dashboard"> 
+          <md-icon>view_module</md-icon> 
+          <span>Applications</span>
+        </router-link>
       </md-list-item>
 
       <md-list-item>
-        <router-link to="/archive">Archive</router-link>
+        <router-link to="/archive">
+          <md-icon>archive</md-icon>
+          <span>Archive</span>
+        </router-link>
       </md-list-item>
 
       <md-list-item>
-        <router-link to="/settings">Settings</router-link>
+        <router-link to="/settings">
+          <md-icon>settings</md-icon>
+          <span>Settings</span>
+        </router-link>
       </md-list-item>
+    </md-list>
 
+    <md-list>
+      <md-subheader>Filters</md-subheader>
+      <md-list-item v-for="status in statuses" :key="status">
+        {{status}}
+      </md-list-item>
     </md-list>
   </md-sidenav>
 </div>
@@ -25,7 +40,11 @@
 
 <script>
 export default {
-   
+   data(){
+     return {
+       statuses : ['Pending', 'Yet to reply', 'Get Back to you']
+     }
+   }
 }
 </script>
 
@@ -41,6 +60,7 @@ export default {
     top: 0;
     transform: translate3d(0, 0, 0) !important;
     pointer-events: auto;
+    box-shadow: 0 1px 3px rgba(#000, 0.2), 0 1px 1px rgba(#000, 0.14), 0 2px 1px -1px rgba(#000, .12);
   }
 }
 .logo-box{

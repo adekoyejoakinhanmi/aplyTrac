@@ -9,8 +9,12 @@
 <script>
 import sideBar from './elements/sideBar.vue';
 
+
 export default {
    name : 'app',
+   created(){
+     //eventsHub.$on('toggle-side-nav', this.toggleSideNav)
+   },
    methods : {
       toggleSideNav(){
             //reference cascade, the toggle function is nested

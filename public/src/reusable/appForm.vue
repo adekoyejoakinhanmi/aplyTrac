@@ -1,5 +1,5 @@
 <template>
-<md-layout :class="[formVisible ? '' : 'hidden', 'mt-2']" md-flex="60">
+<md-layout class="mt-2" md-flex="60">
       <md-whiteframe>
             <form>
                   <div class="field-set">
@@ -70,7 +70,6 @@ import axios from 'axios';
 import base from '../helpers/urls.config';
 
 export default {
-      props : ['formVisible'],
       data() {
             return {
                   newApp : {

@@ -15,3 +15,7 @@ var vm = new Vue({
    },
    render : h => h(App)
 });
+
+const eventsHub = new Vue();
+
+export default eventsHub;

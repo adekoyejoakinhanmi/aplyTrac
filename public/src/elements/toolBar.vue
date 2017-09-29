@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import eventsHub from '../main.js';
+
 export default {
    props : {
       pageTitle : String,
@@ -22,6 +24,7 @@ export default {
    },
    methods : {
       toggleSideNav(){
+        //eventsHub.$emit('toggle-side-nav');
         // Although this is generally bad practice,
         // i.e. using $children, it is needed here 
         // to access the toggleSideNav Function,

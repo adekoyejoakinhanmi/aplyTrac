@@ -8,7 +8,7 @@
   </div>
 
   <md-layout md-align="center">
-      <app-form :form-visible="formVisible" v-on:newApp="addNewApp" v-on:formClosed="toggleFormVisibility">
+      <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="toggleFormVisibility">
       </app-form>
   </md-layout>
   
