@@ -1,10 +1,9 @@
 <template>
 <div id="app">
-      
-      <top-nav></top-nav>
-      <router-view></router-view>
-      
-
+            <top-nav></top-nav>
+      <div class="main-container">
+            <router-view></router-view>
+      </div>
    </div>
 
 </template>
@@ -21,4 +20,9 @@ export default {
 </script>
 
 <style>
+.main-container{
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+}
 </style>

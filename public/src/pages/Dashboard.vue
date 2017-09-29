@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <app-form :form-visible="formVisible"
-              v-on:newApp="addNewApp"
-              v-on:formClosed="toggleFormVisibility"
-    ></app-form>
-
+<div>
     <header>
       <div>
         <h2>All Jobs for {{user}}</h2>
@@ -13,22 +8,23 @@
         <button @click="toggleFormVisibility">
          Add New
         </button>
-        </div>
+      </div>
     </header>
+
+    <md-layout md-align="center">
+      <app-form :form-visible="formVisible" v-on:newApp="addNewApp" v-on:formClosed="toggleFormVisibility">
+      </app-form>
+    </md-layout>
 
     <div>
       <div v-show="emptyList">
         You have added any applications yet
       </div>
 
-      <application :key="application.id"
-                   :application="application"
-                   v-for="(application, index) in applications"
-                   v-on:deleteApp="deleteOne(index)"
-                   :edited="updateApp" @updated="data => updateApp(index, data)"
-      ></application>
+      <application :key="application.id" :application="application" v-for="(application, index) in applications" v-on:deleteApp="deleteOne(index)"
+        :edited="updateApp" @updated="data => updateApp(index, data)"></application>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
