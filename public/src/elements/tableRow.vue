@@ -15,10 +15,17 @@
 
 <script>
 export default {
-   props: ['application']
+   props: {
+      application : {
+         type : Object,
+         required : true
+      }
+   }
 }
 </script>
 
 <style>
-
+.pointed{
+   cursor: pointer;
+}
 </style>

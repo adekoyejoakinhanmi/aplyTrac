@@ -3,8 +3,8 @@
   <tool-bar page-title="Dashboard" extended></tool-bar>
   <div class="fab-wrapper">
     <md-button class="md-fab md-clean md-fab-top-right" id="dialogControl" @click="openForm">
-       <md-icon>add</md-icon>
-      </md-button>
+      <md-icon>add</md-icon>
+    </md-button>
   </div>
 
 <md-dialog md-open-from="#dialogControl" md-close-to="#dialogControl" ref="appForm">
@@ -22,13 +22,22 @@
     </md-layout>
   </md-layout>
 
-<md-layout class="pa" md-gutter="8">
-    <md-layout md-flex="25">
-    <md-whiteframe class="block-fill">
-    <md-toolbar>
-      <h1 class="md-title">Stats</h1>
-    </md-toolbar>
-    </md-whiteframe>
+<md-layout class="pa" md-gutter="16">
+    <md-layout md-flex="20" md-column md-gutter>
+      <md-layout>
+      <md-whiteframe class="block-fill">
+      <md-toolbar class="md-transparent">
+        <h1 class="md-title">Stats</h1>
+      </md-toolbar>
+      </md-whiteframe>
+      </md-layout>
+    <md-layout>
+      <md-whiteframe class="block-fill">
+        <md-toolbar class="md-transparent">
+        <h1 class="md-title">Filter</h1>
+        </md-toolbar>
+      </md-whiteframe>
+    </md-layout>
   </md-layout>
 
   <dataTable v-show="!emptyList">
@@ -85,6 +94,9 @@ export default {
      },
      openForm(){
        this.$refs['appForm'].open();
+     },
+     helloWorld(){
+       alert('This guy works, hello world');
      }
    },
    computed : {
