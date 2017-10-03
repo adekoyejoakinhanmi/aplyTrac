@@ -28,6 +28,10 @@ export default {
 </script>
 
 <style>
+.block-fill{
+  display: block;
+  width: 100%
+}
 .mt-1{
   margin-top: 0.5em
 }

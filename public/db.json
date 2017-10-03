@@ -35,6 +35,15 @@
       "medium": "Email",
       "date": "2017-09-22",
       "status": "Yet to reply"
+    },
+    {
+      "id": "7j8bodt9uj8bodt9vj8",
+      "company": "Bendy",
+      "vacancy": "Ruby on rails Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Workable",
+      "date": "2017-10-03",
+      "status": "Pending"
     }
   ],
   "settings": {

@@ -1,20 +1,18 @@
 <template>
 <div>
-  <tool-bar page-title="Applications" extended></tool-bar>
+  <tool-bar page-title="Dashboard" extended></tool-bar>
   <div class="fab-wrapper">
     <md-button class="md-fab md-clean md-fab-top-right" @click="toggleFormVisibility">
        <md-icon>add</md-icon>
       </md-button>
   </div>
 
-  <md-layout md-align="center">
-      <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="toggleFormVisibility">
-      </app-form>
-  </md-layout>
-  
+  <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="toggleFormVisibility">
+  </app-form>
+
   <md-layout md-gutter md-align="center">
     <md-layout md-flex="35">
-      <md-whiteframe class="mt-2" v-show="emptyList">
+      <md-whiteframe class="mt-2 block-fill" v-show="emptyList">
         <div class="mt-1 pa tc md-body-2">
           You have added any applications yet
         </div>
@@ -22,7 +20,7 @@
     </md-layout>
   </md-layout>
 
-  <dataTable class="hide-on-small">
+  <dataTable v-show="!emptyList">
     <md-table-body slot="table-body">
       <table-row v-for="(application, index) in applications" :application="application" :key="index">
       </table-row>
@@ -47,7 +45,7 @@ export default {
    data(){
       return {
          user : "Adekoyejo",
-         formVisible : false,
+         formVisible : true,
          applications : []
       }
    },
