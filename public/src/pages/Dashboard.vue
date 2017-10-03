@@ -2,13 +2,15 @@
 <div>
   <tool-bar page-title="Dashboard" extended></tool-bar>
   <div class="fab-wrapper">
-    <md-button class="md-fab md-clean md-fab-top-right" @click="toggleFormVisibility">
+    <md-button class="md-fab md-clean md-fab-top-right" id="dialogControl" @click="openForm">
        <md-icon>add</md-icon>
       </md-button>
   </div>
 
-  <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="toggleFormVisibility">
+<md-dialog md-open-from="#dialogControl" md-close-to="#dialogControl" ref="appForm">
+  <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="closeForm">
   </app-form>
+</md-dialog>
 
   <md-layout md-gutter md-align="center">
     <md-layout md-flex="35">
@@ -20,13 +22,22 @@
     </md-layout>
   </md-layout>
 
+<md-layout class="pa" md-gutter="8">
+    <md-layout md-flex="25">
+    <md-whiteframe class="block-fill">
+    <md-toolbar>
+      <h1 class="md-title">Stats</h1>
+    </md-toolbar>
+    </md-whiteframe>
+  </md-layout>
+
   <dataTable v-show="!emptyList">
     <md-table-body slot="table-body">
       <table-row v-for="(application, index) in applications" :application="application" :key="index">
       </table-row>
     </md-table-body>
   </dataTable>
-
+</md-layout>
 </div>
 </template>
 
@@ -69,9 +80,11 @@ export default {
      addNewApp(newData) {
        this.applications.unshift(newData);
      },
-     toggleFormVisibility(){
-       this.formVisible = !this.formVisible;
-       return true; 
+     closeForm(){
+       this.$refs['appForm'].close();
+     },
+     openForm(){
+       this.$refs['appForm'].open();
      }
    },
    computed : {

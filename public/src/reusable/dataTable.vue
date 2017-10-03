@@ -1,5 +1,4 @@
 <template>
-<md-layout class="pa" md-align="center" md-gutter>
   <md-layout md-flex="75">
     <md-table-card class="block-fill">
       <md-toolbar>
@@ -21,5 +20,4 @@
       </md-table>
     </md-table-card>
   </md-layout>
-</md-layout>
 </template>

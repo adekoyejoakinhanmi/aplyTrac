@@ -30,9 +30,7 @@
 
     <md-list>
       <md-subheader>Filters</md-subheader>
-      <md-list-item v-for="status in statuses" :key="status">
-        {{status}}
-      </md-list-item>
+      
     </md-list>
   </md-sidenav>
 </div>
