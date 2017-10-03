@@ -77,8 +77,8 @@ export default {
                         vacancy : 'Web Developer',
                         type : 'Remote / Telecommute',
                         medium : 'Email',
-                        status : 'Yet to reply',
-                        date : ''
+                        date : '',
+                        status : 'Yet to reply'
                   }
             }
       },
@@ -92,8 +92,8 @@ export default {
                         vacancy : this.newApp.vacancy,
                         type : this.newApp.type,
                         medium : this.newApp.medium,
-                        status : this.newApp.status,
-                        date : this.newApp.date
+                        date : this.newApp.date,
+                        status : this.newApp.status                        
                   }
                   axios.post(`${base.url}/applications`, data).then(success => {
                         this.$emit('newApp', data);

@@ -12,7 +12,7 @@
       </app-form>
   </md-layout>
   
-  <md-layout md-gutter md-align="center" >
+  <md-layout md-gutter md-align="center">
     <md-layout md-flex="35">
       <md-whiteframe class="mt-2" v-show="emptyList">
         <div class="mt-1 pa tc md-body-2">
@@ -22,19 +22,26 @@
     </md-layout>
   </md-layout>
 
-      <application :key="application.id" :application="application" v-for="(application, index) in applications" v-on:deleteApp="deleteOne(index)"
-        :edited="updateApp" @updated="data => updateApp(index, data)"></application>
+  <dataTable class="hide-on-small">
+    <md-table-body slot="table-body">
+      <table-row v-for="(application, index) in applications" :application="application" :key="index">
+      </table-row>
+    </md-table-body>
+  </dataTable>
+
 </div>
 </template>
 
 <script>
-import axios from 'axios';;
+import axios from 'axios';
 import base from '../helpers/urls.config';
-import _ from 'lodash';
 
-import application from '../reusable/application.vue';
+import smallDataTable from '../reusable/smallDataTable.vue';
+import dataTable from '../reusable/dataTable.vue';
 import appForm from '../reusable/appForm.vue';
+
 import toolBar from '../elements/toolBar.vue';
+import tableRow from '../elements/tableRow.vue';
 
 export default {
    data(){
@@ -54,6 +61,7 @@ export default {
        });
      },
      deleteOne(index) {
+       console.log('Iwas called');
        this.applications.splice(index, 1);
      },
      updateApp(idx, other) {
@@ -77,9 +85,11 @@ export default {
      this.getApplications();
    },
    components : {
-     'application' : application,
-     'appForm' : appForm,
-     'toolBar' : toolBar
+     smallDataTable,
+     appForm,
+     toolBar,
+     dataTable,
+     tableRow
    }
 }
 </script>
@@ -94,6 +104,16 @@ export default {
   .fab-wrapper{
     top: -55px;
     position: relative;
+  }
+}
+@media screen and (min-width: 600px){
+    .hide-on-large{
+    display: none
+  }
+}
+@media screen and (max-width: 600px){
+  .hide-on-small{
+    display: none
   }
 }
 </style>
