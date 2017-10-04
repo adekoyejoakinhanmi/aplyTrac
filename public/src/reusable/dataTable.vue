@@ -3,7 +3,7 @@
     <md-table-card class="block-fill">
       <md-toolbar>
         <h1 class="md-title">Applications</h1>
-        <slot name="filter-list"></slot>
+        <slot name="filter-control"></slot>
       </md-toolbar>
       <md-table>
         <md-table-header>
@@ -24,16 +24,5 @@
 </template>
 <script>
 export default {
-  data(){
-    return {
-      filter : 'All',
-      list : ['All', 'Pending', 'Yet to reply', 'Get Back to you']
-    }
-  },
-  methods : {
-    filterList(){
-      this.$emit('filterBy', filter);
-    }
-  }
 }
 </script>

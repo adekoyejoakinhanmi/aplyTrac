@@ -12,7 +12,7 @@
   </app-form>
 </md-dialog>
 
-  <md-layout md-gutter md-align="center">
+  <md-layout v-cloak md-gutter md-align="center">
     <md-layout md-flex="35">
       <md-whiteframe class="mt-2 block-fill" v-show="emptyList">
         <div class="mt-1 pa tc md-body-2">
@@ -22,99 +22,192 @@
     </md-layout>
   </md-layout>
 
-<md-layout class="pa" md-gutter="16">
-    <md-layout md-flex="20" md-column md-gutter>
-      <md-layout>
-      <md-whiteframe class="block-fill">
-      <md-toolbar class="md-transparent">
-        <h1 class="md-title">Stats</h1>
-      </md-toolbar>
-      </md-whiteframe>
-      </md-layout>
-    <md-layout>
-      <md-whiteframe class="block-fill">
-        <md-toolbar class="md-transparent">
-        <h1 class="md-title">Filter</h1>
-        </md-toolbar>
-      </md-whiteframe>
+
+  <md-layout class="pa" md-align="center">
+    <md-layout md-flex-medium="80" md-flex-small="100">
+      <md-card>
+    <md-list class="block-fill">
+      <md-list-item class="thead">
+        <md-avatar>&nbsp;</md-avatar>
+        <div class="table">
+          <div class="table-row">
+            <div class="tcell md-subhead col-3">Company</div>
+            <div class="tcell md-subhead col-3 hide-on-small">Vacancy</div>
+            <div class="tcell md-subhead col-1">Date</div>
+          </div>              
+        </div>
+        <span class="placehold">&nbsp;</span>
+      </md-list-item>
+
+      <md-list-item>
+        <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
+        <div class="table">
+          <div class="table-row">
+            <div class="tcell col-3 md-body-2">Gridium</div>
+            <div class="tcell col-3 md-body-1 hide-on-small">Front End Developer</div>
+            <div class="tcell col-1 md-body-1">Today</div>
+          </div>              
+        </div>
+        <md-button class="md-icon-button">
+          <md-icon>more_vert</md-icon>
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
+        <div class="table">
+          <div class="table-row">
+            <div class="tcell col-3 md-body-2">Gridium <span class="hide-on-large md-subhead">Front-end Dev<br></span></div>
+            <div class="tcell col-3 md-body-1 hide-on-small">Front End Developer</div>
+            <div class="tcell col-1 md-body-1">Today</div>
+          </div>              
+        </div>
+        <md-button class="md-icon-button">
+          <md-icon>more_vert</md-icon>
+        </md-button>
+      </md-list-item>
+    </md-list>
+      </md-card>
     </md-layout>
   </md-layout>
 
+<!--
+<md-layout class="pa" md-align="center">
+  <div class="table-row">
+    <div class="thead col-1">&nbsp;</div>
+    <div class="thead col-3">Company</div>
+    <div class="thead col-3">Vacancy</div>
+    <div class="thead col-2">Date</div>
+    <div class="thead col-1">&nbsp;</div>
+  </div>
+
+  <div class="table-row">
+    <div class="tcell col-1"><md-avatar><img src="../../assets/imgs/gb.png"></md-avatar></div>
+    <div class="tcell col-3">Gridium</div>
+    <div class="tcell col-3">Front End Developer</div>
+    <div class="tcell col-2">Today</div>
+    <div class="tcell col-1">
+      <md-button class="md-icon-button">
+        <md-icon>more_vert</md-icon>
+      </md-button>
+    </div>
+  </div>
+
+</md-layout>
+-->
+<!--
+  <md-layout class="pa" md-align="center">
+    <md-layout md-flex="90">
+    <md-tabs>
+      
+      <md-tab id="all" md-label="All">
+        <md-layout md-gutter="16">
+
+          <app-content v-for="application in applications" 
+                      :application="application"
+                      :key="application.id">
+          </app-content>
+
+        </md-layout>
+      </md-tab>
+
+
+
+      <md-tab id="getback" md-label="Get Back to you">
+        <p>Noting to see here</p>
+      </md-tab>
+    </md-tabs>
+    </md-layout>
+  </md-layout>
+
+-->
+
+<!--
   <dataTable v-show="!emptyList">
+    <filter-control v-on:filterBy="filterChange" slot="filter-control"></filter-control>
     <md-table-body slot="table-body">
-      <table-row v-for="(application, index) in applications" :application="application" :key="index">
+      <table-row v-for="(application, index) in filteredApps" :application="application" :key="index">
       </table-row>
     </md-table-body>
   </dataTable>
-</md-layout>
+-->
 </div>
 </template>
 
 <script>
-import axios from 'axios';
-import base from '../helpers/urls.config';
+  import axios from 'axios';
+  import base from '../helpers/urls.config';
 
-import smallDataTable from '../reusable/smallDataTable.vue';
-import dataTable from '../reusable/dataTable.vue';
-import appForm from '../reusable/appForm.vue';
+  import smallDataTable from '../reusable/smallDataTable.vue';
+  import dataTable from '../reusable/dataTable.vue';
+  import appForm from '../reusable/appForm.vue';
+  import appContent from '../reusable/appContent.vue';
 
-import toolBar from '../elements/toolBar.vue';
-import tableRow from '../elements/tableRow.vue';
+  import toolBar from '../elements/toolBar.vue';
+  import tableRow from '../elements/tableRow.vue';
 
-export default {
-   data(){
-      return {
-         user : "Adekoyejo",
-         formVisible : true,
-         applications : []
+  export default {
+    data(){
+        return {
+          user : "Adekoyejo",
+          formVisible : true,
+          filter : 'All',
+          applications : []
+        }
+    },
+    methods : {
+      getApplications() {
+        axios.get(`${base.url}/applications`).then((response) => {
+          this.applications = response.data;
+          this.applications.reverse();
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+      deleteOne(index) {
+        console.log('Iwas called');
+        this.applications.splice(index, 1);
+      },
+      updateApp(idx, other) {
+        this.applications.splice(idx, 1, other);
+        return true;
+      },
+      addNewApp(newData) {
+        this.applications.unshift(newData);
+      },
+      closeForm(){
+        this.$refs['appForm'].close();
+      },
+      openForm(){
+        this.$refs['appForm'].open();
+      },
+      filterChange(newFilter){
+        this.filter = newFilter;
       }
-   },
-   methods : {
-     getApplications() {
-       axios.get(`${base.url}/applications`).then((response) => {
-         this.applications = response.data;
-         this.applications.reverse();
-       }).catch(err => {
-         console.log(err);
-       });
-     },
-     deleteOne(index) {
-       console.log('Iwas called');
-       this.applications.splice(index, 1);
-     },
-     updateApp(idx, other) {
-       this.applications.splice(idx, 1, other);
-       return true;
-     },
-     addNewApp(newData) {
-       this.applications.unshift(newData);
-     },
-     closeForm(){
-       this.$refs['appForm'].close();
-     },
-     openForm(){
-       this.$refs['appForm'].open();
-     },
-     helloWorld(){
-       alert('This guy works, hello world');
-     }
-   },
-   computed : {
-     emptyList() {
-       return this.applications.length === 0;
-     }
-   },
-   mounted() {
-     this.getApplications();
-   },
-   components : {
-     smallDataTable,
-     appForm,
-     toolBar,
-     dataTable,
-     tableRow
-   }
-}
+    },
+    computed : {
+      emptyList() {
+        return this.applications.length === 0;
+      },
+      filteredApps() {
+        let apps = this.applications;
+        if (this.filter === 'All') return apps;
+        return apps.filter(function(app){
+          app.status === this.filter
+        });
+      }
+    },
+    mounted() {
+      this.getApplications();
+    },
+    components : {
+      smallDataTable,
+      appForm,
+      toolBar,
+      dataTable,
+      tableRow,
+      appContent
+    }
+  }
 </script>
 
 <style>
@@ -139,4 +232,33 @@ export default {
     display: none
   }
 }
+
+
+
+/*Table Display*/
+.table{
+  display: table;
+  width: 92%;
+  border-collapse: collapse
+}
+.table-row{
+  display: table-row;
+  width: 100%;
+}
+.tcell{
+  display: table-cell;
+  padding: 1em;
+  vertical-align: middle
+}
+.thead{
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 8px;
+}
+.placehold{
+  width: 40px;
+}
+.col-1 { width: 5%; }
+.col-2 { width: 16.666667%; }
+.col-3 { width: 25%; }
+
 </style>

@@ -28,12 +28,27 @@ export default {
 </script>
 
 <style>
+*{
+  box-sizing: border-box;
+}
+[v-cloak]{
+  display: none;
+}
+html, body{
+  background: #f9f9f9
+}
 .block-fill{
   display: block;
   width: 100%
 }
 .mt-1{
   margin-top: 0.5em
+}
+.mb-1{
+  margin-bottom: 0.5em
+}
+.mb-2{
+  margin-bottom: 1em
 }
 .pa{
   padding: 1.5em;
