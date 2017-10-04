@@ -51,7 +51,13 @@ html, body{
   margin-bottom: 1em
 }
 .pa{
-  padding: 1.5em;
+  padding: 1.5em
+}
+.pt-0{
+  padding-top: 0
+}
+.pb-0{
+  padding-bottom: 0
 }
 .tc{
   text-align: center

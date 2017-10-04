@@ -1,16 +1,27 @@
 <template>
-<md-layout class="pa">
-    <md-table>
-      <md-table-header>
-        <md-table-row>
-          <md-table-head>Company Name</md-table-head>
-          <md-table-head>Status</md-table-head>
-        </md-table-row>
-      </md-table-header>
-      <slot name="small-table-body">
+<md-layout class="pa pt-0" md-align="center">
+    <md-layout md-flex-medium="80" md-flex-small="100">
+      <md-card>
+    <md-list class="block-fill">
+      <md-list-item class="thead">
+        <md-avatar>&nbsp;</md-avatar>
+        <div class="table">
+          <div class="table-row">
+            <div class="tcell md-subhead col-2">Company</div>
+            <div class="tcell md-subhead col-2">Vacancy</div>
+            <div class="tcell md-subhead col-1">Date</div>
+          </div>              
+        </div>
+        <span class="placehold">&nbsp;</span>
+      </md-list-item>
+
+      <slot name="application-row">
       </slot>
-    </md-table>
-</md-layout>
+      
+    </md-list>
+      </md-card>
+    </md-layout>
+  </md-layout>
 </template>
 
 <script>

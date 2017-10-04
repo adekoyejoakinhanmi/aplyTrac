@@ -12,6 +12,17 @@
   </app-form>
 </md-dialog>
 
+<md-layout class="pa pb-0" md-align="center">
+  <md-layout md-flex="100">
+    
+    <md-toolbar class="md-transparent">
+      <div class="block-fill">
+          <h1 class="md-title">Your Applications</h1>
+          </div>
+        </md-toolbar>
+    
+  </md-layout>
+</md-layout>
   <md-layout v-cloak md-gutter md-align="center">
     <md-layout md-flex="35">
       <md-whiteframe class="mt-2 block-fill" v-show="emptyList">
@@ -23,52 +34,25 @@
   </md-layout>
 
 
-  <md-layout class="pa" md-align="center">
-    <md-layout md-flex-medium="80" md-flex-small="100">
-      <md-card>
-    <md-list class="block-fill">
-      <md-list-item class="thead">
-        <md-avatar>&nbsp;</md-avatar>
-        <div class="table">
-          <div class="table-row">
-            <div class="tcell md-subhead col-3">Company</div>
-            <div class="tcell md-subhead col-3 hide-on-small">Vacancy</div>
-            <div class="tcell md-subhead col-1">Date</div>
-          </div>              
-        </div>
-        <span class="placehold">&nbsp;</span>
-      </md-list-item>
-
-      <md-list-item>
-        <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
-        <div class="table">
-          <div class="table-row">
-            <div class="tcell col-3 md-body-2">Gridium</div>
-            <div class="tcell col-3 md-body-1 hide-on-small">Front End Developer</div>
-            <div class="tcell col-1 md-body-1">Today</div>
-          </div>              
+  <small-data-table>
+    <div slot="application-row">
+      <md-list-item v-for="application in applications" :key="application.id">
+        <div class="click-wrapper" @click="helloWorld(application)">
+          <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
+          <div class="table">
+            <div class="table-row">
+              <div class="tcell col-3 md-body-2">{{application.company}}</div>
+              <div class="tcell col-3 md-body-1 hide-on-small">{{application.vacancy}}</div>
+              <div class="tcell col-1 md-body-1">{{application.date}}</div>
+            </div>              
+          </div>
         </div>
         <md-button class="md-icon-button">
           <md-icon>more_vert</md-icon>
         </md-button>
       </md-list-item>
-      <md-list-item>
-        <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
-        <div class="table">
-          <div class="table-row">
-            <div class="tcell col-3 md-body-2">Gridium <span class="hide-on-large md-subhead">Front-end Dev<br></span></div>
-            <div class="tcell col-3 md-body-1 hide-on-small">Front End Developer</div>
-            <div class="tcell col-1 md-body-1">Today</div>
-          </div>              
-        </div>
-        <md-button class="md-icon-button">
-          <md-icon>more_vert</md-icon>
-        </md-button>
-      </md-list-item>
-    </md-list>
-      </md-card>
-    </md-layout>
-  </md-layout>
+      </div>
+  </small-data-table>
 
 <!--
 <md-layout class="pa" md-align="center">
@@ -182,6 +166,9 @@
       },
       filterChange(newFilter){
         this.filter = newFilter;
+      },
+      helloWorld(app) {
+        alert(app.company);
       }
     },
     computed : {
@@ -258,7 +245,10 @@
   width: 40px;
 }
 .col-1 { width: 5%; }
-.col-2 { width: 16.666667%; }
+.col-2 { /*width: 16.666667%;*/ width:17.5% }
 .col-3 { width: 25%; }
-
+.click-wrapper{
+  display: inherit;
+  cursor: pointer;
+}
 </style>
