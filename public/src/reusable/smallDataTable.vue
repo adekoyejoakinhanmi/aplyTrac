@@ -1,6 +1,6 @@
 <template>
 <md-layout class="pa pt-0" md-align="center">
-    <md-layout md-flex-medium="80" md-flex-small="100">
+    <md-layout md-flex="70">
       <md-card>
     <md-list class="block-fill">
       <md-list-item class="thead">

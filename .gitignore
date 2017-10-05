@@ -3,3 +3,4 @@
 /public/assets/fonts
 /public/db.json
 yarn-error.log
+/public/debug.log

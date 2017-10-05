@@ -8,21 +8,21 @@
     <md-list>
       <md-list-item>
         <router-link to="/dashboard"> 
-          <md-icon>dashboard</md-icon> 
+          <!--<md-icon>dashboard</md-icon>--> 
           <span>Dashboard</span>
         </router-link>
       </md-list-item>
 
       <md-list-item>
         <router-link to="/archive">
-          <md-icon>archive</md-icon>
+          <!--<md-icon>archive</md-icon>-->
           <span>Archive</span>
         </router-link>
       </md-list-item>
 
       <md-list-item>
         <router-link to="/settings">
-          <md-icon>settings</md-icon>
+         <!--<md-icon>settings</md-icon>-->
           <span>Settings</span>
         </router-link>
       </md-list-item>
@@ -48,6 +48,7 @@ export default {
     top: 0;
     transform: translate3d(0, 0, 0) !important;
     pointer-events: auto;
+    font-size: 14px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
   }
 }

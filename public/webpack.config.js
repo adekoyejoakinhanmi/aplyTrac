@@ -47,15 +47,13 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    port : 9001
   },
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map',
-  devServer : {
-    port : 9001
-  }
+  devtool: '#eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {

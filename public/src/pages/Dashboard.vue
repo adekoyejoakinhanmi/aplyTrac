@@ -13,7 +13,7 @@
 </md-dialog>
 
 <md-layout class="pa pb-0" md-align="center">
-  <md-layout md-flex="100">
+  <md-layout md-flex="70">
     
     <md-toolbar class="md-transparent">
       <div class="block-fill">
@@ -23,9 +23,11 @@
     
   </md-layout>
 </md-layout>
-  <md-layout v-cloak md-gutter md-align="center">
+
+
+  <md-layout v-cloak md-gutter md-align="center" v-if="emptyList">
     <md-layout md-flex="35">
-      <md-whiteframe class="mt-2 block-fill" v-show="emptyList">
+      <md-whiteframe class="mt-2 block-fill">
         <div class="mt-1 pa tc md-body-2">
           You have added any applications yet
         </div>
@@ -34,7 +36,7 @@
   </md-layout>
 
 
-  <small-data-table>
+  <small-data-table v-cloak v-else>
     <div slot="application-row">
       <md-list-item v-for="application in applications" :key="application.id">
         <div class="click-wrapper" @click="helloWorld(application)">
@@ -148,7 +150,6 @@
         });
       },
       deleteOne(index) {
-        console.log('Iwas called');
         this.applications.splice(index, 1);
       },
       updateApp(idx, other) {
