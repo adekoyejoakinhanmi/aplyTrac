@@ -1,6 +1,6 @@
 <template>
   <md-whiteframe md-elevation="1">
-    <md-toolbar :class="[extended ? '' : 'hidden']"></md-toolbar>
+    <md-toolbar v-show="extended"></md-toolbar>
     <md-toolbar>
       <md-button class="md-icon-button nav-trigger" @click="toggleSideNav">
          <md-icon>menu</md-icon>

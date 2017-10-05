@@ -1,28 +1,32 @@
 <template>
 <div>
-  <tool-bar page-title="Dashboard" extended></tool-bar>
+  <tool-bar page-title="Dashboard"></tool-bar>
   <div class="fab-wrapper">
     <md-button class="md-fab md-clean md-fab-top-right" id="dialogControl" @click="openForm">
       <md-icon>add</md-icon>
     </md-button>
   </div>
 
-<md-dialog md-open-from="#dialogControl" md-close-to="#dialogControl" ref="appForm">
-  <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="closeForm">
-  </app-form>
-</md-dialog>
+  <md-dialog md-open-from="#dialogControl" md-close-to="#dialogControl" ref="appForm">
+    <app-form v-show="formVisible" v-on:newApp="addNewApp" v-on:formClosed="closeForm">
+    </app-form>
+  </md-dialog>
 
-<md-layout class="pa pb-0" md-align="center">
-  <md-layout md-flex="70">
-    
-    <md-toolbar class="md-transparent">
-      <div class="block-fill">
+  <md-dialog ref="appView">
+    <app-content :application="currentApplication"></app-content>
+  </md-dialog>
+
+  <md-layout class="pa pb-0" md-align="center">
+    <md-layout md-flex="70">
+
+      <md-toolbar class="md-transparent">
+        <div class="block-fill">
           <h1 class="md-title">Your Applications</h1>
-          </div>
-        </md-toolbar>
-    
+        </div>
+      </md-toolbar>
+
+    </md-layout>
   </md-layout>
-</md-layout>
 
 
   <md-layout v-cloak md-gutter md-align="center" v-if="emptyList">
@@ -38,22 +42,23 @@
 
   <small-data-table v-cloak v-else>
     <div slot="application-row">
-      <md-list-item v-for="application in applications" :key="application.id">
-        <div class="click-wrapper" @click="helloWorld(application)">
+      <md-list-item class="app-row has-ripple" v-for="application in applications" :key="application.id">
+        <md-ink-ripple />
+        <div class="click-wrapper" @click="showCard(application)">
           <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
           <div class="table">
             <div class="table-row">
               <div class="tcell col-3 md-body-2">{{application.company}}</div>
               <div class="tcell col-3 md-body-1 hide-on-small">{{application.vacancy}}</div>
               <div class="tcell col-1 md-body-1">{{application.date}}</div>
-            </div>              
+            </div>
           </div>
         </div>
         <md-button class="md-icon-button">
           <md-icon>more_vert</md-icon>
         </md-button>
       </md-list-item>
-      </div>
+    </div>
   </small-data-table>
 
 <!--
@@ -137,7 +142,8 @@
           user : "Adekoyejo",
           formVisible : true,
           filter : 'All',
-          applications : []
+          applications : [],
+          currentApplication : {company:'', type:'', status:'', vacancy:'', status:'', date: ''}
         }
     },
     methods : {
@@ -168,8 +174,10 @@
       filterChange(newFilter){
         this.filter = newFilter;
       },
-      helloWorld(app) {
-        alert(app.company);
+      showCard(app) {
+        this.currentApplication = app;
+        this.$refs['appView'].open();
+        //alert(app.company);
       }
     },
     computed : {
@@ -233,6 +241,7 @@
   display: table-row;
   width: 100%;
 }
+
 .tcell{
   display: table-cell;
   padding: 1em;
@@ -246,10 +255,16 @@
   width: 40px;
 }
 .col-1 { width: 5%; }
-.col-2 { /*width: 16.666667%;*/ width:17.5% }
+.col-2 { /*width: 16.666667%;*/ width:15% }
 .col-3 { width: 25%; }
 .click-wrapper{
   display: inherit;
   cursor: pointer;
+}
+.app-row:hover{
+  background-color: #f9f9f9
+}
+.has-ripple{
+  position: relative;
 }
 </style>

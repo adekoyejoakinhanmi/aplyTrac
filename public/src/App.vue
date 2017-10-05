@@ -59,6 +59,9 @@ html, body{
 .pb-0{
   padding-bottom: 0
 }
+.pt-1{
+  padding-top: 0.5em
+}
 .tc{
   text-align: center
 }
@@ -81,7 +84,12 @@ html, body{
   flex-flow: column nowrap;
   flex: 1
 }
-
+.md-dialog{
+  overflow-x:inherit
+}
+.md-backdrop{
+  background-color: rgba(0,0,0, 0.12)
+}
 @media screen and (min-width:1281px){
       .main-container{
             padding-left: 280px
