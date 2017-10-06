@@ -103,5 +103,18 @@
   "settings": {
     "deleteOnClosed": true
   },
-  "archive": []
+  "flags": [
+    {
+      "id": "8br9cjwvaj",
+      "applicationId": "9j8brcjwvj8brcjwwj8",
+      "title": "Ensure all things are done well",
+      "completed": true
+    },
+    {
+      "id": "6j8bpz4bpj",
+      "applicationId": "6j8bpz4bpj8bpz4bqj8",
+      "title": "Email my cover letter",
+      "completed": true
+    }
+  ]
 }

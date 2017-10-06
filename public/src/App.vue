@@ -53,6 +53,9 @@ html, body{
 .pa{
   padding: 1.5em
 }
+.pa-1{
+  padding: 2em
+}
 .pt-0{
   padding-top: 0
 }

@@ -13,7 +13,9 @@
   </md-dialog>
 
   <md-dialog ref="appView">
-    <app-content :application="currentApplication"></app-content>
+    <app-content :application="currentApplication" 
+                 :flags="cflags" 
+                 v-on:flagDeleted="deleteFlag"></app-content>
   </md-dialog>
 
   <md-layout class="pa pb-0" md-align="center">
@@ -29,7 +31,7 @@
   </md-layout>
 
 
-  <md-layout v-cloak md-gutter md-align="center" v-if="emptyList">
+  <md-layout v-cloak md-gutter md-align="center" v-show="emptyList">
     <md-layout md-flex="35">
       <md-whiteframe class="mt-2 block-fill">
         <div class="mt-1 pa tc md-body-2">
@@ -39,6 +41,7 @@
     </md-layout>
   </md-layout>
 
+  <md-spinner md-indeterminate v-if="emptyList"></md-spinner>
 
   <small-data-table v-cloak v-else>
     <div slot="application-row">
@@ -126,6 +129,7 @@
 
 <script>
   import axios from 'axios';
+  import _ from 'underscore';
   import base from '../helpers/urls.config';
 
   import smallDataTable from '../reusable/smallDataTable.vue';
@@ -139,24 +143,31 @@
   export default {
     data(){
         return {
-          user : "Adekoyejo",
           formVisible : true,
           filter : 'All',
           applications : [],
-          currentApplication : {company:'', type:'', status:'', vacancy:'', status:'', date: ''}
+          flags : [],
+          currentApplication : {company:'', type:'', status:'', vacancy:'', status:'', date: ''},
+          cflags : []
         }
     },
     methods : {
-      getApplications() {
-        axios.get(`${base.url}/applications`).then((response) => {
+      init() {
+        axios.get(`${base.url}/applications`).then(response => {
           this.applications = response.data;
-          this.applications.reverse();
-        }).catch(err => {
-          console.log(err);
         });
+        axios.get(`${base.url}/flags`).then(response => {
+          this.flags = response.data;
+        })
       },
       deleteOne(index) {
         this.applications.splice(index, 1);
+      },
+      deleteFlag(flagId) {
+        var idx = _.findLastIndex(this.flags, {
+          id : flagId
+        });
+        this.flags.splice(idx, 1);
       },
       updateApp(idx, other) {
         this.applications.splice(idx, 1, other);
@@ -176,6 +187,7 @@
       },
       showCard(app) {
         this.currentApplication = app;
+        this.cflags = _.where(this.flags, {applicationId : app.id});
         this.$refs['appView'].open();
         //alert(app.company);
       }
@@ -192,8 +204,8 @@
         });
       }
     },
-    mounted() {
-      this.getApplications();
+    created() {
+      this.init();
     },
     components : {
       smallDataTable,
@@ -249,7 +261,7 @@
 }
 .thead{
   border-bottom: 1px solid #eeeeee;
-  margin-bottom: 8px;
+  /*margin-bottom: 8px;*/
 }
 .placehold{
   width: 40px;

@@ -1,7 +1,7 @@
 <template>
 <md-layout md-flex="50">
   <div class="block-fill">
-    <md-toolbar class="pa md-transparent">
+    <md-toolbar class="pa-1 card-toolbar md-transparent">
       <md-avatar>
         <img src="../../assets/imgs/gb.png" :alt="application.status">
       </md-avatar>
@@ -17,25 +17,96 @@
       </md-button>
     </md-toolbar>
   </div>
-  <div class="pa app-content block-fill">
-    <header>
-      <h3 class="md-subhead">Details</h3>
-    </header>
-  </div>
+  <main class="pa-1 app-content block-fill">
+    <section>
+      <header class="md-body-2">Details</header>
+      <md-list class="md-dense">
+        <md-list-item>
+          <md-icon></md-icon> <span>{{application.vacancy}}</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-icon></md-icon> <span>{{application.type}}</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-icon></md-icon> <span>{{application.medium}}</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-icon></md-icon> <span>{{application.date}}</span>
+
+          <md-divider class="md-inset"></md-divider>
+        </md-list-item>
+      </md-list>
+    </section>
+    <section>
+      <header class="flex">
+        <span class="md-body-2" style="flex: 1">Flags</span>
+        <md-button class="md-icon-button">
+          <md-icon>add</md-icon>
+          <md-tooltip md-direction="bottom">Add a new flag</md-tooltip>
+        </md-button>
+      </header>
+      <span class="tc block-fill pa md-body-1" v-show="flags.length === 0">No flags yet</span>
+      <md-list class="md-dense">
+        <md-list-item class="flag-check-item" v-for="flag in flags" :key="flag.id">
+          <md-checkbox name="completedState" v-model="flag.completed" v-on:change="updateFlag(flag)"></md-checkbox>
+          <span>
+            {{flag.title}}
+          </span>
+          <md-button @click="deleteFlag(flag)" class="md-icon-button">
+            <md-icon>delete</md-icon>
+          </md-button>
+        </md-list-item>
+      </md-list>
+    </section>
+  </main>
 </md-layout>
 </template>
 
 <script>
+import axios from 'axios';
+import base from '../helpers/urls.config';
+
 export default {
-   props : {
-      application : Object,
-      required : true
-   }
+  props : {
+      application : {
+        type : Object,
+        required : true
+      },
+      flags : {
+        type : Array,
+        required : true
+      }
+  },
+  methods : {
+    updateFlag(flag) {
+      flag.completed = !flag.completed
+      axios.put(`${base.url}/flags/${flag.id}`, flag).then(success => {
+        console.log('success')
+      });
+    },
+    deleteFlag(flag) {
+      axios.delete(`${base.url}/flags/${flag.id}`).then(success => {
+        this.$emit('flagDeleted', flag.id);
+      });
+    }
+  }
 }
 </script>
 
 <style>
 .flex{
   display: flex
+}
+.card-toolbar{
+  border-bottom: 1px solid #eee
+}
+.app-content{
+  padding-top: 1.5em
+}
+.flag-check-item .md-list-item-container{
+  justify-content: flex-start;
 }
 </style>
