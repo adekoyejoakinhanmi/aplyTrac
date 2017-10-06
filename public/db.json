@@ -115,6 +115,18 @@
       "applicationId": "6j8bpz4bpj8bpz4bqj8",
       "title": "Email my cover letter",
       "completed": true
+    },
+    {
+      "id": "j8g6xsub",
+      "applicationId": "7j8bqktwdj8bqktwej8",
+      "title": "Email an update CV",
+      "completed": false
+    },
+    {
+      "id": "j8g70zhm",
+      "applicationId": "8j87f8n5kj87f8n5lj8",
+      "title": "Ask the CEO to Lunch",
+      "completed": false
     }
   ]
 }

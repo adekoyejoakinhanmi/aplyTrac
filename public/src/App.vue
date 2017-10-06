@@ -71,8 +71,9 @@ html, body{
 .mt-2{
   margin-top: 1em
 }
-.hidden{
-  display: none
+.flex{
+  display: flex;
+  align-items: center
 }
 body{
   display: flex

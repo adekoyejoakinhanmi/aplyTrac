@@ -51,7 +51,7 @@ module.exports = {
     port : 9001
   },
   performance: {
-    hints: false
+    hints: "warning"
   },
   devtool: '#eval-source-map'
 }

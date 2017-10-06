@@ -13,9 +13,9 @@
   </md-dialog>
 
   <md-dialog ref="appView">
-    <app-content :application="currentApplication" 
-                 :flags="cflags" 
-                 v-on:flagDeleted="deleteFlag"></app-content>
+    <app-content :application="currentApplication"
+                 v-on:flagDeleted="deleteFlag"
+                 v-on:newFlagCreated="addNewFlag"></app-content>
   </md-dialog>
 
   <md-layout class="pa pb-0" md-align="center">
@@ -135,11 +135,9 @@
     data(){
         return {
           formVisible : true,
-          filter : 'All',
           applications : [],
           flags : [],
-          currentApplication : {company:'', type:'', status:'', vacancy:'', status:'', date: ''},
-          cflags : []
+          currentApplication : {company:'', type:'', status:'', vacancy:'', status:'', date: ''}
         }
     },
     methods : {
@@ -167,14 +165,14 @@
       addNewApp(newData) {
         this.applications.unshift(newData);
       },
+      addNewFlag(newFlagData) {
+        this.flags.push(newFlagData);
+      },
       closeForm(){
         this.$refs['appForm'].close();
       },
       openForm(){
         this.$refs['appForm'].open();
-      },
-      filterChange(newFilter){
-        this.filter = newFilter;
       },
       showCard(app) {
         this.currentApplication = app;

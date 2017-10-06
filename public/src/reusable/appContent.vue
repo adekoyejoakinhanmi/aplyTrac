@@ -43,7 +43,7 @@
     <section>
       <header class="flex">
         <span class="md-body-2" style="flex: 1">Flags</span>
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" @click="addNewFlag">
           <md-icon>add</md-icon>
           <md-tooltip md-direction="bottom">Add a new flag</md-tooltip>
         </md-button>
@@ -52,7 +52,7 @@
       <md-list class="md-dense">
         <md-list-item class="flag-check-item" v-for="(flag, index) in flags" :key="flag.id">
           <md-checkbox name="completedState" v-model="flag.completed" v-on:change="updateFlag(flag)"></md-checkbox>
-          <span>
+          <span style="flex: 1">
             {{flag.title}}
           </span>
           <md-button @click="deleteFlag(flag, index)" class="md-icon-button">
@@ -60,6 +60,7 @@
           </md-button>
         </md-list-item>
       </md-list>
+      <flag-input v-show="addingNewFlag"></flag-input>
     </section>
   </main>
 </md-layout>
@@ -67,13 +68,17 @@
 
 <script>
 import axios from 'axios';
+import uniqid from 'uniqid';
 import base from '../helpers/urls.config';
 import bus from '../helpers/bus';
+
+import flagInput from '../reusable/flagInput.vue';
 
 export default {
   data() {
     return {
-      flags : []
+      flags : [],
+      addingNewFlag : false
     }
   },
   props : {
@@ -97,18 +102,36 @@ export default {
     },
     changeFlags(flagData) {
       this.flags = flagData;
+    },
+    addNewFlag() {
+      this.addingNewFlag = !this.addingNewFlag
+    },
+    addFlag(flagContent) {
+      let data = {
+        id : uniqid(),
+        applicationId : this.application.id,
+        title : flagContent,
+        completed : false
+      }
+      axios.post(`${base.url}/flags/`, data).then(success => {
+        console.log('success')
+        this.flags.push(data);
+        this.$emit('newFlagCreated', data);
+      });
+      this.addNewFlag();
     }
   },
   created() {
-    bus.$on('cardOpened', this.changeFlags)
+    bus.$on('cardOpened', this.changeFlags);
+    bus.$on('flagCreated', this.addFlag)
+  },
+  components : {
+    flagInput
   }
 }
 </script>
 
 <style>
-.flex{
-  display: flex
-}
 .card-toolbar{
   border-bottom: 1px solid #eee
 }
@@ -117,5 +140,6 @@ export default {
 }
 .flag-check-item .md-list-item-container{
   justify-content: flex-start;
+  padding: 0
 }
 </style>
