@@ -50,12 +50,12 @@
       </header>
       <span class="tc block-fill pa md-body-1" v-show="flags.length === 0">No flags yet</span>
       <md-list class="md-dense">
-        <md-list-item class="flag-check-item" v-for="flag in flags" :key="flag.id">
+        <md-list-item class="flag-check-item" v-for="(flag, index) in flags" :key="flag.id">
           <md-checkbox name="completedState" v-model="flag.completed" v-on:change="updateFlag(flag)"></md-checkbox>
           <span>
             {{flag.title}}
           </span>
-          <md-button @click="deleteFlag(flag)" class="md-icon-button">
+          <md-button @click="deleteFlag(flag, index)" class="md-icon-button">
             <md-icon>delete</md-icon>
           </md-button>
         </md-list-item>
@@ -68,15 +68,17 @@
 <script>
 import axios from 'axios';
 import base from '../helpers/urls.config';
+import bus from '../helpers/bus';
 
 export default {
+  data() {
+    return {
+      flags : []
+    }
+  },
   props : {
       application : {
         type : Object,
-        required : true
-      },
-      flags : {
-        type : Array,
         required : true
       }
   },
@@ -87,11 +89,18 @@ export default {
         console.log('success')
       });
     },
-    deleteFlag(flag) {
+    deleteFlag(flag, idx) {
       axios.delete(`${base.url}/flags/${flag.id}`).then(success => {
+        this.flags.splice(idx, 1);
         this.$emit('flagDeleted', flag.id);
       });
+    },
+    changeFlags(flagData) {
+      this.flags = flagData;
     }
+  },
+  created() {
+    bus.$on('cardOpened', this.changeFlags)
   }
 }
 </script>

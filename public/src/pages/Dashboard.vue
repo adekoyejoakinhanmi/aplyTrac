@@ -65,56 +65,46 @@
   </small-data-table>
 
 <!--
-<md-layout class="pa" md-align="center">
-  <div class="table-row">
-    <div class="thead col-1">&nbsp;</div>
-    <div class="thead col-3">Company</div>
-    <div class="thead col-3">Vacancy</div>
-    <div class="thead col-2">Date</div>
-    <div class="thead col-1">&nbsp;</div>
-  </div>
-
-  <div class="table-row">
-    <div class="tcell col-1"><md-avatar><img src="../../assets/imgs/gb.png"></md-avatar></div>
-    <div class="tcell col-3">Gridium</div>
-    <div class="tcell col-3">Front End Developer</div>
-    <div class="tcell col-2">Today</div>
-    <div class="tcell col-1">
-      <md-button class="md-icon-button">
-        <md-icon>more_vert</md-icon>
-      </md-button>
+  <md-layout class="pa" md-align="center">
+    <div class="table-row">
+      <div class="thead col-1">&nbsp;</div>
+      <div class="thead col-3">Company</div>
+      <div class="thead col-3">Vacancy</div>
+      <div class="thead col-2">Date</div>
+      <div class="thead col-1">&nbsp;</div>
     </div>
-  </div>
-
-</md-layout>
+    <div class="table-row">
+      <div class="tcell col-1"><md-avatar><img src="../../assets/imgs/gb.png"></md-avatar></div>
+      <div class="tcell col-3">Gridium</div>
+      <div class="tcell col-3">Front End Developer</div>
+      <div class="tcell col-2">Today</div>
+      <div class="tcell col-1">
+        <md-button class="md-icon-button">
+          <md-icon>more_vert</md-icon>
+        </md-button>
+      </div>
+    </div>
+  </md-layout>
 -->
 <!--
   <md-layout class="pa" md-align="center">
     <md-layout md-flex="90">
     <md-tabs>
-      
       <md-tab id="all" md-label="All">
         <md-layout md-gutter="16">
-
           <app-content v-for="application in applications" 
                       :application="application"
                       :key="application.id">
           </app-content>
-
         </md-layout>
       </md-tab>
-
-
-
       <md-tab id="getback" md-label="Get Back to you">
         <p>Noting to see here</p>
       </md-tab>
     </md-tabs>
     </md-layout>
   </md-layout>
-
 -->
-
 <!--
   <dataTable v-show="!emptyList">
     <filter-control v-on:filterBy="filterChange" slot="filter-control"></filter-control>
@@ -131,6 +121,7 @@
   import axios from 'axios';
   import _ from 'underscore';
   import base from '../helpers/urls.config';
+  import bus from '../helpers/bus';
 
   import smallDataTable from '../reusable/smallDataTable.vue';
   import dataTable from '../reusable/dataTable.vue';
@@ -187,9 +178,9 @@
       },
       showCard(app) {
         this.currentApplication = app;
-        this.cflags = _.where(this.flags, {applicationId : app.id});
+        var _cflags = _.where(this.flags, {applicationId : app.id})
+        bus.$emit('cardOpened', _cflags);
         this.$refs['appView'].open();
-        //alert(app.company);
       }
     },
     computed : {
