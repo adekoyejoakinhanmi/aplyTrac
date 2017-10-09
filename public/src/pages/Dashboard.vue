@@ -13,9 +13,9 @@
   </md-dialog>
 
   <md-dialog ref="appView">
-    <app-content :application="currentApplication"
+    <app-card :application="currentApplication"
                  v-on:flagDeleted="deleteFlag"
-                 v-on:newFlagCreated="addNewFlag"></app-content>
+                 v-on:newFlagCreated="addNewFlag"></app-card>
   </md-dialog>
 
   <md-layout class="pa pb-0" md-align="center">
@@ -41,9 +41,8 @@
     </md-layout>
   </md-layout>
 
-  <md-spinner md-indeterminate v-if="emptyList"></md-spinner>
 
-  <small-data-table v-cloak v-else>
+  <app-table v-cloak>
     <div slot="application-row">
       <md-list-item class="app-row has-ripple" v-for="application in applications" :key="application.id">
         <md-ink-ripple />
@@ -62,58 +61,7 @@
         </md-button>
       </md-list-item>
     </div>
-  </small-data-table>
-
-<!--
-  <md-layout class="pa" md-align="center">
-    <div class="table-row">
-      <div class="thead col-1">&nbsp;</div>
-      <div class="thead col-3">Company</div>
-      <div class="thead col-3">Vacancy</div>
-      <div class="thead col-2">Date</div>
-      <div class="thead col-1">&nbsp;</div>
-    </div>
-    <div class="table-row">
-      <div class="tcell col-1"><md-avatar><img src="../../assets/imgs/gb.png"></md-avatar></div>
-      <div class="tcell col-3">Gridium</div>
-      <div class="tcell col-3">Front End Developer</div>
-      <div class="tcell col-2">Today</div>
-      <div class="tcell col-1">
-        <md-button class="md-icon-button">
-          <md-icon>more_vert</md-icon>
-        </md-button>
-      </div>
-    </div>
-  </md-layout>
--->
-<!--
-  <md-layout class="pa" md-align="center">
-    <md-layout md-flex="90">
-    <md-tabs>
-      <md-tab id="all" md-label="All">
-        <md-layout md-gutter="16">
-          <app-content v-for="application in applications" 
-                      :application="application"
-                      :key="application.id">
-          </app-content>
-        </md-layout>
-      </md-tab>
-      <md-tab id="getback" md-label="Get Back to you">
-        <p>Noting to see here</p>
-      </md-tab>
-    </md-tabs>
-    </md-layout>
-  </md-layout>
--->
-<!--
-  <dataTable v-show="!emptyList">
-    <filter-control v-on:filterBy="filterChange" slot="filter-control"></filter-control>
-    <md-table-body slot="table-body">
-      <table-row v-for="(application, index) in filteredApps" :application="application" :key="index">
-      </table-row>
-    </md-table-body>
-  </dataTable>
--->
+  </app-table>
 </div>
 </template>
 
@@ -123,13 +71,12 @@
   import base from '../helpers/urls.config';
   import bus from '../helpers/bus';
 
-  import smallDataTable from '../reusable/smallDataTable.vue';
-  import dataTable from '../reusable/dataTable.vue';
+  import appTable from '../reusable/appTable.vue';
+  import appRow from '../reusable/appRow.vue';
   import appForm from '../reusable/appForm.vue';
-  import appContent from '../reusable/appContent.vue';
+  import appCard from '../reusable/appCard.vue';
 
   import toolBar from '../elements/toolBar.vue';
-  import tableRow from '../elements/tableRow.vue';
 
   export default {
     data(){
@@ -197,12 +144,11 @@
       this.init();
     },
     components : {
-      smallDataTable,
+      appTable,
       appForm,
       toolBar,
-      dataTable,
-      tableRow,
-      appContent
+      appRow,
+      appCard
     }
   }
 </script>
