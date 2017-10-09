@@ -6,15 +6,7 @@
         <img src="../../assets/imgs/gb.png" :alt="application.status">
       </md-avatar>
       <h2 class="md-title" style="flex: 1">{{application.company}}</h2>
-      <md-button class="md-icon-button">
-        <md-icon>edit</md-icon>
-      </md-button>
-      <md-button class="md-icon-button">
-        <md-icon>archive</md-icon>
-      </md-button>
-      <md-button class="md-icon-button">
-        <md-icon>delete</md-icon>
-      </md-button>
+      <app-options :application="application"></app-options>
     </md-toolbar>
   </div>
   <main class="pa-1 app-content block-fill">
@@ -35,7 +27,6 @@
 
         <md-list-item>
           <md-icon></md-icon> <span>{{application.date}}</span>
-
           <md-divider class="md-inset"></md-divider>
         </md-list-item>
       </md-list>
@@ -73,6 +64,7 @@ import base from '../helpers/urls.config';
 import bus from '../helpers/bus';
 
 import flagInput from '../reusable/flagInput.vue';
+import appOptions from './appOptions.vue';
 
 export default {
   data() {
@@ -88,6 +80,10 @@ export default {
       }
   },
   methods : {
+    deleteApp() {
+      //axios.delete(`${base.url}/applications/${}`)
+      this.$emit('appDeleted')
+    },
     updateFlag(flag) {
       flag.completed = !flag.completed
       axios.put(`${base.url}/flags/${flag.id}`, flag).then(success => {
@@ -126,7 +122,8 @@ export default {
     bus.$on('flagCreated', this.addFlag)
   },
   components : {
-    flagInput
+    flagInput,
+    appOptions
   }
 }
 </script>

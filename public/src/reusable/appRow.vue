@@ -11,12 +11,12 @@
       </div>
     </div>
   </div>
-  <md-button class="md-icon-button">
-    <md-icon>more_vert</md-icon>
-  </md-button>
+  <app-options :application="application"></app-options>
 </md-list-item>
 </template>
 <script>
+import appOptions from './appOptions.vue';
+
 export default {
   props : {
     application : {
@@ -28,6 +28,9 @@ export default {
     showThisRow() {
       this.$emit('rowClicked', this.application);
     }
+  },
+  components : {
+    appOptions
   }
 }
 </script>

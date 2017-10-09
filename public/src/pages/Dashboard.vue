@@ -85,8 +85,10 @@
           this.flags = response.data;
         })
       },
-      deleteOne(index) {
-        this.applications.splice(index, 1);
+      deleteOne(App) {
+        // this is will efffect the delete on 
+        // applications and flags
+        //this.applications.splice(index, 1);
       },
       deleteFlag(flagId) {
         var idx = _.findLastIndex(this.flags, {
