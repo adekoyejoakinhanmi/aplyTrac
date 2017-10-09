@@ -14,8 +14,9 @@
 
   <md-dialog ref="appView">
     <app-card :application="currentApplication"
-                 v-on:flagDeleted="deleteFlag"
-                 v-on:newFlagCreated="addNewFlag"></app-card>
+              v-on:flagDeleted="deleteFlag"
+              v-on:newFlagCreated="addNewFlag">
+    </app-card>
   </md-dialog>
 
   <md-layout class="pa pb-0" md-align="center">
@@ -44,22 +45,10 @@
 
   <app-table v-cloak>
     <div slot="application-row">
-      <md-list-item class="app-row has-ripple" v-for="application in applications" :key="application.id">
-        <md-ink-ripple />
-        <div class="click-wrapper" @click="showCard(application)">
-          <md-avatar><img src="../../assets/imgs/gb.png"></md-avatar>
-          <div class="table">
-            <div class="table-row">
-              <div class="tcell col-3 md-body-2">{{application.company}}</div>
-              <div class="tcell col-3 md-body-1 hide-on-small">{{application.vacancy}}</div>
-              <div class="tcell col-1 md-body-1">{{application.date}}</div>
-            </div>
-          </div>
-        </div>
-        <md-button class="md-icon-button">
-          <md-icon>more_vert</md-icon>
-        </md-button>
-      </md-list-item>
+      <app-row v-for="application in applications"
+               v-on:rowClicked="showCard" 
+               :key="application.id" 
+               :application="application"></app-row>
     </div>
   </app-table>
 </div>
