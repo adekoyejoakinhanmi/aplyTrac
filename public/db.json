@@ -126,6 +126,33 @@
       "id": "j8g70zhm",
       "applicationId": "8j87f8n5kj87f8n5lj8",
       "title": "Ask the CEO to Lunch",
+      "completed": true
+    },
+    {
+      "id": "j8kbq47c",
+      "applicationId": "7j87ew3eaj87ew3ebj8",
+      "title": "Beat the crankstars",
+      "completed": false
+    },
+    {
+      "id": "j8kbq47e",
+      "title": "Beat the crankstars",
+      "completed": false
+    },
+    {
+      "id": "j8kbq47d",
+      "title": "Beat the crankstars",
+      "completed": false
+    },
+    {
+      "id": "j8kcnwzm",
+      "title": "Tell the world about this",
+      "completed": false
+    },
+    {
+      "id": "j8kcnwzn",
+      "applicationId": "0j87f92xyj87f92xzj8",
+      "title": "Tell the world about this",
       "completed": false
     }
   ]

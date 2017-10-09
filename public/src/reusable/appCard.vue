@@ -60,7 +60,7 @@
           </md-button>
         </md-list-item>
       </md-list>
-      <flag-input v-show="addingNewFlag"></flag-input>
+      <flag-input v-show="addingNewFlag" v-on:inputClosed="addNewFlag"></flag-input>
     </section>
   </main>
 </md-layout>

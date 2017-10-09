@@ -9,7 +9,7 @@
       <md-button class="md-icon-button" @click="createFlag" :disabled="!newFlag">
          <md-icon>done</md-icon>
       </md-button>
-      <md-button class="md-warn md-icon-button">
+      <md-button class="md-warn md-icon-button" @click="closeFlagInput">
          <md-icon>close</md-icon>
       </md-button>
    </div>
@@ -29,6 +29,9 @@ export default {
       createFlag() {
          bus.$emit('flagCreated', this.newFlag);
          this.newFlag = '';
+      },
+      closeFlagInput() {
+         this.$emit('inputClosed');
       }
    }
 }
