@@ -10,7 +10,9 @@ const store = new Vuex.Store({
    },
    actions : {
       LOAD_APPS_LIST : function({ commit }) {
-         
+         axios.get('/applications').then(response => {
+            commit('SET_APPS_LIST', { list : response.data})
+         })
       }
    },
    mutations : {
