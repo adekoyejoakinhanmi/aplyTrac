@@ -46,7 +46,7 @@
   <app-table v-cloak>
     <div slot="application-row">
       <app-row v-for="application in applications"
-               v-on:rowClicked="showCard" 
+               v-on:rowClicked="openCard" 
                :key="application.id" 
                :application="application"></app-row>
     </div>
@@ -83,18 +83,19 @@
         });
         axios.get(`${base.url}/flags`).then(response => {
           this.flags = response.data;
-        })
-      },
-      deleteOne(App) {
-        // this is will efffect the delete on 
-        // applications and flags
-        //this.applications.splice(index, 1);
-      },
-      deleteFlag(flagId) {
-        var idx = _.findLastIndex(this.flags, {
-          id : flagId
         });
-        this.flags.splice(idx, 1);
+      },
+      deleteApp(app) {
+        let idx = _.findLastIndex(this.applications, {
+          id : app.id
+        });
+        axios.delete(`${base.url}/applications/${app.id}`).then(success => {
+           this.applications.splice(idx, 1);
+           if (this.$refs['appView'].active) {
+             this.closeCard()
+           }
+        });
+        //console.log(this.$refs['appView'].active)
       },
       updateApp(idx, other) {
         this.applications.splice(idx, 1, other);
@@ -102,6 +103,12 @@
       },
       addNewApp(newData) {
         this.applications.unshift(newData);
+      },
+      deleteFlag(flagId) {
+        var idx = _.findLastIndex(this.flags, {
+          id : flagId
+        });
+        this.flags.splice(idx, 1);
       },
       addNewFlag(newFlagData) {
         this.flags.push(newFlagData);
@@ -112,11 +119,14 @@
       openForm(){
         this.$refs['appForm'].open();
       },
-      showCard(app) {
+      openCard(app) {
         this.currentApplication = app;
         var _cflags = _.where(this.flags, {applicationId : app.id})
         bus.$emit('cardOpened', _cflags);
         this.$refs['appView'].open();
+      },
+      closeCard() {
+        this.$refs['appView'].close();
       }
     },
     computed : {
@@ -133,6 +143,7 @@
     },
     created() {
       this.init();
+      bus.$on('appDeleted', this.deleteApp)
     },
     components : {
       appTable,

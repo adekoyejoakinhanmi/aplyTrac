@@ -25,24 +25,7 @@
 </template>
 
 <script>
-import base from '../helpers/urls.config';
-import axios from 'axios';
-
 export default {
-   data(){
-      return {
-         editing : false
-      }
-   },
-   methods : {
-      editApplication () {
-         this.editing = !this.editing;
-      },
-      deleteApp() {
-        axios.delete(`${base.url}/applications/${this.application.id}`);
-        this.$emit('deleteApp');
-      }
-    }
 }
 </script>
 

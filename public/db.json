@@ -1,42 +1,6 @@
 {
   "applications": [
     {
-      "id": "7j87ew3eaj87ew3ebj8",
-      "company": "Alaryn",
-      "vacancy": "JavaScript Developer",
-      "type": "On Site",
-      "medium": "Remotee",
-      "date": "2017-09-30",
-      "status": "Get Back to you"
-    },
-    {
-      "id": "8j87f8n5kj87f8n5lj8",
-      "company": "Enterprisderds",
-      "vacancy": "Web Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Email",
-      "date": "2017-09-22",
-      "status": "Yet to reply"
-    },
-    {
-      "id": "3j87f8ry6j87f8ry7j8",
-      "company": "Enterpr",
-      "vacancy": "Web Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Email",
-      "date": "2017-09-22",
-      "status": "Yet to reply"
-    },
-    {
-      "id": "0j87f92xyj87f92xzj8",
-      "company": "Ase",
-      "vacancy": "Web Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Email",
-      "date": "2017-09-22",
-      "status": "Yet to reply"
-    },
-    {
       "id": "7j8bodt9uj8bodt9vj8",
       "company": "Bendy",
       "vacancy": "Ruby on rails Developer",
@@ -71,45 +35,12 @@
       "medium": "Paper",
       "date": "2017-10-03",
       "status": "Get Back to you"
-    },
-    {
-      "id": "8j8bqmqglj8bqmqgmj8",
-      "company": "Muzli",
-      "vacancy": "Web Developer",
-      "type": "On Site",
-      "medium": "Email",
-      "date": "2017-10-03",
-      "status": "Get Back to you"
-    },
-    {
-      "id": "9j8brcjwvj8brcjwwj8",
-      "company": "Japanese Modella",
-      "vacancy": "Web Developer",
-      "type": "On Site",
-      "medium": "Lever.co",
-      "date": "2017-10-03",
-      "status": "Pending"
-    },
-    {
-      "id": "0j8d8iavnj8d8iavoj8",
-      "company": "Alern New Relic",
-      "vacancy": "Content Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Paper",
-      "date": "2017-10-19",
-      "status": "Get Back to you"
     }
   ],
   "settings": {
     "deleteOnClosed": true
   },
   "flags": [
-    {
-      "id": "9j8ercjwva",
-      "applicationId": "9j8brcjwvj8brcjwwj8",
-      "title": "Make an ensure",
-      "completed": true
-    },
     {
       "id": "6j8bpz4bpj",
       "applicationId": "6j8bpz4bpj8bpz4bqj8",
@@ -120,18 +51,6 @@
       "id": "j8g6xsub",
       "applicationId": "7j8bqktwdj8bqktwej8",
       "title": "Email an update CV",
-      "completed": false
-    },
-    {
-      "id": "j8g70zhm",
-      "applicationId": "8j87f8n5kj87f8n5lj8",
-      "title": "Ask the CEO to Lunch",
-      "completed": true
-    },
-    {
-      "id": "j8kbq47c",
-      "applicationId": "7j87ew3eaj87ew3ebj8",
-      "title": "Beat the crankstars",
       "completed": false
     },
     {
@@ -146,12 +65,6 @@
     },
     {
       "id": "j8kcnwzm",
-      "title": "Tell the world about this",
-      "completed": false
-    },
-    {
-      "id": "j8kcnwzn",
-      "applicationId": "0j87f92xyj87f92xzj8",
       "title": "Tell the world about this",
       "completed": false
     }

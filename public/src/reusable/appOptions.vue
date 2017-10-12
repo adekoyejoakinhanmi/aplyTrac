@@ -33,7 +33,7 @@ export default {
   },
   methods : {
     deleteThis() {
-      bus.$emit('appDeleted', this.application.id);
+      bus.$emit('appDeleted', this.application);
     }
   }
 }

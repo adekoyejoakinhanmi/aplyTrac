@@ -88,9 +88,6 @@ html, body{
   flex-flow: column nowrap;
   flex: 1
 }
-.md-dialog{
-  overflow-x:inherit
-}
 .md-backdrop{
   background-color: rgba(0,0,0, 0.12)
 }
