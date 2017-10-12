@@ -57,7 +57,6 @@
 <script>
   import axios from 'axios';
   import _ from 'underscore';
-  import base from '../helpers/urls.config';
   import bus from '../helpers/bus';
 
   import appTable from '../reusable/appTable.vue';
@@ -78,10 +77,10 @@
     },
     methods : {
       init() {
-        axios.get(`${base.url}/applications`).then(response => {
+        axios.get(`/applications`).then(response => {
           this.applications = response.data;
         });
-        axios.get(`${base.url}/flags`).then(response => {
+        axios.get(`/flags`).then(response => {
           this.flags = response.data;
         });
       },
@@ -89,13 +88,13 @@
         let idx = _.findLastIndex(this.applications, {
           id : app.id
         });
-        axios.delete(`${base.url}/applications/${app.id}`).then(success => {
+        axios.delete(`/applications/${app.id}`).then(success => {
            this.applications.splice(idx, 1);
            if (this.$refs['appView'].active) {
              this.closeCard()
            }
         });
-        //console.log(this.$refs['appView'].active)
+
       },
       updateApp(idx, other) {
         this.applications.splice(idx, 1, other);

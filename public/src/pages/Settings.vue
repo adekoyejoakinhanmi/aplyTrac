@@ -18,7 +18,6 @@
 
 <script>
 import axios from 'axios';
-import base from '../helpers/urls.config';
 import toolBar from '../elements/toolBar.vue';
 
 export default {
@@ -31,7 +30,7 @@ export default {
       updateSettings() {
          let data = this.closedAction === 'Archive' ? false : true;
 
-         axios.put(`${base.url}/settings`, {
+         axios.put(`/settings`, {
             deleteOnClosed : data
          }).then(success => {
             console.log('Hurray');

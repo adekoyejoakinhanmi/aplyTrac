@@ -68,7 +68,6 @@
 <script>
 import uniqid from 'uniqid';
 import axios from 'axios';
-import base from '../helpers/urls.config';
 
 export default {
       data() {
@@ -114,7 +113,7 @@ export default {
                         date : this.newApp.date,
                         status : this.newApp.status                        
                   }
-                  axios.post(`${base.url}/applications`, data).then(success => {
+                  axios.post(`/applications`, data).then(success => {
                         this.$emit('newApp', data);
                   }).catch(err => {
                         console.log(err);

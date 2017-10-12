@@ -60,7 +60,6 @@
 <script>
 import axios from 'axios';
 import uniqid from 'uniqid';
-import base from '../helpers/urls.config';
 import bus from '../helpers/bus';
 
 import flagInput from '../reusable/flagInput.vue';
@@ -81,17 +80,17 @@ export default {
   },
   methods : {
     deleteApp() {
-      //axios.delete(`${base.url}/applications/${}`)
+      //axios.delete(`/applications/${}`)
       this.$emit('appDeleted')
     },
     updateFlag(flag) {
       flag.completed = !flag.completed
-      axios.put(`${base.url}/flags/${flag.id}`, flag).then(success => {
+      axios.put(`/flags/${flag.id}`, flag).then(success => {
         console.log('success')
       });
     },
     deleteFlag(flag, idx) {
-      axios.delete(`${base.url}/flags/${flag.id}`).then(success => {
+      axios.delete(`/flags/${flag.id}`).then(success => {
         this.flags.splice(idx, 1);
         this.$emit('flagDeleted', flag.id);
       });
@@ -109,7 +108,7 @@ export default {
         title : flagContent,
         completed : false
       }
-      axios.post(`${base.url}/flags/`, data).then(success => {
+      axios.post(`/flags/`, data).then(success => {
         console.log('success')
         this.flags.push(data);
         this.$emit('newFlagCreated', data);

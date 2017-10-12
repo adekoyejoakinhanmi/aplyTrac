@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import eventsHub from '../main.js';
-
 export default {
    props : {
       pageTitle : String,
