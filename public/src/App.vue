@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="main-container">  
-      <side-bar ref="sideBar"></side-bar>
+      <!--<side-bar ref="sideBar"></side-bar>-->
       <router-view></router-view>
    </div>
 
@@ -12,9 +12,6 @@ import sideBar from './elements/sideBar.vue';
 
 export default {
    name : 'app',
-   created(){
-     //eventsHub.$on('toggle-side-nav', this.toggleSideNav)
-   },
    methods : {
       toggleSideNav(){
             //reference cascade, the toggle function is nested
@@ -22,7 +19,7 @@ export default {
       }
    },
    components : {
-      'sideBar' : sideBar
+     sideBar
    }
 }
 </script>
@@ -92,7 +89,7 @@ html, body{
   background-color: rgba(0,0,0, 0.12)
 }
 @media screen and (min-width:1281px){
-      .main-container{
+      .main-contaner{
             padding-left: 280px
       }
 }
