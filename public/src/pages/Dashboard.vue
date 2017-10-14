@@ -21,7 +21,7 @@
   </md-dialog>
 -->
 
-  <md-layout class="pa pb-0" md-align="center">
+  <md-layout class="pa pb-0" md-align="center" md-gutter md-columc>
     <md-layout md-flex="70">
 
       <md-toolbar class="md-transparent">
@@ -31,9 +31,21 @@
       </md-toolbar>
 
     </md-layout>
+
+    <md-layout md-flex="70">
+      <md-layout md-gutter="16">
+
+        <app-list-card v-for="app in applications" :application="app" :key="app.id">
+        </app-list-card>
+
+      </md-layout>
+    </md-layout>
   </md-layout>
 
+  
 
+
+<!--
   <app-table v-cloak>
     <div slot="application-row">
       <app-row v-for="application in applications" 
@@ -41,6 +53,7 @@
                :application="application"></app-row>
     </div>
   </app-table>
+-->
 </div>
 </template>
 
@@ -50,7 +63,9 @@
   import appTable from '../reusable/appTable.vue';
   import appRow from '../reusable/appRow.vue';
   import appForm from '../reusable/appForm.vue';
-  import appCard from '../reusable/appCard.vue';
+  import appCardModal from '../reusable/appCardModal.vue';
+  import appListCard from "../reusable/appListCard.vue";
+
 
   import toolBar from '../elements/toolBar.vue';
 
@@ -66,7 +81,8 @@
       appForm,
       toolBar,
       appRow,
-      appCard
+      appCardModal,
+      appListCard
     }
   }
 </script>
@@ -93,7 +109,6 @@
     display: none
   }
 }
-
 
 
 /*Table Display*/
