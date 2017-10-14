@@ -7,25 +7,8 @@
       "type": "Remote / Telecommute",
       "medium": "Workable",
       "date": "2017-10-03",
-      "status": "Pending"
-    },
-    {
-      "id": "6j8bpz4bpj8bpz4bqj8",
-      "company": "The New Relic",
-      "vacancy": "Web Developer",
-      "type": "On Site",
-      "medium": "Email",
-      "date": "2017-10-03",
-      "status": "Pending"
-    },
-    {
-      "id": "7j8bqktwdj8bqktwej8",
-      "company": "The Style Network",
-      "vacancy": "Web Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Paper",
-      "date": "2017-10-03",
-      "status": "Get Back to you"
+      "status": "Pending",
+      "archived": false
     },
     {
       "id": "6j8bqlyvvj8bqlyvwj8",
@@ -34,39 +17,13 @@
       "type": "Remote / Telecommute",
       "medium": "Paper",
       "date": "2017-10-03",
-      "status": "Get Back to you"
+      "status": "Get Back to you",
+      "archived": true
     }
   ],
   "settings": {
     "deleteOnClosed": true
   },
   "flags": [
-    {
-      "id": "6j8bpz4bpj",
-      "applicationId": "6j8bpz4bpj8bpz4bqj8",
-      "title": "Email my cover letter",
-      "completed": true
-    },
-    {
-      "id": "j8g6xsub",
-      "applicationId": "7j8bqktwdj8bqktwej8",
-      "title": "Email an update CV",
-      "completed": false
-    },
-    {
-      "id": "j8kbq47e",
-      "title": "Beat the crankstars",
-      "completed": false
-    },
-    {
-      "id": "j8kbq47d",
-      "title": "Beat the crankstars",
-      "completed": false
-    },
-    {
-      "id": "j8kcnwzm",
-      "title": "Tell the world about this",
-      "completed": false
-    }
   ]
 }

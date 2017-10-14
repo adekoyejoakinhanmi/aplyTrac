@@ -1,4 +1,5 @@
 export const GET_ALL_APPS = 'GET_ALL_APPS'
-export const DELETE_ONE_APP = 'DELETE_ONE_APP'
-export const UPDATE_ONE_APP = 'UPDATE_ONE_APP'
-export const CREATE_ONE_APP = 'CREATE_ONE_APP'
+export const DELETE_APP = 'DELETE_APP'
+export const UPDATE_APP = 'UPDATE_APP'
+export const CREATE_APP = 'CREATE_APP'
+export const READ_APP = 'READ_APP'

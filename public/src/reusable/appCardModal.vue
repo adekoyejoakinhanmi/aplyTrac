@@ -60,7 +60,8 @@
 <script>
 import axios from 'axios';
 import uniqid from 'uniqid';
-import bus from '../helpers/bus';
+import { mapGetters, mapState } from 'vuex';
+
 
 import flagInput from '../reusable/flagInput.vue';
 import appOptions from './appOptions.vue';
@@ -73,16 +74,13 @@ export default {
     }
   },
   props : {
-      application : {
-        type : Object,
-        required : true
-      }
+    application : {
+      type : Object,
+      required : true
+    }
   },
   methods : {
-    deleteApp() {
-      //axios.delete(`/applications/${}`)
-      this.$emit('appDeleted')
-    },
+    
     updateFlag(flag) {
       flag.completed = !flag.completed
       axios.put(`/flags/${flag.id}`, flag).then(success => {
@@ -117,8 +115,6 @@ export default {
     }
   },
   created() {
-    bus.$on('cardOpened', this.changeFlags);
-    bus.$on('flagCreated', this.addFlag)
   },
   components : {
     flagInput,

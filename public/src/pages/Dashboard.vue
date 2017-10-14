@@ -21,6 +21,7 @@
   </md-dialog>
 -->
 
+
   <md-layout class="pa pb-0" md-align="center" md-gutter md-columc>
     <md-layout md-flex="70">
 
@@ -35,25 +36,17 @@
     <md-layout md-flex="70">
       <md-layout md-gutter="16">
 
-        <app-list-card v-for="app in applications" :application="app" :key="app.id">
+        <app-list-card v-on:cardClicked="openModal" v-for="app in applications" :application="app" :key="app.id">
         </app-list-card>
 
       </md-layout>
     </md-layout>
   </md-layout>
 
-  
+  <md-dialog ref="appModal">
+    <app-card-modal :application="current"></app-card-modal>
+  </md-dialog>
 
-
-<!--
-  <app-table v-cloak>
-    <div slot="application-row">
-      <app-row v-for="application in applications" 
-               :key="application.id" 
-               :application="application"></app-row>
-    </div>
-  </app-table>
--->
 </div>
 </template>
 
@@ -70,8 +63,14 @@
   import toolBar from '../elements/toolBar.vue';
 
   export default {
+    methods : {
+      openModal() {
+        this.$refs['appModal'].open()
+      }
+    },
     computed : mapGetters({
-      applications : 'allApps'
+      applications : 'activeApps',
+      current : 'currentApp'
     }),
     created() {
       this.$store.dispatch('LOAD_APPS_LIST')

@@ -5,11 +5,11 @@
     </md-button>
 
     <md-menu-content>
-      <md-menu-item @click="deleteThis">
+      <md-menu-item @click="deleteApp">
         <md-icon>delete</md-icon>
         <span>Delete</span>
       </md-menu-item>
-      <md-menu-item>
+      <md-menu-item @click="archiveApp">
         <md-icon>archive</md-icon>
         <span>Archive</span>
       </md-menu-item>
@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import bus from '../helpers/bus';
-
 export default {
   props : {
     application : {
@@ -32,8 +30,16 @@ export default {
     }
   },
   methods : {
-    deleteThis() {
-      bus.$emit('appDeleted', this.application);
+    deleteApp() {
+      this.$store.dispatch('DELETE_ONE_APP', {
+        application : this.application
+      });
+    },
+    archiveApp() {
+      this.application.archived = true;
+      this.$store.dispatch('UPDATE_ONE_APP', {
+        application : this.application
+      });
     }
   }
 }
