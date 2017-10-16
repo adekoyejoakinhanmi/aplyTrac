@@ -79,7 +79,7 @@ export default {
     appListCardFlags
   },
   created() {
-    this.flags = [];
+    this.flags = this.$store.getters.getByAppId(this.application.id);
   }
 }
 </script>

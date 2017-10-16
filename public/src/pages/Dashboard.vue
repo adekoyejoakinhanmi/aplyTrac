@@ -60,7 +60,8 @@
       current : 'currentApp'
     }),
     created() {
-      this.$store.dispatch('LOAD_APPS_LIST')
+      this.$store.dispatch('LOAD_APPS_LIST');
+      this.$store.dispatch('LOAD_FLAGS_LIST');
     },
     components : {
       appForm,

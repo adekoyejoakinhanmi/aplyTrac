@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import bus from '../helpers/bus';
-
 export default {
    data() {
       return {

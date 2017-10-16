@@ -6,9 +6,6 @@
   <md-button class="md-icon-button" @click="archiveApp">
     <md-icon>archive</md-icon>
   </md-button>
-  <md-button class="md-icon-button">
-    <md-icon>edit</md-icon>
-  </md-button>
 </div>
 </template>
 
