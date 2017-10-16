@@ -1,5 +1,5 @@
 <template>
-<form class="flex">
+<form class="pa pb-0 flex">
    <md-input-container style="flex: 1">
       <label for="New Flag">New Flag</label>
       <md-input v-model="newFlag" type="text" name="New Flag" placeholder="New Flag">
@@ -31,6 +31,7 @@ export default {
          this.newFlag = '';
       },
       closeFlagInput() {
+         this.newFlag = '';
          this.$emit('inputClosed');
       }
    }

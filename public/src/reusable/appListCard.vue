@@ -1,8 +1,8 @@
 <template>
    <md-layout md-flex="25">
       <md-card class="app-card block-fill">
-         <md-card-header @click.native="openThis">
-
+         <md-card-header class="has-ripple" @click.native="toggleDetails">
+           <md-ink-ripple />
             <md-card-header-text>
                <div class="md-title">{{application.company}}</div>
                <div class="md-subhead">{{application.vacancy}}</div>
@@ -19,10 +19,38 @@
 
          </md-card-header>
 
+         <md-card-area v-show="detailsView">
+            <md-list>
+              <md-subheader>Details</md-subheader>
+
+              <md-list-item>
+                <md-icon>location_on</md-icon> <span>{{application.type}}</span>
+              </md-list-item>
+
+              <md-list-item>
+                <md-icon>send</md-icon> <span>{{application.medium}}</span>
+              </md-list-item>
+
+              <md-list-item>
+                <md-icon>label</md-icon> <span>{{application.status}}</span>
+              </md-list-item>
+
+              <md-list-item>
+                <md-icon>access_time</md-icon> <span>{{application.date}}</span>
+              </md-list-item>
+            </md-list>
+         </md-card-area>
+
+<!--
+        <md-card-area>
+        <flag-input></flag-input>
+        </md-card-area>
+
+        -->
          <div class="card-actions">
            <div style="flex: 1">
            </div>
-            <app-options class="ae" :application="application"></app-options>
+            <app-options></app-options>
          </div>
       </md-card>
    </md-layout>
@@ -30,14 +58,17 @@
 
 <script>
 import appOptions from './appOptions.vue';
+import flagInput from './flagInput.vue';
 
 export default {
+  data(){
+    return {
+      detailsView : false
+    }
+  },
   methods : {
-    openThis() {
-      this.$store.dispatch('READ_ONE_APP', {
-        application : this.application
-      });
-      this.$emit('cardClicked')
+    toggleDetails() {
+      this.detailsView = !this.detailsView
     }
   },
   props : {
@@ -52,7 +83,8 @@ export default {
     }
   },
   components : {
-    appOptions
+    appOptions,
+    flagInput
   }
 }
 </script>
@@ -77,7 +109,7 @@ export default {
   font-size: 24px
 }
 .app-card .md-card-header.md-card-header-flex{
-  border-bottom: 1px solid #bdbdbd;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 .app-card .card-actions{
   display: flex;
@@ -89,10 +121,16 @@ export default {
 .md-list-item .md-list-item-container{
   font-size: 14px;
 }
-.md-icon{
-  font-size: 20px
-}
+
 .app-card.md-card .md-card-header{
   cursor: pointer;
+}
+
+.app-card .md-list-item .md-list-item-container > .md-icon:first-child{
+  margin-right: 15px
+}
+
+.app-card .has-ripple{
+  position: relative;
 }
 </style>
