@@ -22,6 +22,8 @@
          <md-card-area>
             <app-list-card-details :application="application" v-show="detailsView">
             </app-list-card-details> 
+            <app-list-card-flags :flags="flags" v-show="flagsView">
+            </app-list-card-flags>
          </md-card-area>
 
 <!--
@@ -32,6 +34,9 @@
         -->
          <div class="card-actions">
            <div style="flex: 1">
+             <md-button class="md-icon-button" @click="toggleFlags">
+               <md-icon>flag</md-icon>
+             </md-button>
            </div>
             <app-options></app-options>
          </div>
@@ -43,17 +48,22 @@
 import appOptions from './appOptions.vue';
 import flagInput from './flagInput.vue';
 import appListCardDetails from './appListCardDetails.vue';
+import appListCardFlags from './appListCardFlags.vue';
 
 
 export default {
   data(){
     return {
-      detailsView : false
+      detailsView : false,
+      flagsView : false
     }
   },
   methods : {
     toggleDetails() {
       this.detailsView = !this.detailsView
+    },
+    toggleFlags() {
+      this.flagsView = !this.flagsView
     }
   },
   props : {
@@ -70,7 +80,11 @@ export default {
   components : {
     appOptions,
     flagInput,
-    appListCardDetails
+    appListCardDetails,
+    appListCardFlags
+  },
+  created() {
+    this.flags = [];
   }
 }
 </script>
@@ -118,5 +132,9 @@ export default {
 
 .app-card .has-ripple{
   position: relative;
+}
+
+.app-card .md-subheader{
+  padding-right: 4px
 }
 </style>
