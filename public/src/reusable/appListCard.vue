@@ -19,26 +19,9 @@
 
          </md-card-header>
 
-         <md-card-area v-show="detailsView">
-            <md-list>
-              <md-subheader>Details</md-subheader>
-
-              <md-list-item>
-                <md-icon>location_on</md-icon> <span>{{application.type}}</span>
-              </md-list-item>
-
-              <md-list-item>
-                <md-icon>send</md-icon> <span>{{application.medium}}</span>
-              </md-list-item>
-
-              <md-list-item>
-                <md-icon>label</md-icon> <span>{{application.status}}</span>
-              </md-list-item>
-
-              <md-list-item>
-                <md-icon>access_time</md-icon> <span>{{application.date}}</span>
-              </md-list-item>
-            </md-list>
+         <md-card-area>
+            <app-list-card-details :application="application" v-show="detailsView">
+            </app-list-card-details> 
          </md-card-area>
 
 <!--
@@ -59,6 +42,8 @@
 <script>
 import appOptions from './appOptions.vue';
 import flagInput from './flagInput.vue';
+import appListCardDetails from './appListCardDetails.vue';
+
 
 export default {
   data(){
@@ -84,7 +69,8 @@ export default {
   },
   components : {
     appOptions,
-    flagInput
+    flagInput,
+    appListCardDetails
   }
 }
 </script>
