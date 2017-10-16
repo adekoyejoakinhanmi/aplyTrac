@@ -1,5 +1,5 @@
 <template>
-<form class="pa pb-0 flex">
+<form class="pa pb-0 pt-0 flex flag-form">
    <md-input-container style="flex: 1">
       <label for="New Flag">New Flag</label>
       <md-input v-model="newFlag" type="text" name="New Flag" placeholder="New Flag">
@@ -39,5 +39,10 @@ export default {
 </script>
 
 <style>
-
+.flag-form .md-button.md-icon-button {
+   margin: 0
+}
+.flag-form {
+   padding-right: 8px
+}
 </style>

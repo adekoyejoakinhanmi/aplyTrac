@@ -26,12 +26,7 @@
             </app-list-card-flags>
          </md-card-area>
 
-<!--
-        <md-card-area>
-        <flag-input></flag-input>
-        </md-card-area>
 
-        -->
          <div class="card-actions">
            <div style="flex: 1">
              <md-button class="md-icon-button" @click="toggleFlags">
@@ -136,5 +131,9 @@ export default {
 
 .app-card .md-subheader{
   padding-right: 4px
+}
+
+.app-card .md-list{
+  
 }
 </style>
