@@ -22,7 +22,7 @@
          <md-card-area>
             <app-list-card-details :application="application" v-show="detailsView">
             </app-list-card-details> 
-            <app-list-card-flags :flags="flags" v-show="flagsView">
+            <app-list-card-flags :app-id="application.id" v-show="flagsView">
             </app-list-card-flags>
          </md-card-area>
 
@@ -59,12 +59,6 @@ export default {
     },
     toggleFlags() {
       this.flagsView = !this.flagsView
-      if (this.flagsView) {
-        this.getFlags();
-      }
-    },
-    getFlags() {
-      this.flags = this.$store.getters.getByAppId(this.application.id);
     }
   },
   props : {
@@ -83,9 +77,6 @@ export default {
     flagInput,
     appListCardDetails,
     appListCardFlags
-  },
-  created() {
-    this.flags = [];
   }
 }
 </script>

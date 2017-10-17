@@ -43,14 +43,17 @@ export default {
       }
    },
    computed : {
+      flags() {
+        return this.$store.getters.getByAppId(this.appId);
+      },
       notificationVisible(){
-         return this.flags.length === 0 && !this.flagInputView
+         return !this.flags && !this.flagInputView
       }
    },
    props : {
-      flags : {
-         type : Array,
-         required : true
+      appId : {
+        type : String,
+        required : true
       }
    },
    components : {
