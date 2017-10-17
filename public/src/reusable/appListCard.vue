@@ -22,16 +22,14 @@
          <md-card-area>
             <app-list-card-details :application="application" v-show="detailsView">
             </app-list-card-details> 
-            <app-list-card-flags :app-id="application.id" v-show="flagsView">
+            <app-list-card-flags :app-id="application.id" v-show="detailsView">
             </app-list-card-flags>
          </md-card-area>
 
 
          <div class="card-actions">
            <div style="flex: 1">
-             <md-button class="md-icon-button" @click="toggleFlags">
-               <md-icon>flag</md-icon>
-             </md-button>
+             
            </div>
             <app-options></app-options>
          </div>
@@ -49,16 +47,12 @@ import appListCardFlags from './appListCardFlags.vue';
 export default {
   data(){
     return {
-      detailsView : false,
-      flagsView : false
+      detailsView : false
     }
   },
   methods : {
     toggleDetails() {
       this.detailsView = !this.detailsView
-    },
-    toggleFlags() {
-      this.flagsView = !this.flagsView
     }
   },
   props : {

@@ -1,12 +1,12 @@
 <template>
-<form class="pa pb-0 pt-0 flex flag-form">
+<form class="pa pb-0 pt-0 flex flag-form" @submit.prevent>
    <md-input-container class="flex-1">
       <label for="New Flag">New Flag</label>
       <md-input v-model="newFlag" type="text" name="New Flag" placeholder="New Flag">
       </md-input>
    </md-input-container>
    <div>
-      <md-button class="md-icon-button" @click="createFlag" :disabled="!newFlag">
+      <md-button class="md-icon-button" @click="createFlag()" :disabled="!newFlag">
          <md-icon>done</md-icon>
       </md-button>
       <md-button class="md-warn md-icon-button" @click="closeFlagInput">
@@ -17,14 +17,31 @@
 </template>
 
 <script>
+import uniqid from 'uniqid';
+
 export default {
+   props : {
+      appId : {
+         type : String,
+         required : true
+      }
+   },
    data() {
       return {
          newFlag : ''
       }
    },
    methods : {
-      createFlag() {
+      createFlag(flag) {
+         let data = {
+            id : `${uniqid()}`,
+            applicationId : this.appId,
+            title : this.newFlag,
+            completed : false
+         };
+         this.$store.dispatch('CREATE_ONE_FLAG', {
+            flag : data
+         });
          this.newFlag = '';
       },
       closeFlagInput() {

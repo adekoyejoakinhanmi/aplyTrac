@@ -21,7 +21,7 @@
             <md-icon>delete</md-icon>
          </md-button>
       </md-list-item>
-      <flag-input v-show="flagInputView"></flag-input>
+      <flag-input :app-id="appId" v-show="flagInputView"></flag-input>
    </md-list>
    
 </div>

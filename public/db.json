@@ -26,22 +26,28 @@
   },
   "flags": [
     {
-      "applicationId" : "7j8bodt9uj8bodt9vj8",
-      "id" : "3ot9uj7j8b",
-      "title" : "Email the CEO",
-      "completed" : false
+      "applicationId": "7j8bodt9uj8bodt9vj8",
+      "id": "3ot9uj7j8b",
+      "title": "Email the CEO",
+      "completed": false
     },
     {
-      "applicationId" : "7j8bodt9uj8bodt9vj8",
-      "id" : "3j8bot9u3j",
-      "title" : "Schedule an Interview",
-      "completed" : false
+      "applicationId": "7j8bodt9uj8bodt9vj8",
+      "id": "3j8bot9u3j",
+      "title": "Schedule an Interview",
+      "completed": false
     },
     {
-      "applicationId" : "6j8bqlyvvj8bqlyvwj8",
-      "id" : "8bot3j94re",
-      "title" : "Schedule an Interview",
-      "completed" : false
+      "applicationId": "6j8bqlyvvj8bqlyvwj8",
+      "id": "8bot3j94re",
+      "title": "Schedule an Interview",
+      "completed": false
+    },
+    {
+      "id": "j8vfxxh1",
+      "applicationId": "6j8bqlyvvj8bqlyvwj8",
+      "title": "Laugh",
+      "completed": false
     }
   ]
 }
