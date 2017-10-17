@@ -8,7 +8,9 @@ const state = {
 const getters = {
    getByAppId(state, getters) {
       return (appId) => {
-         return state.flags.filter(flag => flag.applicationId === appId)
+         return state.flags.filter(flag => {
+            return flag.applicationId === appId
+         });
       }
    }
 }

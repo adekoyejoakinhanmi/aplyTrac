@@ -1,8 +1,8 @@
 <template>
 <div>
-  <md-list>
+  <md-list class="flags-list">
       <md-subheader>
-         <span style="flex : 1">
+         <span class="flex-1">
             Flags
          </span>
          <md-button class="md-icon-button" @click="toggleFlagInput">
@@ -16,7 +16,7 @@
 
       <md-list-item v-for="flag in flags" :key="flag.id">
          <md-checkbox v-model="flag.completed"></md-checkbox>
-         <span>{{flag.title}}</span>
+         <span class="flex-1">{{flag.title}}</span>
          <md-button class="md-icon-button">
             <md-icon>delete</md-icon>
          </md-button>
@@ -60,5 +60,8 @@ export default {
 </script>
 
 <style>
-
+.flags-list .md-list-item .md-list-item-container {
+   justify-content:initial;
+   padding-right: 5px
+}
 </style>

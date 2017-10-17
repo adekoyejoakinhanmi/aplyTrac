@@ -1,6 +1,6 @@
 <template>
 <form class="pa pb-0 pt-0 flex flag-form">
-   <md-input-container style="flex: 1">
+   <md-input-container class="flex-1">
       <label for="New Flag">New Flag</label>
       <md-input v-model="newFlag" type="text" name="New Flag" placeholder="New Flag">
       </md-input>
@@ -25,12 +25,10 @@ export default {
    },
    methods : {
       createFlag() {
-         bus.$emit('flagCreated', this.newFlag);
          this.newFlag = '';
       },
       closeFlagInput() {
          this.newFlag = '';
-         this.$emit('inputClosed');
       }
    }
 }

@@ -72,6 +72,9 @@ html, body{
   display: flex;
   align-items: center
 }
+.flex-1{
+  flex: 1
+}
 body{
   display: flex
 }
@@ -84,6 +87,9 @@ html, body{
   display: flex;
   flex-flow: column nowrap;
   flex: 1
+}
+.md-flex-25{
+  align-self: flex-start
 }
 .md-backdrop{
   background-color: rgba(0,0,0, 0.12)

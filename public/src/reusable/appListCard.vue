@@ -59,6 +59,12 @@ export default {
     },
     toggleFlags() {
       this.flagsView = !this.flagsView
+      if (this.flagsView) {
+        this.getFlags();
+      }
+    },
+    getFlags() {
+      this.flags = this.$store.getters.getByAppId(this.application.id);
     }
   },
   props : {
@@ -79,7 +85,7 @@ export default {
     appListCardFlags
   },
   created() {
-    this.flags = this.$store.getters.getByAppId(this.application.id);
+    this.flags = [];
   }
 }
 </script>
@@ -133,7 +139,4 @@ export default {
   padding-right: 4px
 }
 
-.app-card .md-list{
-  
-}
 </style>
