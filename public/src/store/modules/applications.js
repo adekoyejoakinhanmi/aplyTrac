@@ -2,22 +2,13 @@ import * as types from '../mutations.types';
 import axios from 'axios';
 
 const state = {
-   applications : [],
-   current : {
-      "company": "Aln Tun",
-      "vacancy": "Front-End",
-      "type": "Remote",
-      "status": "Pending",
-      "date": "29-10-2017",
-      "medium": "Email"
-   }
+   applications : []
 }
 
 const getters = {
    activeApps : state => {
       return state.applications.filter(app => !app.archived)
-   },
-   currentApp : state => state.current
+   }
 }
 
 const actions = {
@@ -27,9 +18,6 @@ const actions = {
       }, err => {
          console.log(err);
       });
-   },
-   READ_ONE_APP({ commit, state }, {application}) {
-      commit(types.READ_APP, { application : application });
    },
    DELETE_ONE_APP({ commit, state }, { application }) {
       axios.delete(`/applications/${application.id}`).then(response => {
@@ -56,10 +44,11 @@ const mutations = {
    },
    [types.DELETE_APP] (state, { application }) {
       let idx = state.applications.map(app => app.id).indexOf(application.id);
-      state.applications.splice(idx, 1)
+      state.applications.splice(idx, 1);
    },
    [types.UPDATE_APP] (state, { application }) {
-      console.log('Hello World')
+      let idx = state.applications.map(app => app.id).indexOf(application.id);
+      state.applications.splice(idx, 1, application);  
    }
 }
 
