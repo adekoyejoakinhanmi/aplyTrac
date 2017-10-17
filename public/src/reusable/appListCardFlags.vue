@@ -15,9 +15,9 @@
       </md-list-item>
 
       <md-list-item v-for="flag in flags" :key="flag.id">
-         <md-checkbox v-model="flag.completed"></md-checkbox>
+         <md-checkbox v-model="flag.completed" @change="updateFlag(flag)"></md-checkbox>
          <span class="flex-1">{{flag.title}}</span>
-         <md-button class="md-icon-button">
+         <md-button class="md-icon-button" @click="deleteFlag(flag)">
             <md-icon>delete</md-icon>
          </md-button>
       </md-list-item>
@@ -40,6 +40,16 @@ export default {
    methods : {
       toggleFlagInput() {
          this.flagInputView = !this.flagInputView
+      },
+      deleteFlag(flag) {
+        this.$store.dispatch('DELETE_ONE_FLAG', {
+          flag : flag
+        });
+      },
+      updateFlag(flag) {
+        this.$store.dispatch('UPDATE_ONE_FLAG', {
+          flag : flag
+        });
       }
    },
    computed : {
