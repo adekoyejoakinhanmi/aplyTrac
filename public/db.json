@@ -1,47 +1,28 @@
 {
   "applications": [
     {
-      "id": "7j8bodt9uj8bodt9vj8",
-      "company": "Bendy",
-      "vacancy": "Ruby on rails Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Workable",
-      "date": "2017-10-03",
-      "status": "Rejected/Filled",
-      "archived": false
+      "id" : "4der57w2edfgt725ddf",
+      "company" : "Bendy",
+      "type" : "Remote/Telecommute",
+      "vacancy" : "Front End Developer",
+      "medium" : "Email",
+      "status" : "Interview",
+      "date" : "2017-09-14",
+      "archived" : false
     },
     {
-      "id": "6j8bqlyvvj8bqlyvwj8",
-      "company": "The StyLo",
+      "id": "4der57w2edfgt725ddf",
+      "company": "Lalala Land",
+      "type": "Remote/Telecommute",
       "vacancy": "Web Developer",
-      "type": "Remote / Telecommute",
-      "medium": "Paper",
-      "date": "2017-10-03",
-      "status": "Yet to reply",
+      "medium": "Email",
+      "status": "Interview",
+      "date": "2017-10-14",
       "archived": false
     }
   ],
   "settings": {
     "deleteOnClosed": true
   },
-  "flags": [
-    {
-      "applicationId": "7j8bodt9uj8bodt9vj8",
-      "id": "3ot9uj7j8b",
-      "title": "Email the CEO",
-      "completed": false
-    },
-    {
-      "applicationId": "7j8bodt9uj8bodt9vj8",
-      "id": "3j8bot9u3j",
-      "title": "Schedule an Interview",
-      "completed": false
-    },
-    {
-      "applicationId": "6j8bqlyvvj8bqlyvwj8",
-      "id": "8bot3j94re",
-      "title": "Schedule an Interview",
-      "completed": false
-    }
-  ]
+  "flags": []
 }

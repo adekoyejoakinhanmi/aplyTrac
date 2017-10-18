@@ -1,49 +1,49 @@
 <template>
-   <md-layout md-flex="25">
-      <md-card class="app-card block-fill">
-         <md-card-header class="has-ripple" @click.native="toggleDetails">
-           <md-ink-ripple />
-            <md-card-header-text>
-               <div class="md-title">{{application.company}}</div>
-               <div class="md-subhead">{{application.vacancy}}</div>
-               <div class="md-body-2">
-                 <timeago :since="application.date"></timeago>
-               </div>
-            </md-card-header-text>
-         </md-card-header>
-         
-          <div class="card-media">
-            <md-select name="applicationStatus" id="appStatus" 
-                        v-model="s" 
-                        md-align-trigger
-                        :md-menu-options="menuOptions">
-              <md-button class="md-icon-button" md-menu-trigger slot="icon">
-                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="100" cy="100" r="100" :class="status" />
-                  </svg>
-              </md-button>
-
-              <md-option v-for="status in statuses" :value="status" :key="status">
-                 {{status}}
-              </md-option>
-            </md-select>
-
+  <md-layout md-flex="25">
+    <md-card class="app-card block-fill">
+      <md-card-header class="has-ripple" @click.native="toggleDetails">
+        <md-ink-ripple />
+        <md-card-header-text>
+          <div class="md-title">{{application.company}}</div>
+          <div class="md-subhead">{{application.vacancy}}</div>
+          <div class="md-body-2">
+            <timeago :since="application.date"></timeago>
           </div>
+        </md-card-header-text>
+      </md-card-header>
+
+      <div class="card-media">
+        <md-select name="applicationStatus" id="appStatus" v-model="s" md-align-trigger :md-menu-options="menuOptions">
+          <md-button class="md-icon-button" md-menu-trigger slot="icon">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="100" :class="status" />
+            </svg>
+          </md-button>
+
+          <md-option v-for="status in statuses" :value="status" :key="status">
+            {{status}}
+          </md-option>
+        </md-select>
+
+      </div>
 
 
-         <md-card-area v-show="detailsView">
-            <app-list-card-details :application="application">
-            </app-list-card-details> 
-            <app-list-card-flags :app-id="application.id" >
-            </app-list-card-flags>
-         </md-card-area>
+      <md-card-area v-show="detailsView">
+        <app-list-card-details :application="application">
+        </app-list-card-details>
+        <app-list-card-flags :app-id="application.id">
+        </app-list-card-flags>
+      </md-card-area>
 
 
-         <div class="card-actions">
-            <app-options :application="application"></app-options>
-         </div>
-      </md-card>
-   </md-layout>
+      <div class="card-actions">
+        <app-options @appDeleted="openDialog" @appArchived="updateApp(application, 'archive')">
+        </app-options>
+      </div>
+
+      <confirm-delete @deleteConfirmed="deleteApp" ref="deleteDialog"></confirm-delete>
+    </md-card>
+  </md-layout>
 </template>
 
 <script>
@@ -51,71 +51,88 @@ import appOptions from './appOptions.vue';
 import flagInput from './flagInput.vue';
 import appListCardDetails from './appListCardDetails.vue';
 import appListCardFlags from './appListCardFlags.vue';
+import confirmDelete from './confirmDelete.vue';
+
 
 export default {
-  data(){
-    return {
-      detailsView : false,
-      menuOptions : {
-        mdDirection : "bottom left"
-      },
-      s : this.application.status,
-      statuses : ['Get Back to you', 'Yet to reply', 'Rejected/Filled', 'Interview']
-    }
-  },
-  watch : {
-    s : function (val, oldVal) {
-      let app = this.application;
-      app.status = val;
-      this.updateStatus(app);
-    }
-  },
-  methods : {
-    toggleDetails() {
-      this.detailsView = !this.detailsView
+  data() {
+      return {
+        detailsView: false,
+        menuOptions: {
+          mdDirection: "bottom left"
+        },
+        s: this.application.status,
+        statuses: ['Get Back to you', 'Yet to reply', 'Rejected/Filled', 'Interview']
+      }
     },
-    updateStatus(app) {
-      this.$store.dispatch('UPDATE_ONE_APP', {
-        application : app
-      });
-    }
-  },
-  props : {
-    application : {
-      type : Object,
-      required : true
-    }
-  },
-  computed : {
-    status() {
-      let s = this.application.status;
+    watch: {
+      s: function (val, oldVal) {
+        let app = this.application;
+        app.status = val;
+        this.updateApp(app);
+      }
+    },
+    methods: {
+      toggleDetails() {
+        this.detailsView = !this.detailsView
+      },
+      updateApp(app, action) {
+        if (action === 'archive') {
+          app.archived = true
+        }
+        this.$store.dispatch('UPDATE_ONE_APP', {
+          application: app
+        });
+      },
+      openDialog() {
+        this.$refs['deleteDialog'].open();
+      },
+      closeDialog() {
+        this.$refs['deleteDialog'].close();
+      },
+      deleteApp() {
+        this.closeDialog();
+        this.$store.dispatch('DELETE_ONE_APP', {
+          application: this.application
+        });
+      }
+    },
+    props: {
+      application: {
+        type: Object,
+        required: true
+      }
+    },
+    computed: {
+      status() {
+        let s = this.application.status;
 
-      if (s === 'Get Back to you'){
-        return 'getback';
-      } else if (s === 'Yet to reply') {
-        return 'ytr';
-      } else if (s === 'Interview') {
-        return 'interview';
+        if (s === 'Get Back to you') {
+          return 'getback';
+        } else if (s === 'Yet to reply') {
+          return 'ytr';
+        } else if (s === 'Interview') {
+          return 'interview';
+        } else {
+          return 'rejected'
+        }
+      }
+    },
+    components: {
+      appOptions,
+      flagInput,
+      appListCardDetails,
+      appListCardFlags,
+      confirmDelete
+    },
+    beforeDestroy() {
+      if (this.application.archived) {
+        this.$emit('appArchived');
       } else {
-        return 'rejected'
+        this.$off();
       }
     }
-  },
-  components : {
-    appOptions,
-    flagInput,
-    appListCardDetails,
-    appListCardFlags
-  },
-  beforeDestroy() {
-    if (this.application.archived) {
-      this.$emit('appArchived');
-    }
-  },
-  destroyed() {
-    console.log('Logged after destroyed');
   }
-}
 </script>
 
 <style>

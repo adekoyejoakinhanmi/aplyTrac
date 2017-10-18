@@ -21,11 +21,9 @@ const actions = {
    },
    DELETE_ONE_APP({ commit, state }, { application }) {
       axios.delete(`/applications/${application.id}`).then(response => {
-         console.log('beforeDeleteCalled')
          commit(types.DELETE_APP, { application : response.data });
-         console.log('afterDeleteCalled');
       }, err => {
-         console.log(err);
+         console.log(err)
       });
    },
    UPDATE_ONE_APP({ commit, state }, { application, cb }) {
