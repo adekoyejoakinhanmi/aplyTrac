@@ -37,8 +37,8 @@
 
 
       <div class="card-actions">
-        <app-options @appDeleted="openDialog" @appArchived="updateApp(application, 'archive')">
-        </app-options>
+        <app-list-card-buttons @appDeleted="openDialog" @appArchived="archiveApp">
+        </app-list-card-buttons>
       </div>
 
       <confirm-delete @deleteConfirmed="deleteApp" ref="deleteDialog"></confirm-delete>
@@ -47,15 +47,15 @@
 </template>
 
 <script>
-import appOptions from './appOptions.vue';
-import flagInput from './flagInput.vue';
+import appListCardButtons from './appListCardButtons.vue';
 import appListCardDetails from './appListCardDetails.vue';
 import appListCardFlags from './appListCardFlags.vue';
-import confirmDelete from './confirmDelete.vue';
+
+import confirmDelete from '../elements/confirmDelete.vue';
 
 
 export default {
-  data() {
+    data() {
       return {
         detailsView: false,
         menuOptions: {
@@ -76,13 +76,15 @@ export default {
       toggleDetails() {
         this.detailsView = !this.detailsView
       },
-      updateApp(app, action) {
-        if (action === 'archive') {
-          app.archived = true
-        }
+      updateApp(app) {
         this.$store.dispatch('UPDATE_ONE_APP', {
           application: app
         });
+      },
+      archiveApp() {
+        let app = this.application;
+        this.application.archived = true;
+        this.updateApp(app);
       },
       openDialog() {
         this.$refs['deleteDialog'].open();
@@ -119,8 +121,7 @@ export default {
       }
     },
     components: {
-      appOptions,
-      flagInput,
+      appListCardButtons,
       appListCardDetails,
       appListCardFlags,
       confirmDelete

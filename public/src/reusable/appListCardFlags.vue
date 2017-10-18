@@ -21,14 +21,14 @@
             <md-icon>delete</md-icon>
          </md-button>
       </md-list-item>
-      <flag-input :app-id="appId" v-show="flagInputView"></flag-input>
+      <app-flag-input :app-id="appId" v-show="flagInputView"></app-flag-input>
    </md-list>
    
 </div>
 </template>
 
 <script>
-import flagInput from './flagInput.vue';
+import appFlagInput from './appFlagInput.vue';
 
 
 export default {
@@ -67,7 +67,7 @@ export default {
       }
    },
    components : {
-      flagInput
+      appFlagInput
    }
 }
 </script>

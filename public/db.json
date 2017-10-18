@@ -1,16 +1,6 @@
 {
   "applications": [
     {
-      "id" : "4der57w2edfgt725ddf",
-      "company" : "Bendy",
-      "type" : "Remote/Telecommute",
-      "vacancy" : "Front End Developer",
-      "medium" : "Email",
-      "status" : "Interview",
-      "date" : "2017-09-14",
-      "archived" : false
-    },
-    {
       "id": "4der57w2edfgt725ddf",
       "company": "Lalala Land",
       "type": "Remote/Telecommute",

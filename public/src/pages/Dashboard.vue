@@ -50,8 +50,8 @@
   import appForm from '../reusable/appForm.vue';
   import appListCard from "../reusable/appListCard.vue";
   import appAddBtn from '../reusable/appAddBtn.vue';
-  import snackNotification from '../reusable/snackNotification.vue';
-
+  
+  import snackNotification from '../elements/snackNotification.vue';
   import toolBar from '../elements/toolBar.vue';
 
   export default {
