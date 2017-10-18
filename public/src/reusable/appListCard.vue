@@ -14,10 +14,9 @@
          
           <div class="card-media">
             <md-select name="applicationStatus" id="appStatus" 
-                        v-model="application.status" 
+                        v-model="s" 
                         md-align-trigger
-                        :md-menu-options="menuOptions"
-                        @change="updateStatus(application)">
+                        :md-menu-options="menuOptions">
               <md-button class="md-icon-button" md-menu-trigger slot="icon">
                   <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="100" cy="100" r="100" :class="status" />
@@ -41,7 +40,7 @@
 
 
          <div class="card-actions">
-            <app-options></app-options>
+            <app-options :application="application"></app-options>
          </div>
       </md-card>
    </md-layout>
@@ -61,7 +60,15 @@ export default {
       menuOptions : {
         mdDirection : "bottom left"
       },
+      s : this.application.status,
       statuses : ['Get Back to you', 'Yet to reply', 'Rejected/Filled', 'Interview']
+    }
+  },
+  watch : {
+    s : function (val, oldVal) {
+      let app = this.application;
+      app.status = val;
+      this.updateStatus(app);
     }
   },
   methods : {

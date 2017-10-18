@@ -21,14 +21,18 @@ const actions = {
    },
    DELETE_ONE_APP({ commit, state }, { application }) {
       axios.delete(`/applications/${application.id}`).then(response => {
+         console.log('beforeDeleteCalled')
          commit(types.DELETE_APP, { application : response.data });
+         console.log('afterDeleteCalled');
       }, err => {
          console.log(err);
       });
    },
    UPDATE_ONE_APP({ commit, state }, { application }) {
       axios.put(`/applications/${application.id}`, application).then(response => {
+         console.log('beforeUpdateCalled')
          commit(types.UPDATE_APP, { application : response.data });
+         console.log('afterUpdateCalled')
       }, err => {
          console.log(err);
       });
