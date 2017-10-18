@@ -31,10 +31,10 @@
           </div>
 
 
-         <md-card-area>
-            <app-list-card-details :application="application" v-show="detailsView">
+         <md-card-area v-show="detailsView">
+            <app-list-card-details :application="application">
             </app-list-card-details> 
-            <app-list-card-flags :app-id="application.id" v-show="detailsView">
+            <app-list-card-flags :app-id="application.id" >
             </app-list-card-flags>
          </md-card-area>
 
@@ -51,7 +51,6 @@ import appOptions from './appOptions.vue';
 import flagInput from './flagInput.vue';
 import appListCardDetails from './appListCardDetails.vue';
 import appListCardFlags from './appListCardFlags.vue';
-
 
 export default {
   data(){
@@ -107,6 +106,14 @@ export default {
     flagInput,
     appListCardDetails,
     appListCardFlags
+  },
+  beforeDestroy() {
+    if (this.application.archived) {
+      this.$emit('appArchived');
+    }
+  },
+  destroyed() {
+    console.log('Logged after destroyed');
   }
 }
 </script>

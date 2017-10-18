@@ -19,16 +19,19 @@ export default {
   },
   methods : {
     deleteApp() {
-      //this.$store.dispatch('DELETE_ONE_APP', {
-      //  application : this.application
-      //});
+      this.$store.dispatch('DELETE_ONE_APP', {
+        application : this.application
+      });
     },
     archiveApp() {
-      //this.application.archived = true;
-      //this.$store.dispatch('UPDATE_ONE_APP', {
-      //  application : this.application
-      //});
+      this.application.archived = true;
+      this.$store.dispatch('UPDATE_ONE_APP', {
+        application : this.application
+      })
     }
+  },
+  beforeDestroy() {
+    console.log('I was called')
   }
 }
 </script>

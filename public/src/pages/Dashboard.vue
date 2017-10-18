@@ -16,7 +16,10 @@
     <md-layout md-flex="70">
       <md-layout md-gutter="16">
 
-        <app-list-card v-for="app in applications" :application="app" :key="app.id">
+        <app-list-card v-for="app in applications" 
+        :application="app" 
+        :key="app.id" 
+        @appArchived="handleArchive(app)">
         </app-list-card>
 
       </md-layout>
@@ -30,7 +33,12 @@
   <md-dialog ref="appForm">
     <app-form v-on:formClosed="closeForm">
     </app-form>
-  </md-dialog>  
+  </md-dialog>
+
+  <md-snackbar :md-position="'bottom center'" ref="snack" :md-duration="4000">
+    <span>{{snackMessage}}</span>
+    <md-button class="md-accent" md-theme="light-blue" @click="undo">Undo</md-button>
+  </md-snackbar>
 
 </div>
 </template>
@@ -42,17 +50,38 @@
   import appForm from '../reusable/appForm.vue';
   import appListCard from "../reusable/appListCard.vue";
   import appAddBtn from '../reusable/appAddBtn.vue';
-
+  import snackNotification from '../reusable/snackNotification.vue';
 
   import toolBar from '../elements/toolBar.vue';
 
   export default {
+    data() {
+      return {
+        snackMessage : '',
+        undoAction : '',
+        undoObject : null
+      }
+    },
     methods : {
       openForm() {
         this.$refs['appForm'].open()
       },
       closeForm() {
         this.$refs['appForm'].close()
+      },
+      handleArchive(app) {
+        this.snackMessage = 'Application Archived';
+        this.undoAction = 'unarchive';
+        this.undoObject = app;
+        this.$refs['snack'].open();
+      },
+      undo() {
+        this.undoObject.archived = false;
+        this.$store.dispatch('UPDATE_ONE_APP', {
+          application : this.undoObject
+        }).then(success => {
+          this.$refs['snack'].close();
+        });
       }
     },
     computed : mapGetters({
@@ -67,7 +96,8 @@
       appForm,
       toolBar,
       appAddBtn,
-      appListCard
+      appListCard,
+      snackNotification
     }
   }
 </script>

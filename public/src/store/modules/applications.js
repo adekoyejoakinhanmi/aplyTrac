@@ -28,13 +28,9 @@ const actions = {
          console.log(err);
       });
    },
-   UPDATE_ONE_APP({ commit, state }, { application }) {
-      axios.put(`/applications/${application.id}`, application).then(response => {
-         console.log('beforeUpdateCalled')
+   UPDATE_ONE_APP({ commit, state }, { application, cb }) {
+     return axios.put(`/applications/${application.id}`, application).then(response => {
          commit(types.UPDATE_APP, { application : response.data });
-         console.log('afterUpdateCalled')
-      }, err => {
-         console.log(err);
       });
    }
 }
