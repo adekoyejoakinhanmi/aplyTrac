@@ -9,10 +9,113 @@
       "status": "Interview",
       "date": "2017-10-14",
       "archived": false
+    },
+    {
+      "id": "0j8yckhfgj8yckhfhj8",
+      "company": "WenWorth",
+      "vacancy": "Teacher",
+      "type": "Remote / Telecommute",
+      "medium": "Paper",
+      "date": "2017-10-19",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "9j8yclo29j8yclo2aj8",
+      "company": "Plenty Stuff",
+      "vacancy": "Web Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Paper",
+      "date": "2017-10-11",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "7j8ycmf69j8ycmf6aj8",
+      "company": "Gridum",
+      "vacancy": "Web Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Paper",
+      "date": "2017-10-19",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "6j8ycmurjj8ycmurkj8",
+      "company": "Muzli",
+      "vacancy": "JavaScript Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Workable",
+      "date": "2017-10-11",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "1j8ycnyosj8ycnyotj8",
+      "company": "Language Lab",
+      "vacancy": "Copy Writer",
+      "type": "Remote / Telecommute",
+      "medium": "Remotee",
+      "date": "2017-10-05",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "6j8ycona2j8ycona3j8",
+      "company": "Yther",
+      "vacancy": "Copy Writer",
+      "type": "Remote / Telecommute",
+      "medium": "Remotee",
+      "date": "2017-10-17",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "0j8ycp97ij8ycp97jj8",
+      "company": "They",
+      "vacancy": "Wordpress Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Remotee",
+      "date": "2017-09-13",
+      "status": "Get Back to you",
+      "archived": false
+    },
+    {
+      "id": "4j8ycpwltj8ycpwluj8",
+      "company": "You Corps",
+      "vacancy": "Learning Developer",
+      "type": "Remote / Telecommute",
+      "medium": "Remotee",
+      "date": "2017-10-04",
+      "status": "Yet to reply",
+      "archived": false
+    },
+    {
+      "id": "3j8ycqf1zj8ycqf20j8",
+      "company": "Okay World",
+      "vacancy": "Copy Writer",
+      "type": "Remote / Telecommute",
+      "medium": "Paper",
+      "date": "2017-07-12",
+      "status": "Yet to reply",
+      "archived": false
     }
   ],
   "settings": {
     "deleteOnClosed": true
   },
-  "flags": []
+  "flags": [
+    {
+      "id": "j8ycna6u",
+      "applicationId": "6j8ycmurjj8ycmurkj8",
+      "title": "Remember to email Sandra",
+      "completed": false
+    },
+    {
+      "id": "j8ycnewc",
+      "applicationId": "6j8ycmurjj8ycmurkj8",
+      "title": "Ask the CEO to Lunch",
+      "completed": false
+    }
+  ]
 }

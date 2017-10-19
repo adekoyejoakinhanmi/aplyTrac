@@ -26,10 +26,15 @@ const actions = {
          console.log(err)
       });
    },
-   UPDATE_ONE_APP({ commit, state }, { application, cb }) {
+   UPDATE_ONE_APP({ commit, state }, { application }) {
      return axios.put(`/applications/${application.id}`, application).then(response => {
          commit(types.UPDATE_APP, { application : response.data });
       });
+   },
+   CREATE_ONE_APP({ commit, state }, { application }) {
+     axios.post('/applications', application).then(response => {
+       commit(types.CREATE_APP, { application : response.data });
+     })
    }
 }
 
@@ -37,8 +42,8 @@ const mutations = {
    [types.GET_ALL_APPS] (state, { list }) {
       state.applications = list
    },
-   [types.READ_APP] (state, { application }) {
-      state.current = application
+   [types.CREATE_APP] (state, { application }) {
+      state.applications.push(application);
    },
    [types.DELETE_APP] (state, { application }) {
       let idx = state.applications.map(app => app.id).indexOf(application.id);

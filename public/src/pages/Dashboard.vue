@@ -31,8 +31,8 @@
 
 
   <md-dialog ref="appForm">
-    <app-form v-on:formClosed="closeForm">
-    </app-form>
+    <new-app-form @formClosed="closeForm">
+    </new-app-form>
   </md-dialog>
 
   <md-snackbar :md-position="'bottom center'" ref="snack" :md-duration="4000">
@@ -47,7 +47,7 @@
   import { mapGetters, mapActions } from 'vuex';
 
 
-  import appForm from '../reusable/appForm.vue';
+  import newAppForm from '../reusable/newAppForm.vue';
   import appListCard from "../reusable/appListCard.vue";
   import appAddBtn from '../reusable/appAddBtn.vue';
   
@@ -93,7 +93,7 @@
       this.$store.dispatch('LOAD_FLAGS_LIST');
     },
     components : {
-      appForm,
+      newAppForm,
       toolBar,
       appAddBtn,
       appListCard,

@@ -4847,6 +4847,10 @@ vue-material@^0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/vue-material/-/vue-material-0.7.5.tgz#045517403c1338aceabd73030f3dd6b5c744fe55"
 
+vue-md-date-picker@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/vue-md-date-picker/-/vue-md-date-picker-1.0.13.tgz#471c2b05b947d0888b37c0bc49a813b200229ee2"
+
 vue-router@^2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.5.3.tgz#073783f564b6aece6c8a59c63e298dc2aabfb51b"
