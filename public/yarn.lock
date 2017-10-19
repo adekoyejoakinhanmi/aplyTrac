@@ -4729,10 +4729,6 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
-underscore@^1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
-
 uniq@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/uniq/-/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
@@ -4847,10 +4843,6 @@ vue-material@^0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/vue-material/-/vue-material-0.7.5.tgz#045517403c1338aceabd73030f3dd6b5c744fe55"
 
-vue-md-date-picker@^1.0.13:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/vue-md-date-picker/-/vue-md-date-picker-1.0.13.tgz#471c2b05b947d0888b37c0bc49a813b200229ee2"
-
 vue-router@^2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.5.3.tgz#073783f564b6aece6c8a59c63e298dc2aabfb51b"
@@ -4880,6 +4872,10 @@ vue-timeago@^3.3.6:
 vue@^2.4.4:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.4.tgz#ea9550b96a71465fd2b8b17b61673b3561861789"
+
+vuetify@^0.16.7:
+  version "0.16.7"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-0.16.7.tgz#06540b323deabc7077a6164b0cd125c49b8fd787"
 
 vuex@^3.0.0:
   version "3.0.0"
