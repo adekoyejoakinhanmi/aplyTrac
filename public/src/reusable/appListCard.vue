@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-flex="25">
+  <md-layout md-flex-xsmall="100" md-flex-small="50" md-flex-medium="25" md-flex-large="25" md-flex-xlarge="25">
     <md-card class="app-card block-fill">
       <md-card-header class="has-ripple" @click.native="toggleDetails">
         <md-ink-ripple />

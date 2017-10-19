@@ -2,8 +2,8 @@
 <div>
   <tool-bar page-title="Dashboard"></tool-bar>
   
-  <md-layout class="pa pb-0" md-align="center" md-gutter md-columc>
-    <md-layout md-flex="70">
+  <md-layout class="pa pb-0" md-align="center" md-gutter>
+    <md-layout md-flex-xsmall="90" md-flex-medium="70">
 
       <md-toolbar class="md-transparent">
         <div class="block-fill">
@@ -13,7 +13,7 @@
 
     </md-layout>
 
-    <md-layout md-flex="70">
+    <md-layout md-flex-xsmall="90" md-flex-medium="70">
       <md-layout md-gutter="16">
 
         <app-list-card v-for="app in applications" 
