@@ -32,7 +32,7 @@ export default {
   display: none;
 }
 html, body{
-  background: #f9f9f9
+  background: #f9f9f9;
 }
 .block-fill{
   display: block;
@@ -74,13 +74,6 @@ html, body{
 }
 .flex-1{
   flex: 1
-}
-body{
-  display: flex
-}
-html, body{
-  overflow: hidden;
-  height: 100%
 }
 .main-container{
   min-height: 100%;
