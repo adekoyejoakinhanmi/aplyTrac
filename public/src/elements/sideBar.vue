@@ -1,6 +1,6 @@
 <template>
 <div>
-  <md-sidenav class="md-left md-fixed" ref="mainSideBar">
+  <md-sidenav class="md-left" ref="mainSideBar">
     <div class="logo-box">
       <h2 class="md-title">AplyTrac</h2>
     </div>
@@ -43,6 +43,7 @@ export default {
   flex-flow: column;
   overflow: hidden;
 }
+/*
 @media (min-width: 1281px) {
   .md-sidenav .md-sidenav-content{
     top: 0;
@@ -52,6 +53,7 @@ export default {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
   }
 }
+*/
 .logo-box{
   min-height: 128px;
   border-bottom: 1px solid rgba(#000, 0.12);

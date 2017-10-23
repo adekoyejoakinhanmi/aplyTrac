@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="main-container">  
-      <!--<side-bar ref="sideBar"></side-bar>-->
+      <side-bar ref="sideBar"></side-bar>
       <router-view></router-view>
    </div>
 
@@ -86,10 +86,5 @@ html, body{
 }
 .md-backdrop{
   background-color: rgba(0,0,0, 0.12)
-}
-@media screen and (min-width:1281px){
-      .main-contaner{
-            padding-left: 280px
-      }
 }
 </style>
