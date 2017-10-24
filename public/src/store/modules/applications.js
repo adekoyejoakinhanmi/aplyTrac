@@ -1,5 +1,7 @@
 import * as types from '../mutations.types';
 import axios from 'axios';
+import {appsRef} from '../../../firebase/index';
+
 
 const state = {
    applications : []
@@ -7,17 +9,16 @@ const state = {
 
 const getters = {
    activeApps : state => {
-      return state.applications.filter(app => !app.archived)
+      return state.applications//.filter(app => !app.archived)
    }
 }
 
 const actions = {
    LOAD_APPS_LIST({ commit }) {
-      axios.get(`/applications`).then(res => {
-         commit(types.GET_ALL_APPS, { list : res.data });
-      }, err => {
-         console.log(err);
-      });
+     appsRef.once('value', success => {
+       console.log(success.val());
+      commit(types.GET_ALL_APPS, { list : success.val() });
+     });
    },
    DELETE_ONE_APP({ commit, state }, { application }) {
       axios.delete(`/applications/${application.id}`).then(response => {
@@ -32,9 +33,9 @@ const actions = {
       });
    },
    CREATE_ONE_APP({ commit, state }, { application }) {
-     axios.post('/applications', application).then(response => {
-       commit(types.CREATE_APP, { application : response.data });
-     })
+     appsRef.push(application, success => {
+      commit(types.CREATE_APP, { application : application });
+     });
    }
 }
 

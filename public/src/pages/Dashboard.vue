@@ -59,6 +59,7 @@
       return {
         snackMessage : '',
         undoAction : '',
+        //applications : [],
         undoObject : null
       }
     },
@@ -86,7 +87,7 @@
     },
     computed : mapGetters({
       applications : 'activeApps',
-      current : 'currentApp'
+     // current : 'currentApp'
     }),
     created() {
       this.$store.dispatch('LOAD_APPS_LIST');
