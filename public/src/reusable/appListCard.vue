@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { appsRef } from '../../firebase';
+
 import appListCardButtons from './appListCardButtons.vue';
 import appListCardDetails from './appListCardDetails.vue';
 import appListCardFlags from './appListCardFlags.vue';
@@ -67,24 +69,19 @@ export default {
     },
     watch: {
       s: function (val, oldVal) {
-        let app = this.application;
-        app.status = val;
-        this.updateApp(app);
+        this.updateApp({ status : val });
       }
     },
     methods: {
       toggleDetails() {
         this.detailsView = !this.detailsView
       },
-      updateApp(app) {
-        this.$store.dispatch('UPDATE_ONE_APP', {
-          application: app
-        });
+      updateApp(updateObject) {
+        let key = this.application['.key'];
+        appsRef.child(key).update(updateObject)
       },
       archiveApp() {
-        let app = this.application;
-        this.application.archived = true;
-        this.updateApp(app);
+        this.updateApp({ archived : true });
       },
       openDialog() {
         this.$refs['deleteDialog'].open();
@@ -94,9 +91,7 @@ export default {
       },
       deleteApp() {
         this.closeDialog();
-        this.$store.dispatch('DELETE_ONE_APP', {
-          application: this.application
-        });
+        appsRef.child(this.application['.key']).remove();
       }
     },
     props: {
