@@ -18,6 +18,7 @@
 
 <script>
 import uniqid from 'uniqid';
+import { flagsRef } from '../../firebase';
 
 export default {
    props : {
@@ -39,9 +40,7 @@ export default {
             title : this.newFlag,
             completed : false
          };
-         this.$store.dispatch('CREATE_ONE_FLAG', {
-            flag : data
-         });
+         flagsRef.push(data);
          this.newFlag = '';
       },
       closeFlagInput() {

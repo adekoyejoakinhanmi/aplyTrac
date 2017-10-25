@@ -45,7 +45,7 @@
 
 <script>
   import { mapGetters, mapActions, mapState } from 'vuex';
-  import { appsRef } from '../../firebase';
+  import { appsRef, flagsRef } from '../../firebase';
 
   import newAppForm from '../reusable/newAppForm.vue';
   import appListCard from "../reusable/appListCard.vue";
@@ -59,7 +59,6 @@
       return {
         snackMessage : '',
         undoAction : '',
-        //applications : [],
         undoObject : null
       }
     },
@@ -91,7 +90,7 @@
     }),
     created() {
       this.$store.dispatch('LOAD_APPS_LIST', appsRef);
-      this.$store.dispatch('LOAD_FLAGS_LIST');
+      this.$store.dispatch('LOAD_FLAGS_LIST', flagsRef);
     },
     components : {
       newAppForm,
