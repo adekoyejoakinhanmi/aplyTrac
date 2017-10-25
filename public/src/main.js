@@ -3,7 +3,6 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 import VueMaterial from 'vue-material';
 import VueTimeago from "vue-timeago";
-import { app } from '../firebase/index';
 import router from './router';
 import store from './store';
 import axios from 'axios';
@@ -17,10 +16,6 @@ Vue.use(VueTimeago, {
     'en-US' : require('vue-timeago/locales/en-US.json')
   }
 });
-
-Vue.prototype.$firebase = app;
-
-axios.defaults.baseURL = 'http://127.0.0.1:3000';
 
 Vue.material.registerTheme('default', {
    primary: 'blue',

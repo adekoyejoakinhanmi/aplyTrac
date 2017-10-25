@@ -57,11 +57,11 @@
 
 <script>
 import uniqid from 'uniqid';
+import { appsRef } from '../../firebase';
 
 export default {
 data() {
       return {
-         date: Date.now(),
          app: {
             company: '',
             vacancy: '',
@@ -130,10 +130,7 @@ data() {
             status: this.app.status,
             archived: false
          }
-         this.$store.dispatch('CREATE_ONE_APP', {
-            application: data
-         });
-
+         appsRef.push(data);
          this.closeForm();
       },
       closeForm() {

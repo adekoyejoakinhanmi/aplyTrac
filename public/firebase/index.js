@@ -7,5 +7,6 @@ const appsRef = db.ref().child('applications');
 
 export {
    app,
+   db,
    appsRef
 }

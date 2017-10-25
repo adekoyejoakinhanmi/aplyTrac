@@ -1,7 +1,6 @@
 import * as types from '../mutations.types';
 import axios from 'axios';
-import {appsRef} from '../../../firebase/index';
-
+import { firebaseMutations, firebaseAction } from 'vuexfire';
 
 const state = {
    applications : []
@@ -14,12 +13,16 @@ const getters = {
 }
 
 const actions = {
-   LOAD_APPS_LIST({ commit }) {
+   LOAD_APPS_LIST : firebaseAction(({bindFirebaseRef}, ref) => {
+     bindFirebaseRef('applications', ref);
+   })
+     /*
      appsRef.once('value', success => {
        console.log(success.val());
       commit(types.GET_ALL_APPS, { list : success.val() });
      });
-   },
+     */
+   }/*,
    DELETE_ONE_APP({ commit, state }, { application }) {
       axios.delete(`/applications/${application.id}`).then(response => {
          commit(types.DELETE_APP, { application : response.data });
@@ -38,8 +41,9 @@ const actions = {
      });
    }
 }
-
-const mutations = {
+*/
+const mutations = firebaseMutations;
+  /*
    [types.GET_ALL_APPS] (state, { list }) {
       state.applications = list
    },
@@ -54,11 +58,11 @@ const mutations = {
       let idx = state.applications.map(app => app.id).indexOf(application.id);
       state.applications.splice(idx, 1, application);  
    }
-}
+  */
 
 export default {
    state,
    getters,
+   mutations,
    actions,
-   mutations
 }

@@ -44,8 +44,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
-
+  import { mapGetters, mapActions, mapState } from 'vuex';
+  import { appsRef } from '../../firebase';
 
   import newAppForm from '../reusable/newAppForm.vue';
   import appListCard from "../reusable/appListCard.vue";
@@ -86,11 +86,11 @@
       }
     },
     computed : mapGetters({
-      applications : 'activeApps',
+      applications : 'activeApps'
      // current : 'currentApp'
     }),
     created() {
-      this.$store.dispatch('LOAD_APPS_LIST');
+      this.$store.dispatch('LOAD_APPS_LIST', appsRef);
       this.$store.dispatch('LOAD_FLAGS_LIST');
     },
     components : {
