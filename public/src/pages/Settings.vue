@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import toolBar from '../elements/toolBar.vue';
 
 export default {

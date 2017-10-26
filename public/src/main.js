@@ -5,7 +5,6 @@ import VueMaterial from 'vue-material';
 import VueTimeago from "vue-timeago";
 import router from './router';
 import store from './store';
-import axios from 'axios';
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
@@ -36,4 +35,3 @@ var vm = new Vue({
    },
    render : h => h(App)
 });
-console.log(vm);
