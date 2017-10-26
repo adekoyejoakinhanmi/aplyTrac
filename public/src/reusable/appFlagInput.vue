@@ -33,7 +33,7 @@ export default {
       }
    },
    methods : {
-      createFlag(flag) {
+      createFlag() {
          let data = {
             id : `${uniqid()}`,
             applicationId : this.appId,
@@ -41,7 +41,7 @@ export default {
             completed : false
          };
          flagsRef.push(data);
-         this.newFlag = '';
+         this.closeFlagInput();
       },
       closeFlagInput() {
          this.newFlag = '';

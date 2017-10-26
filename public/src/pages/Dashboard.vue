@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions, mapState } from 'vuex';
+  import { mapGetters } from 'vuex';
   import { appsRef, flagsRef } from '../../firebase';
 
   import newAppForm from '../reusable/newAppForm.vue';
@@ -76,12 +76,11 @@
         this.$refs['snack'].open();
       },
       undo() {
-        this.undoObject.archived = false;
-        this.$store.dispatch('UPDATE_ONE_APP', {
-          application : this.undoObject
-        }).then(success => {
-          this.$refs['snack'].close();
+        let key = this.undoObject['.key'];
+        appsRef.child(key).update({
+          archived : false
         });
+        this.$refs['snack'].close();
       }
     },
     computed : mapGetters({

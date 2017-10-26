@@ -29,7 +29,7 @@
 
 <script>
 import appFlagInput from './appFlagInput.vue';
-
+import { flagsRef } from '../../firebase';
 
 export default {
    data() {
@@ -42,13 +42,11 @@ export default {
          this.flagInputView = !this.flagInputView
       },
       deleteFlag(flag) {
-        this.$store.dispatch('DELETE_ONE_FLAG', {
-          flag : flag
-        });
+        flagsRef.child(flag['.key']).remove();
       },
       updateFlag(flag) {
-        this.$store.dispatch('UPDATE_ONE_FLAG', {
-          flag : flag
+        flagsRef.child(flag['.key']).update({
+          completed : flag.completed
         });
       }
    },

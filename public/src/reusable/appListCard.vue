@@ -82,6 +82,7 @@ export default {
       },
       archiveApp() {
         this.updateApp({ archived : true });
+        this.$emit('appArchived');
       },
       openDialog() {
         this.$refs['deleteDialog'].open();
@@ -120,13 +121,6 @@ export default {
       appListCardDetails,
       appListCardFlags,
       confirmDelete
-    },
-    beforeDestroy() {
-      if (this.application.archived) {
-        this.$emit('appArchived');
-      } else {
-        this.$off();
-      }
     }
   }
 </script>
