@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="main-container">  
-      <!--<side-bar ref="sideBar"></side-bar>-->
+      <side-bar ref="sideBar"></side-bar>
       <router-view></router-view>
    </div>
 
@@ -32,7 +32,7 @@ export default {
   display: none;
 }
 html, body{
-  background: #f9f9f9
+  background: #f9f9f9;
 }
 .block-fill{
   display: block;
@@ -75,13 +75,6 @@ html, body{
 .flex-1{
   flex: 1
 }
-body{
-  display: flex
-}
-html, body{
-  overflow: hidden;
-  height: 100%
-}
 .main-container{
   min-height: 100%;
   display: flex;
@@ -93,10 +86,5 @@ html, body{
 }
 .md-backdrop{
   background-color: rgba(0,0,0, 0.12)
-}
-@media screen and (min-width:1281px){
-      .main-contaner{
-            padding-left: 280px
-      }
 }
 </style>

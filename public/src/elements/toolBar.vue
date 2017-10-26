@@ -36,12 +36,11 @@ export default {
 
 <style>
 
-@media screen and (min-width: 1281px){
-  .nav-trigger{
-    display: none;
-  }
-  .md-toolbar .md-title{
-    margin-left: 14px
-  }
+.nav-trigger{
+  display: block;
 }
+.md-toolbar .md-title{
+  margin-left: 14px
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-   <md-whiteframe class="block-fill">
+   <md-whiteframe class="block-fill full-on-small">
       <md-dialog-title>Add New Application</md-dialog-title>
       <md-dialog-content>
          <form>
@@ -175,5 +175,19 @@ data() {
 </script>
 
 <style>
-
+@media screen and (max-width: 600px){
+     .md-dialog-container.md-active .md-dialog{
+           width: 100%;
+           height: 100%;
+           max-width: 100%;
+           max-height: 100%;
+           margin: auto;
+     }
+     .full-on-small{
+           height: 100%;
+     }
+     .full-on-small .md-dialog-title.md-title{
+          background: #eee
+     }
+}
 </style>

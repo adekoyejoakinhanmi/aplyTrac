@@ -1,9 +1,9 @@
 <template>
 <div>
   <tool-bar page-title="Dashboard"></tool-bar>
-  
-  <md-layout class="pa pb-0" md-align="center" md-gutter>
-    <md-layout md-flex-xsmall="90" md-flex-medium="70">
+  <div class="secondary--container">
+  <md-layout class="pa pb-0" md-align="center" md-gutter md-column>
+    <md-layout>
 
       <md-toolbar class="md-transparent">
         <div class="block-fill">
@@ -13,7 +13,7 @@
 
     </md-layout>
 
-    <md-layout md-flex-xsmall="90" md-flex-medium="70">
+   <!-- <md-layout md-flex-xsmall="90" md-flex-medium="70"> -->
       <md-layout md-gutter="16">
 
         <app-list-card v-for="app in applications" 
@@ -23,9 +23,9 @@
         </app-list-card>
 
       </md-layout>
-    </md-layout>
+   <!-- </md-layout> -->
   </md-layout>
-
+  </div>
 
   <app-add-btn @click.native="openForm"></app-add-btn>
 
@@ -102,4 +102,16 @@
 </script>
 
 <style>
+.md-button.md-fab.md-fab-bottom-right{
+  position: fixed
+}
+.secondary--container{
+  position: relative;
+}
+@media screen and (min-width: 960px){
+  .secondary--container{
+    width: 80%;
+    margin: auto;
+  }
+}
 </style>
