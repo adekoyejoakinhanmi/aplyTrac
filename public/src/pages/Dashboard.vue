@@ -2,29 +2,10 @@
 <div>
   <tool-bar page-title="Dashboard"></tool-bar>
   <div class="secondary--container">
-  <md-layout class="pa pb-0" md-align="center" md-gutter md-column>
-    <md-layout>
-
-      <md-toolbar class="md-transparent block-fill">
-        <div class="">
-          <span class="md-subheading">All applications</span>
-        </div>
-      </md-toolbar>
-
+    <md-layout class="pa pb-0" md-align="center" md-gutter md-column>
+      <page-header :title="headerTitle"></page-header>
+      <app-list :filter="currentFilter"></app-list>
     </md-layout>
-
-   <!-- <md-layout md-flex-xsmall="90" md-flex-medium="70"> -->
-      <md-layout md-gutter="16">
-
-        <app-list-card v-for="app in applications" 
-        :application="app" 
-        :key="app.id" 
-        @appArchived="handleArchive(app)">
-        </app-list-card>
-
-      </md-layout>
-   <!-- </md-layout> -->
-  </md-layout>
   </div>
 
   <app-add-btn @click.native="openForm"></app-add-btn>
@@ -34,24 +15,23 @@
     <new-app-form @formClosed="closeForm">
     </new-app-form>
   </md-dialog>
-
+  <!--
   <md-snackbar :md-position="'bottom center'" ref="snack" :md-duration="4000">
     <span>{{snackMessage}}</span>
     <md-button class="md-accent" md-theme="light-blue" @click="undo">Undo</md-button>
   </md-snackbar>
-
+-->
 </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import { appsRef, flagsRef } from '../../firebase';
 
   import newAppForm from '../reusable/newAppForm.vue';
-  import appListCard from "../reusable/appListCard.vue";
   import appAddBtn from '../reusable/appAddBtn.vue';
-  
+  import appList from '../reusable/appList.vue';
   import snackNotification from '../elements/snackNotification.vue';
+  import pageHeader from '../elements/pageHeader.vue';
   import toolBar from '../elements/toolBar.vue';
 
   export default {
@@ -59,7 +39,11 @@
       return {
         snackMessage : '',
         undoAction : '',
-        undoObject : null
+        undoObject : null,
+        currentFilter : {
+          archived : false
+        },
+        headerTitle : 'Your Applications'
       }
     },
     methods : {
@@ -83,10 +67,6 @@
         this.$refs['snack'].close();
       }
     },
-    computed : mapGetters({
-      applications : 'activeApps'
-     // current : 'currentApp'
-    }),
     created() {
       this.$store.dispatch('LOAD_APPS_LIST', appsRef);
       this.$store.dispatch('LOAD_FLAGS_LIST', flagsRef);
@@ -95,8 +75,9 @@
       newAppForm,
       toolBar,
       appAddBtn,
-      appListCard,
-      snackNotification
+      appList,
+      pageHeader,
+      snackNotification,
     }
   }
 </script>

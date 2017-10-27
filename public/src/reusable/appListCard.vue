@@ -37,7 +37,8 @@
 
 
       <div class="card-actions">
-        <app-list-card-buttons @appDeleted="openDialog" @appArchived="archiveApp">
+        <app-list-card-buttons :archive-status="application.archived" 
+        @appDeleted="openDialog" @appArchived="archiveApp">
         </app-list-card-buttons>
       </div>
 

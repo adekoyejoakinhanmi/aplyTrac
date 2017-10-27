@@ -8,6 +8,11 @@ const state = {
 const getters = {
    activeApps : state => {
       return state.applications.filter(app => !app.archived)
+   },
+   getByStatus : (state, getters) => prop => {
+     if (typeof prop === 'object') {
+      return state.applications.filter(app => app.archived === prop.archived);
+     } 
    }
 }
 
