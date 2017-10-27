@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-flex-xsmall="100" md-flex-small="50" md-flex-medium="25" md-flex-large="25" md-flex-xlarge="25">
+  <md-layout class="appList" md-flex-xsmall="100" md-flex-small="50" md-flex-medium="25" md-flex-large="25" md-flex-xlarge="25">
     <md-card class="app-card block-fill">
       <md-card-header class="has-ripple" @click.native="toggleDetails">
         <md-ink-ripple />
@@ -42,6 +42,7 @@
       </div>
 
       <confirm-delete @deleteConfirmed="deleteApp" ref="deleteDialog"></confirm-delete>
+
     </md-card>
   </md-layout>
 </template>
@@ -191,6 +192,9 @@ export default {
 }
 .app-card .md-button.md-icon-button {
   margin: 0;
+}
+.appList {
+  align-items: flex-start;
 }
 /* color statuses */
 .ytr {

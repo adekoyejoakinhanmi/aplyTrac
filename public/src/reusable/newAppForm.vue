@@ -187,7 +187,8 @@ data() {
            height: 100%;
      }
      .full-on-small .md-dialog-title.md-title{
-          background: #eee
+          background: #eee;
+          padding-bottom: 12px;
      }
 }
 .md-dialog-container.md-active .md-dialog{
