@@ -190,4 +190,7 @@ data() {
           background: #eee
      }
 }
+.md-dialog-container.md-active .md-dialog{
+      overflow: auto
+}
 </style>
