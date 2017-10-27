@@ -5,9 +5,9 @@
   <md-layout class="pa pb-0" md-align="center" md-gutter md-column>
     <md-layout>
 
-      <md-toolbar class="md-transparent">
-        <div class="block-fill">
-          <h1 class="md-title">Your Applications</h1>
+      <md-toolbar class="md-transparent block-fill">
+        <div class="">
+          <span class="md-subheading">All applications</span>
         </div>
       </md-toolbar>
 
