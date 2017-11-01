@@ -1,11 +1,12 @@
 <template>
   <md-whiteframe md-elevation="1">
-    <md-toolbar v-show="extended"></md-toolbar>
     <md-toolbar>
       <md-button class="md-icon-button nav-trigger" @click="toggleSideNav">
          <md-icon>menu</md-icon>
       </md-button>
       <div class="md-title">{{pageTitle}}</div>
+      <div class="flex-1"></div>
+      <slot></slot>
     </md-toolbar>
     
   </md-whiteframe>
@@ -14,10 +15,9 @@
 <script>
 export default {
    props : {
-      pageTitle : String,
-      extended : {
-        type : Boolean,
-        default : false
+      pageTitle : {
+        type : String,
+        required : false
       }
    },
    methods : {

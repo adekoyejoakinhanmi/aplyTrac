@@ -1,6 +1,9 @@
 <template>
 <div>
-  <tool-bar page-title="Dashboard"></tool-bar>
+  <tool-bar page-title="Dashboard">
+    <app-list-filter @filterChanged="changeFilter"></app-list-filter>
+  </tool-bar>
+
   <div class="secondary--container">
     <md-layout class="pa pb-0" md-align="center" md-gutter md-column>
       <page-header :title="headerTitle"></page-header>
@@ -30,6 +33,8 @@
   import newAppForm from '../reusable/newAppForm.vue';
   import appAddBtn from '../reusable/appAddBtn.vue';
   import appList from '../reusable/appList.vue';
+  import appListFilter from '../reusable/appListFilter.vue'
+
   import snackNotification from '../elements/snackNotification.vue';
   import pageHeader from '../elements/pageHeader.vue';
   import toolBar from '../elements/toolBar.vue';
@@ -65,6 +70,11 @@
           archived : false
         });
         this.$refs['snack'].close();
+      },
+      changeFilter(filter) {
+        if (filter === 'all') {
+          
+        }
       }
     },
     created() {
@@ -77,6 +87,7 @@
       appAddBtn,
       appList,
       pageHeader,
+      appListFilter,
       snackNotification,
     }
   }
