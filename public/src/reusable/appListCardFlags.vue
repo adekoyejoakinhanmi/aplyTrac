@@ -29,7 +29,7 @@
 
 <script>
 import appFlagInput from './appFlagInput.vue';
-import { flagsRef } from '../../firebase';
+import { flagsRef } from '../../firebase/index';
 
 export default {
    data() {

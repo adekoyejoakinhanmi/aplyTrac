@@ -18,7 +18,7 @@
 
 <script>
 import uniqid from 'uniqid';
-import { flagsRef } from '../../firebase';
+import { flagsRef } from '../../firebase/index';
 
 export default {
    props : {

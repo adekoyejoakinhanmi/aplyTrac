@@ -1,5 +1,6 @@
 import * as types from '../mutations.types';
 import { firebaseAction } from 'vuexfire';
+import {  appsRef } from '../../../firebase/index';
 
 const state = {
    applications : []
@@ -17,8 +18,8 @@ const getters = {
 }
 
 const actions = {
-   LOAD_APPS_LIST : firebaseAction(({bindFirebaseRef}, ref) => {
-     bindFirebaseRef('applications', ref);
+   LOAD_APPS_LIST : firebaseAction(({bindFirebaseRef}) => {
+     bindFirebaseRef('applications', appsRef);
    })
 }
 
