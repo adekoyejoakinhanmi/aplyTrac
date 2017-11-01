@@ -1,20 +1,35 @@
 <template>
+<div>
+   <md-layout md-gutter="16">
 
-<md-layout md-gutter="16">
+      <app-list-card v-for="app in applications" :application="app" :key="app.id" @appArchived="handleArchive(app)">
+      </app-list-card>
 
-   <app-list-card v-for="app in applications" 
-   :application="app" 
-   :key="app.id" 
-   @appArchived="handleArchive(app)">
-   </app-list-card>
+      <div class="block-fill tc pa" v-show="applications.length === 0">
+         Nothing to show here
+      </div>
+   </md-layout>
 
-</md-layout>
+   <md-snackbar :md-position="'bottom center'" ref="snack" :md-duration="4000">
+      <span>{{snackMessage}}</span>
+      <md-button class="md-accent" md-theme="light-blue" @click="undo">Undo</md-button>
+   </md-snackbar>
+</div>
 </template>
 
 <script>
+import { appsRef } from '../../firebase';
+
 import appListCard from "../reusable/appListCard.vue";
 
 export default {
+   data() {
+      return {
+         snackMessage : '',
+         undoAction : '',
+         undoObject : null,
+      }
+   },
    props : {
       filter : {
          type : Object,
@@ -27,7 +42,18 @@ export default {
    },
    methods : {
       handleArchive(app) {
-         console.log(app);
+         this.snackMessage = 'Application Archived';
+         this.undoAction = 'unarchive';
+         this.undoObject = app;
+         console.log(this.undoObject);
+         this.$refs['snack'].open();
+      },
+      undo() {
+         let key = this.undoObject['.key'];
+         appsRef.child(key).update({
+          archived : false
+        });
+        this.$refs['snack'].close();
       }
    },
    components : {

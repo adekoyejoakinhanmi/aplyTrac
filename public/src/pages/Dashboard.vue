@@ -1,7 +1,6 @@
 <template>
 <div>
   <tool-bar page-title="Dashboard">
-    <app-list-filter @filterChanged="changeFilter"></app-list-filter>
   </tool-bar>
 
   <div class="secondary--container">
@@ -19,10 +18,7 @@
     </new-app-form>
   </md-dialog>
   <!--
-  <md-snackbar :md-position="'bottom center'" ref="snack" :md-duration="4000">
-    <span>{{snackMessage}}</span>
-    <md-button class="md-accent" md-theme="light-blue" @click="undo">Undo</md-button>
-  </md-snackbar>
+  
 -->
 </div>
 </template>
@@ -33,18 +29,13 @@
   import newAppForm from '../reusable/newAppForm.vue';
   import appAddBtn from '../reusable/appAddBtn.vue';
   import appList from '../reusable/appList.vue';
-  import appListFilter from '../reusable/appListFilter.vue'
 
-  import snackNotification from '../elements/snackNotification.vue';
   import pageHeader from '../elements/pageHeader.vue';
   import toolBar from '../elements/toolBar.vue';
 
   export default {
     data() {
       return {
-        snackMessage : '',
-        undoAction : '',
-        undoObject : null,
         currentFilter : {
           archived : false
         },
@@ -57,24 +48,6 @@
       },
       closeForm() {
         this.$refs['appForm'].close()
-      },
-      handleArchive(app) {
-        this.snackMessage = 'Application Archived';
-        this.undoAction = 'unarchive';
-        this.undoObject = app;
-        this.$refs['snack'].open();
-      },
-      undo() {
-        let key = this.undoObject['.key'];
-        appsRef.child(key).update({
-          archived : false
-        });
-        this.$refs['snack'].close();
-      },
-      changeFilter(filter) {
-        if (filter === 'all') {
-          
-        }
       }
     },
     created() {
@@ -87,8 +60,6 @@
       appAddBtn,
       appList,
       pageHeader,
-      appListFilter,
-      snackNotification,
     }
   }
 </script>

@@ -38,7 +38,9 @@
 
       <div class="card-actions">
         <app-list-card-buttons :archive-status="application.archived" 
-        @appDeleted="openDialog" @appArchived="archiveApp">
+        @appDeleted="openDialog" 
+        @appArchived="archiveApp" 
+        @appUnarchived="unarchiveApp">
         </app-list-card-buttons>
       </div>
 
@@ -85,6 +87,9 @@ export default {
       archiveApp() {
         this.updateApp({ archived : true });
         this.$emit('appArchived');
+      },
+      unarchiveApp() {
+        this.updateApp({ archived : false });
       },
       openDialog() {
         this.$refs['deleteDialog'].open();

@@ -8,22 +8,15 @@
     <md-list>
       <md-list-item>
         <router-link to="/dashboard"> 
-          <!--<md-icon>dashboard</md-icon>--> 
+          <md-icon>dashboard</md-icon>
           <span>Dashboard</span>
         </router-link>
       </md-list-item>
 
       <md-list-item>
         <router-link to="/archive">
-          <!--<md-icon>archive</md-icon>-->
+          <md-icon>archive</md-icon>
           <span>Archive</span>
-        </router-link>
-      </md-list-item>
-
-      <md-list-item>
-        <router-link to="/settings">
-         <!--<md-icon>settings</md-icon>-->
-          <span>Settings</span>
         </router-link>
       </md-list-item>
     </md-list>
