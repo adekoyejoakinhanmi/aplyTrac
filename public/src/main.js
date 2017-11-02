@@ -31,7 +31,7 @@ var vm = new Vue({
    el : '#app',
    store,
    mounted() {
-      this.$router.push('/auth');
+      this.$router.push('/login');
    },
    render : h => h(App)
 });
