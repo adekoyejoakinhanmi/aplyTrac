@@ -13,18 +13,9 @@
       </md-card-header>
 
       <div class="card-media">
-        <md-select name="applicationStatus" id="appStatus" v-model="s" md-align-trigger :md-menu-options="menuOptions">
-          <md-button class="md-icon-button" md-menu-trigger slot="icon">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="100" cy="100" r="100" :class="status" />
-            </svg>
-          </md-button>
-
-          <md-option v-for="status in statuses" :value="status" :key="status">
-            {{status}}
-          </md-option>
-        </md-select>
-
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="100" :class="status" />
+        </svg>
       </div>
 
 
@@ -37,6 +28,19 @@
 
 
       <div class="card-actions">
+        <md-select name="applicationStatus" id="appStatus" v-model="s" md-align-trigger :md-menu-options="menuOptions">
+          <md-button class="md-icon-button" md-menu-trigger slot="icon">
+            <md-icon>edit</md-icon>
+          </md-button>
+
+          <md-option v-for="status in statuses" :value="status" :key="status">
+            {{status}}
+          </md-option>
+        </md-select>
+
+        <div class="flex-1">
+        </div>
+
         <app-list-card-buttons :archive-status="application.archived" 
         @appDeleted="openDialog" 
         @appArchived="archiveApp" 
@@ -51,7 +55,7 @@
 </template>
 
 <script>
-import { appsRef } from '../../firebase';
+import { appsRef } from '../../firebase/index';
 
 import appListCardButtons from './appListCardButtons.vue';
 import appListCardDetails from './appListCardDetails.vue';
@@ -65,7 +69,7 @@ export default {
       return {
         detailsView: false,
         menuOptions: {
-          mdDirection: "bottom left"
+          mdDirection: "top right"
         },
         s: this.application.status,
         statuses: ['Get Back to you', 'Yet to reply', 'Rejected/Filled', 'Interview']
@@ -157,7 +161,6 @@ export default {
 .app-card .card-actions{
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   padding: 3px 5px;
   -webkit-text-size-adjust: 100%;
   line-height: 20px;
@@ -179,7 +182,7 @@ export default {
 .app-card .md-subheader{
   padding-right: 4px
 }
-.app-card .card-media .md-select{
+.app-card .card-actions .md-select{
   width: 0%;
   min-width: 0;
 }
@@ -201,6 +204,14 @@ export default {
 }
 .appList {
   align-items: flex-start;
+}
+.card-actions .md-select{
+  position: static;
+  display: flex;
+  align-items: center
+}
+.card-actions .md-select .md-menu{
+  height: auto;
 }
 
 @media screen and (min-width: 601px) and (max-width: 944px){

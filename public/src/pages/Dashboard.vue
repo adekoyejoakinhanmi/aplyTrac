@@ -24,8 +24,6 @@
 </template>
 
 <script>
-  import { appsRef, flagsRef } from '../../firebase';
-
   import newAppForm from '../reusable/newAppForm.vue';
   import appAddBtn from '../reusable/appAddBtn.vue';
   import appList from '../reusable/appList.vue';
@@ -51,8 +49,8 @@
       }
     },
     created() {
-      this.$store.dispatch('LOAD_APPS_LIST', appsRef);
-      this.$store.dispatch('LOAD_FLAGS_LIST', flagsRef);
+      this.$store.dispatch('LOAD_APPS_LIST');
+      this.$store.dispatch('LOAD_FLAGS_LIST');
     },
     components : {
       newAppForm,

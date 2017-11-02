@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { appsRef } from '../../firebase';
+import { appsRef } from '../../firebase/index';
 
 import appListCard from "../reusable/appListCard.vue";
 

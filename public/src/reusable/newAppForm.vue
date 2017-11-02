@@ -57,7 +57,7 @@
 
 <script>
 import uniqid from 'uniqid';
-import { appsRef } from '../../firebase';
+import { appsRef } from '../../firebase/index';
 
 export default {
 data() {

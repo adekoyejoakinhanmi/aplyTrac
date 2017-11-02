@@ -1,4 +1,4 @@
-import * as types from '../mutations.types';
+import { flagsRef } from '../../../firebase/index';
 import { firebaseAction } from 'vuexfire';
 
 
