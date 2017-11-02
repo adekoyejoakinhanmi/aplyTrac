@@ -2,7 +2,7 @@ import VueRouter from 'vue-router';
 
 import Dashboard from './pages/Dashboard.vue';
 import Archive from './pages/Archive.vue';
-import Auth from './pages/Auth.vue';
+import Login from './pages/Login.vue';
 
 const routes = [
    {
@@ -16,9 +16,9 @@ const routes = [
       component : Archive
    },
    {
-      name : 'auth',
-      path : '/auth',
-      component : Auth
+      name : 'login',
+      path : '/login',
+      component : Login
    }
 ];
 
