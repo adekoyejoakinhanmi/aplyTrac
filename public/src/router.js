@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Dashboard from './pages/Dashboard.vue';
 import Archive from './pages/Archive.vue';
 import Login from './pages/Login.vue';
+import Register from './pages/Register.vue';
 
 const routes = [
    {
@@ -19,6 +20,11 @@ const routes = [
       name : 'login',
       path : '/login',
       component : Login
+   },
+   {
+      name : 'register',
+      path : '/register',
+      component : Register
    }
 ];
 
