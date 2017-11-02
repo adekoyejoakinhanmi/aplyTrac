@@ -50,7 +50,6 @@ export default {
         this.user.email,
         this.user.password
       ).then(success => {
-        console.log('success');
         this.$router.push('/dashboard');
       });
     }

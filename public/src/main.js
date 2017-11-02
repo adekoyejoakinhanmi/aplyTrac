@@ -5,6 +5,7 @@ import VueMaterial from 'vue-material';
 import VueTimeago from "vue-timeago";
 import router from './router';
 import store from './store';
+import * as firebase from 'firebase';
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
@@ -32,6 +33,15 @@ var vm = new Vue({
    store,
    mounted() {
       this.$router.push('/login');
+   },
+   created() {
+     firebase.auth().onAuthStateChanged((user) => {
+       if (user) {
+         this.$store.dispatch('setUserState', user);
+       } else {
+         this.$store.dispatch('setUserState', null);
+       }
+     })
    },
    render : h => h(App)
 });

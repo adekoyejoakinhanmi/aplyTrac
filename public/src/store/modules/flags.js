@@ -17,8 +17,8 @@ const getters = {
 }
 
 const actions = {
-   LOAD_FLAGS_LIST : firebaseAction(({ bindFirebaseRef }, ref) => {
-      bindFirebaseRef('flags', ref)
+   LOAD_FLAGS_LIST : firebaseAction(({ bindFirebaseRef }) => {
+      bindFirebaseRef('flags', flagsRef)
    })
 }
 
