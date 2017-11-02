@@ -4,20 +4,20 @@
     <md-toolbar class="md-transparent">
       <h2 class="md-title tc" style="flex: 1">Login</h2>
     </md-toolbar>
-    <form @submit.prevent>
+    <form @submit.prevent="signInUser">
       <md-input-container>
         <label for="email">Email</label>
-        <md-input type="email" name="email" placeholder="Email">
+        <md-input v-model="user.email" type="email" name="email" placeholder="Email">
         </md-input>
       </md-input-container>
 
       <md-input-container>
         <label for="password">Password</label>
-        <md-input type="password" name="password" placeholder="Password">
+        <md-input v-model="user.password" type="password" name="password" placeholder="Password">
         </md-input>
       </md-input-container>
 
-      <md-button class="md-raised">Login</md-button>
+      <md-button class="md-raised" type="submit" :disabled="formValid">Login</md-button>
     </form>
     <div class="blockfill pa tc pt-0">
       Don't have an account, register <router-link to="/register">here</router-link>
@@ -27,8 +27,34 @@
 </template>
 
 <script>
-export default {
+import * as firebase from 'firebase';
 
+export default {
+  data() {
+    return {
+      user: {
+        password: '',
+        email: ''
+      }
+    }
+  },
+  computed : {
+      formValid() {
+         return (!this.user.email || 
+                 !this.user.password)
+      }
+   },
+  methods : {
+    signInUser(){
+      firebase.auth().signInWithEmailAndPassword(
+        this.user.email,
+        this.user.password
+      ).then(success => {
+        console.log('success');
+        this.$router.push('/dashboard');
+      });
+    }
+  }
 }
 </script>
 
