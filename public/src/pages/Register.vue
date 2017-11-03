@@ -34,6 +34,7 @@
 
 <script>
 import * as firebase from 'firebase';
+import { idGen } from "../helpers/funcs";
 
 export default {
    data() {
@@ -54,21 +55,30 @@ export default {
    },
    methods : {
       addNewUser() {
-         firebase.auth().createUserWithEmailAndPassword(
+          let data = {
+            id : idGen('u'),
+            name: this.newUser.fullname,
+            email: this.newUser.email
+          };
+
+          firebase.auth().createUserWithEmailAndPassword(
             this.newUser.email,
             this.newUser.password
-         ).then(success => {
+          ).then(success => {
+            this.$store.dispatch('createUser', {
+              user: data
+            });
             this.clearUser();
             this.$router.push('/login');
-         })
-      },
-      clearUser() {
-         this.newUser = {
-            fullname : '',
-            password : '',
-            email : ''
-         }
-      }
+          })
+        },
+        clearUser() {
+          this.newUser = {
+            fullname: '',
+            password: '',
+            email: ''
+          }
+        }
    }
 }
 </script>
