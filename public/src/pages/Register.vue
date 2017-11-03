@@ -56,7 +56,7 @@ export default {
    methods : {
       addNewUser() {
           let data = {
-            id : idGen('u'),
+            id: idGen('u'),
             name: this.newUser.fullname,
             email: this.newUser.email
           };
@@ -65,8 +65,16 @@ export default {
             this.newUser.email,
             this.newUser.password
           ).then(success => {
+            console.log(success)
             this.$store.dispatch('createUser', {
-              user: data
+              user: {
+                id: idGen('u'),
+                name: this.newUser.fullname,
+                email: this.newUser.email
+              },
+              id : {
+                uid : success.uid
+              }
             });
             this.clearUser();
             this.$router.push('/login');

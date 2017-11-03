@@ -6,21 +6,26 @@ const state = {
 
 const mutations = {
    setUser(state, payload){
-      state.user = payload;    
+      state.user = payload;  
    }
 }
 
 const actions = {
    setUserState({ commit }, user) {
-      commit('setUser', user);
+      let currentUser = null;
+      if (user) {
+         usersRef.child(user.uid).once('value', (snapshot) => {
+            currentUser = snapshot.val();
+         })
+      }
+      commit('setUser', currentUser);
    },
-   createUser({ commit }, { user }) {
-      usersRef.push(user);
+   createUser({ commit }, { user, id }) {
+      usersRef.child(id.uid).set(user);
    }
 }
 
 const getters = {
-
 }
 
 export default {

@@ -39,7 +39,7 @@ var vm = new Vue({
        if (user) {
          this.$store.dispatch('setUserState', user);
        } else {
-         this.$store.dispatch('setUserState', null);
+         this.$store.dispatch('setUserState');
        }
      })
    },
