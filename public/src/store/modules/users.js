@@ -26,6 +26,12 @@ const actions = {
 }
 
 const getters = {
+   userFirstName(state) {
+      if (state.user) {
+         return state.user.name.split(' ')[0];
+      }
+      return '';
+   }
 }
 
 export default {

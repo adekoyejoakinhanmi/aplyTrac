@@ -7,12 +7,29 @@
       <div class="md-title">{{pageTitle}}</div>
       <div class="flex-1"></div>
       <slot></slot>
+      <md-menu md-size="4">
+        <md-button class="md-icon-button" md-menu-trigger>
+          <md-icon>person</md-icon>
+        </md-button>
+
+        <md-menu-content>
+          <md-menu-item>
+            <small>Logged in as {{userName}}</small>
+          </md-menu-item>
+          <md-menu-item @click="logout">
+            <span>Log out</span>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      
     </md-toolbar>
     
   </md-whiteframe>
 </template>
 
 <script>
+import * as firebase from 'firebase';
+
 export default {
    props : {
       pageTitle : {
@@ -29,7 +46,15 @@ export default {
         // pending a refactor to a more effective
         // event module
         this.$root.$children[0].toggleSideNav();
+      },
+      logout() {
+        firebase.auth().signOut();
       }
+   },
+   computed : {
+     userName() {
+       return this.$store.getters.userFirstName;
+     }
    }
 }
 </script>
