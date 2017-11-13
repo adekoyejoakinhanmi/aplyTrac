@@ -1,5 +1,6 @@
 import * as types from '../mutations.types';
 import { firebaseAction } from 'vuexfire';
+import { appsRef } from '../../../firebase/index';
 
 const state = {
    applications : []

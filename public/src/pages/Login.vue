@@ -49,7 +49,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(
         this.user.email,
         this.user.password
-      ).then(success => {
+      ).then(user => {
         this.$router.push('/dashboard');
       });
     }

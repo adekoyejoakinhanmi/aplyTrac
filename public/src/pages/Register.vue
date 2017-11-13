@@ -65,7 +65,6 @@ export default {
             this.newUser.email,
             this.newUser.password
           ).then(success => {
-            console.log(success)
             this.$store.dispatch('createUser', {
               user: {
                 id: idGen('u'),

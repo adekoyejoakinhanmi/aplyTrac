@@ -38,8 +38,11 @@ var vm = new Vue({
      firebase.auth().onAuthStateChanged((user) => {
        if (user) {
          this.$store.dispatch('setUserState', user);
-       } else {
+         this.$router.push('/dashboard');
+       }
+       else {
          this.$store.dispatch('setUserState');
+         this.$router.push('/login');
        }
      })
    },

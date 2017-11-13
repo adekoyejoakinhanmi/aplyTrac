@@ -12,13 +12,13 @@ const mutations = {
 
 const actions = {
    setUserState({ commit }, user) {
-      let currentUser = null;
       if (user) {
          usersRef.child(user.uid).once('value', (snapshot) => {
-            currentUser = snapshot.val();
+            commit('setUser', snapshot.val());
          })
-      }
-      commit('setUser', currentUser);
+      } else {
+         commit('setUser', null);
+      }    
    },
    createUser({ commit }, { user, id }) {
       usersRef.child(id.uid).set(user);
