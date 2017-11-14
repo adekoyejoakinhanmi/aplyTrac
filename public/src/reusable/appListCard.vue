@@ -33,6 +33,9 @@
             <md-icon>edit</md-icon>
           </md-button>
 
+          <md-subheader>
+            <small>Change Status</small>
+          </md-subheader>
           <md-option v-for="status in statuses" :value="status" :key="status">
             {{status}}
           </md-option>

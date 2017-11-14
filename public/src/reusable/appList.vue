@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="app-list">
    <md-layout md-gutter="16">
 
       <app-list-card v-for="app in applications" :application="app" :key="app.id" @appArchived="handleArchive(app)">
@@ -63,5 +63,7 @@ export default {
 </script>
 
 <style>
-
+.app-list{
+  margin-bottom: 25px;
+}
 </style>

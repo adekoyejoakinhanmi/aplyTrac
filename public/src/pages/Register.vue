@@ -76,7 +76,7 @@ export default {
               }
             });
             this.clearUser();
-            this.$router.push('/login');
+            //this.$router.push('/login');
           })
         },
         clearUser() {

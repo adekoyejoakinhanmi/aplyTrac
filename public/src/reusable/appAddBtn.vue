@@ -1,5 +1,5 @@
 <template>
-<md-button class="md-fab md-fab-bottom-right">
+<md-button class="md-fab md-fab-bottom-right centered-on-small">
       <md-icon>add</md-icon>
   </md-button>
 </template>
@@ -8,3 +8,10 @@ export default {
 
 }
 </script>
+<style>
+@media screen and (max-width : 480px) {
+  .centered-on-small{
+    left : 50%; 
+  }
+}
+</style>
