@@ -64,6 +64,6 @@ export default {
 
 <style>
 .app-list{
-  margin-bottom: 25px;
+  margin-bottom: 65px;
 }
 </style>

@@ -10,8 +10,9 @@ export default {
 </script>
 <style>
 @media screen and (max-width : 480px) {
-  .centered-on-small{
-    left : 50%; 
+  .md-button.md-fab.centered-on-small{
+    width: 45px;
+    height: 45px; 
   }
 }
 </style>
