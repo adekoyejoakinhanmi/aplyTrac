@@ -87,9 +87,11 @@ export default {
       toggleDetails() {
         this.detailsView = !this.detailsView
       },
-      updateApp(updateObject) {
+      updateApp(data) {
         let key = this.application['.key'];
-        appsRef.child(key).update(updateObject)
+        this.$store.dispatch('UPDATE_APP', {
+          key, data
+        })
       },
       archiveApp() {
         this.updateApp({ archived : true });
@@ -106,7 +108,7 @@ export default {
       },
       deleteApp() {
         this.closeDialog();
-        appsRef.child(this.application['.key']).remove();
+        this.$store.dispatch('DELETE_APP', this.application['.key']);
       }
     },
     props: {

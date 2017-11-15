@@ -1,12 +1,16 @@
 import { usersRef } from '../../../firebase/index';
 
 const state = {
-   user : null
+   user : null,
+   userKey : ''
 }
 
 const mutations = {
    setUser(state, payload){
       state.user = payload;  
+   },
+   setKey(state, payload) {
+      state.userKey = payload;
    }
 }
 
@@ -14,10 +18,12 @@ const actions = {
    setUserState({ commit }, user) {
       if (user) {
          usersRef.child(user.uid).once('value').then(snapshot => {
+            commit('setKey', user.uid);
             commit('setUser', snapshot.val());
          });
          return;
       }
+      commit('setKey', '');
       commit('setUser', null);    
    },
    createUser({ commit }, { user, id }) {

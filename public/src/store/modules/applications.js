@@ -1,4 +1,4 @@
-import * as types from '../mutations.types';
+import * as firebase from "firebase";
 import { firebaseAction } from 'vuexfire';
 import { appsRef } from '../../../firebase/index';
 
@@ -19,8 +19,21 @@ const getters = {
 
 const actions = {
    LOAD_APPS_LIST : firebaseAction(({bindFirebaseRef}) => {
-     bindFirebaseRef('applications', appsRef);
-   })
+    let path = firebase.auth().currentUser.uid;
+     bindFirebaseRef('applications', appsRef.child(path));
+   }),
+   CREATE_APP : ({ commit }, app) => {
+    let path = firebase.auth().currentUser.uid;
+     appsRef.child(path).push(app);
+   },
+   DELETE_APP : ({ commit }, key) => {
+    let path = firebase.auth().currentUser.uid;
+     appsRef.child(path).child(key).remove();
+   },
+   UPDATE_APP : ({ commit }, { key, data }) => {
+    let path = firebase.auth().currentUser.uid;
+     appsRef.child(path).child(key).update(data)
+   }
 }
 
 

@@ -56,121 +56,119 @@
 </template>
 
 <script>
-import uniqid from 'uniqid';
-import { appsRef } from '../../firebase/index';
+import { idGen } from '../helpers/funcs';
 
 export default {
-data() {
-      return {
-         app: {
-            company: '',
-            vacancy: '',
-            type: 'Remote / Telecommute',
-            medium: '',
-            date: '',
-            status: 'Yet to reply'
-         },
-         vacancies: [{
-               title: 'Web Developer'
-            },
-            {
-               title: 'Teacher'
-            },
-            {
-               title: 'Content Developer'
-            },
-            {
-               title: 'Front End Developer'
-            },
-            {
-               title: 'JavaScript Developer'
-            },
-            {
-               title: 'Copy Writer'
-            },
-            {
-               title: 'Misc Teacher'
-            },
-            {
-               title: 'Full Stack Developer'
-            },
-            {
-               title: 'Wordpress Developer'
+      data() {
+            return {
+                  app: {
+                        company: '',
+                        vacancy: '',
+                        type: 'Remote / Telecommute',
+                        medium: '',
+                        date: '',
+                        status: 'Yet to reply'
+                  },
+                  vacancies: [{
+                              title: 'Web Developer'
+                        },
+                        {
+                              title: 'Teacher'
+                        },
+                        {
+                              title: 'Content Developer'
+                        },
+                        {
+                              title: 'Front End Developer'
+                        },
+                        {
+                              title: 'JavaScript Developer'
+                        },
+                        {
+                              title: 'Copy Writer'
+                        },
+                        {
+                              title: 'Misc Teacher'
+                        },
+                        {
+                              title: 'Full Stack Developer'
+                        },
+                        {
+                              title: 'Wordpress Developer'
+                        }
+                  ],
+                  medium: [{
+                              title: 'Email'
+                        },
+                        {
+                              title: 'Paper'
+                        },
+                        {
+                              title: 'Workable'
+                        },
+                        {
+                              title: 'Lever.co'
+                        },
+                        {
+                              title: 'Remotee'
+                        }
+                  ]
             }
-         ],
-         medium: [{
-               title: 'Email'
+      },
+      methods: {
+            addNew() {
+                  let data = {
+                        id: idGen('a'),
+                        company: this.app.company,
+                        vacancy: this.app.vacancy,
+                        type: this.app.type,
+                        medium: this.app.medium,
+                        date: this.app.date,
+                        status: this.app.status,
+                        archived: false
+                  }
+                  console.log(this.$store);
+                  this.$store.dispatch('CREATE_APP', data);
+                  this.closeForm();
             },
-            {
-               title: 'Paper'
+            closeForm() {
+                  this.app = {
+                        company: '',
+                        vacancy: '',
+                        type: 'Remote / Telecommute',
+                        medium: '',
+                        date: '',
+                        status: 'Yet to reply'
+                  }
+                  this.$emit('formClosed');
             },
-            {
-               title: 'Workable'
+            validateDate(date) {
+                  var t = /^(?=.+([\/.-])..\1)(?=.{10}$)(?:(\d{4}).|)(\d\d).(\d\d)(?:.(\d{4})|)$/;
+                  date.replace(t, function ($, _, y, m, d, y2) {
+                        $ = new Date(y = y || y2, m, d);
+                        t = $.getFullYear() != y || $.getMonth() != m || $.getDate() != d;
+                  });
+                  return !t;
             },
-            {
-               title: 'Lever.co'
-            },
-            {
-               title: 'Remotee'
+            appFilter(list, query) {
+                  let arr = [];
+                  for (var i = 0; i < list.length; i++) {
+                        if (list[i].title.indexOf(query) !== -1) {
+                              arr.push(list[i]);
+                              if (arr.length > 5) break;
+                        }
+                  }
+                  return arr;
             }
-         ]
-      }
-   },
-   methods: {
-      addNew() {
-         let _id = `${Math.floor(Math.random() * 10)}${uniqid()}${uniqid()}${uniqid()}`;
-
-         let data = {
-            id: _id.substring(0, 19),
-            company: this.app.company,
-            vacancy: this.app.vacancy,
-            type: this.app.type,
-            medium: this.app.medium,
-            date: this.app.date,
-            status: this.app.status,
-            archived: false
-         }
-         appsRef.push(data);
-         this.closeForm();
       },
-      closeForm() {
-         this.app = {
-            company: '',
-            vacancy: '',
-            type: 'Remote / Telecommute',
-            medium: '',
-            date: '',
-            status: 'Yet to reply'
-         }
-         this.$emit('formClosed');
-      },
-      validateDate(date) {
-         var t = /^(?=.+([\/.-])..\1)(?=.{10}$)(?:(\d{4}).|)(\d\d).(\d\d)(?:.(\d{4})|)$/;
-         date.replace(t, function ($, _, y, m, d, y2) {
-            $ = new Date(y = y || y2, m, d);
-            t = $.getFullYear() != y || $.getMonth() != m || $.getDate() != d;
-         });
-         return !t;
-      },
-      appFilter(list, query) {
-         let arr = [];
-         for (var i = 0; i < list.length; i++) {
-            if (list[i].title.indexOf(query) !== -1) {
-               arr.push(list[i]);
-               if (arr.length > 5) break;
+      computed: {
+            formValid() {
+                  return (!this.app.company ||
+                        !this.validateDate(this.app.date) ||
+                        !this.app.vacancy ||
+                        !this.app.medium);
             }
-         }
-         return arr;
       }
-   },
-   computed: {
-      formValid() {
-         return (!this.app.company || 
-                 !this.validateDate(this.app.date) || 
-                 !this.app.vacancy || 
-                 !this.app.medium);
-      }
-   }
 }
 </script>
 

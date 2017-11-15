@@ -42,11 +42,14 @@ export default {
          this.flagInputView = !this.flagInputView
       },
       deleteFlag(flag) {
-        flagsRef.child(flag['.key']).remove();
+        this.$store.dispatch('DELETE_FLAG', flag['.key']);
       },
       updateFlag(flag) {
-        flagsRef.child(flag['.key']).update({
-          completed : flag.completed
+        let key = flag['.key'];
+
+        this.$store.dispatch('UPDATE_FLAG', {
+          key,
+          data : { completed : flag.completed }
         });
       }
    },

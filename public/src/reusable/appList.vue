@@ -45,14 +45,14 @@ export default {
          this.snackMessage = 'Application Archived';
          this.undoAction = 'unarchive';
          this.undoObject = app;
-         console.log(this.undoObject);
          this.$refs['snack'].open();
       },
       undo() {
          let key = this.undoObject['.key'];
-         appsRef.child(key).update({
-          archived : false
-        });
+         this.$store.dispatch('UPDATE_APP', {
+           key, 
+           data : { archived : false}
+         });
         this.$refs['snack'].close();
       }
    },

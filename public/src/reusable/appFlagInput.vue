@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import uniqid from 'uniqid';
-import { flagsRef } from '../../firebase/index';
+import { idGen } from '../helpers/funcs';
 
 export default {
    props : {
@@ -35,12 +34,12 @@ export default {
    methods : {
       createFlag() {
          let data = {
-            id : `${uniqid()}`,
+            id : idGen('f'),
             applicationId : this.appId,
             title : this.newFlag,
             completed : false
          };
-         flagsRef.push(data);
+         this.$store.dispatch('CREATE_FLAG', data);
          this.closeFlagInput();
       },
       closeFlagInput() {
