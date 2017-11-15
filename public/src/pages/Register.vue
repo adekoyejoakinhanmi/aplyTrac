@@ -55,7 +55,7 @@ export default {
    },
    methods : {
       addNewUser() {
-          let data = {
+          let user = {
             id: idGen('u'),
             name: this.newUser.fullname,
             email: this.newUser.email
@@ -64,16 +64,10 @@ export default {
           firebase.auth().createUserWithEmailAndPassword(
             this.newUser.email,
             this.newUser.password
-          ).then(success => {
-            this.$store.dispatch('createUser', {
-              user: {
-                id: idGen('u'),
-                name: this.newUser.fullname,
-                email: this.newUser.email
-              },
-              id : {
-                uid : success.uid
-              }
+          ).then(user => {
+            this.$store.dispatch('CREATE_USER', {
+              user,
+              id : user.uid
             });
             this.clearUser();
             //this.$router.push('/login');
