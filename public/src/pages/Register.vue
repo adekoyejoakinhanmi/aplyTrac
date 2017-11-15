@@ -1,5 +1,10 @@
 <template>
   <div class="form-container">
+  <div class="mb-2 tc">
+    <h1>AplyTrac</h1>
+    <small>Job Application Status Made Easy</small>
+  </div>
+
   <md-whiteframe md-elevation="2" class="login-form">
     <md-toolbar class="md-transparent">
       <h2 class="md-title tc" style="flex: 1">Register</h2>

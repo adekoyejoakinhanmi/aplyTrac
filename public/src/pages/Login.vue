@@ -1,5 +1,10 @@
 <template>
 <div class="form-container">
+  <div class="mb-2 tc">
+    <h1>AplyTrac</h1>
+    <small>Job Application Status Made Easy</small>
+  </div>
+
   <md-whiteframe md-elevation="2" class="login-form">
     <md-toolbar class="md-transparent">
       <h2 class="md-title tc" style="flex: 1">Login</h2>
@@ -62,11 +67,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding-top: 90px;
 }
 .form-container .login-form{
   width: 90%;
   height: auto;
-  margin-top: 150px;
 }
 @media screen and (min-width: 600px){
   .form-container .login-form{
